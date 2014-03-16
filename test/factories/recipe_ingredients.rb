@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :recipe_ingredient do
+    text "1 tomato, sliced"
     recipe
     ingredient
   end

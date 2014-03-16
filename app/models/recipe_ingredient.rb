@@ -4,4 +4,5 @@ class RecipeIngredient < ActiveRecord::Base
 
   validates :recipe, presence: true
   validates :ingredient, presence: true
+  validates :text, presence: true
 end
