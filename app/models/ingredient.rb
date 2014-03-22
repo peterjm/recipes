@@ -5,6 +5,11 @@ class Ingredient < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   validate :validate_name_is_pluralized
 
+  def self.from(name)
+    attrs = {name: name.pluralize}
+    find_by(attrs) || new(attrs)
+  end
+
   private
 
   def validate_name_is_pluralized
