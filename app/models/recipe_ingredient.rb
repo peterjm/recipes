@@ -5,4 +5,6 @@ class RecipeIngredient < ActiveRecord::Base
   validates :recipe, presence: true
   validates :ingredient, presence: true
   validates :text, presence: true
+  validates :quantity, presence: true, numericality: {greater_than: 0}
+  validates :unit, presence: true, inclusion: EyeOfNewt::Unit.all
 end

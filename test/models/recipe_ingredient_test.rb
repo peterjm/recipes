@@ -13,7 +13,15 @@ class RecipeIngredientTest < ActiveSupport::TestCase
     refute build(:recipe_ingredient, recipe: nil).valid?, "should not be valid"
   end
 
-  test "requires an ingredient" do
-    refute build(:recipe_ingredient, ingredient: nil).valid?, "should not be valid"
+  test "requires quantity" do
+    refute build(:recipe_ingredient, quantity: nil).valid?, "should not be valid"
+  end
+
+  test "requires a unit" do
+    refute build(:recipe_ingredient, unit: nil).valid?, "should not be valid"
+  end
+
+  test "requires that unit is recognized" do
+    refute build(:recipe_ingredient, unit: "asdf").valid?, "should not be valid"
   end
 end
