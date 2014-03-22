@@ -10,6 +10,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
+gem 'eye-of-newt'
+
 group :development, :test do
   gem 'sqlite3'
   gem 'pry'
@@ -20,4 +22,6 @@ group :production do
   gem 'pg'
 end
 
-gem 'sdoc', require: false, group: [:doc]
+group :doc do
+  gem 'sdoc', require: false
+end

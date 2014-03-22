@@ -39,6 +39,7 @@ GEM
     coffee-script-source (1.7.0)
     erubis (2.7.0)
     execjs (2.0.2)
+    eye-of-newt (0.0.1)
     factory_girl (4.4.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.4.1)
@@ -128,6 +129,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   coffee-rails (~> 4.0.0)
+  eye-of-newt
   factory_girl_rails
   jquery-rails
   pg
