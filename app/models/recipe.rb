@@ -5,6 +5,10 @@ class Recipe < ActiveRecord::Base
         push(o)
       end
     end
+
+    def with_text(text)
+      detect{|ri| ri.text == text}
+    end
   end
   has_many :ingredients, through: :recipe_ingredients
 
@@ -12,8 +16,10 @@ class Recipe < ActiveRecord::Base
 
   def update_recipe_ingredients
     list = IngredientListParser.new(ingredients_text).list
+    unused_texts = recipe_ingredients.map(&:text) - list
     list.each do |text|
-      recipe_ingredients.build_from(text)
+      recipe_ingredients.with_text(text) || recipe_ingredients.build_from(text)
     end
+    recipe_ingredients.destroy unused_texts.map{|t| recipe_ingredients.with_text(t)}
   end
 end
