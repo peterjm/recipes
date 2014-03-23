@@ -1,0 +1,6 @@
+defaults: &defaults
+  SITE_PASSWORD: secret
+development:
+  <<: *defaults
+test:
+  <<: *defaults
