@@ -4,6 +4,8 @@ class SessionsController < ApplicationController
     redirect_to root_path
   end
 
+  respond_to :html
+
   def new
   end
 
