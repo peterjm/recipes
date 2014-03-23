@@ -21,13 +21,30 @@ class Recipe < ActiveRecord::Base
     end
 
     def update_from(list)
-      current_texts = map(&:text)
+      add_new(list)
+      remove_old(list)
+      reorder_by(list)
+    end
 
-      new_texts = list - current_texts
+    def current_list
+      map(&:text)
+    end
+
+    private
+
+    def add_new(list)
+      new_texts = list - current_list
       new_texts.each { |t| build_from(t) }
+    end
 
-      unused_texts = current_texts - list
+    def remove_old(list)
+      unused_texts = current_list - list
       destroy unused_texts.map{ |t| matching(t) }
+    end
+
+    def reorder_by(list)
+      each { |ri| ri.position = list.index(ri.text) + 1 }
+      proxy_association.load_target.sort_by!(&:position)
     end
   end
 end
