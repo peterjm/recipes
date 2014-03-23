@@ -1,4 +1,6 @@
 class AuthenticatedController < ApplicationController
+  layout 'main'
+
   before_action :require_login
 
   private

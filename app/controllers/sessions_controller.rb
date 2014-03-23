@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  layout 'login'
 
   before_action only: [:new, :create], if: :logged_in? do
     redirect_to root_path
@@ -10,7 +11,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    password = params.require(:password)
+    password = params[:password]
     if log_in!(password)
       redirect_to_return_path
     else
