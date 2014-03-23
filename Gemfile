@@ -17,7 +17,12 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rescue'
   gem 'pry-byebug'
+end
+
+group :test do
   gem 'factory_girl_rails'
+  gem "mocha"
+  gem "capybara"
 end
 
 group :production do
