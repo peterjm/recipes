@@ -15,6 +15,8 @@ gem 'eye-of-newt'
 group :development, :test do
   gem 'sqlite3'
   gem 'pry'
+  gem 'pry-rescue'
+  gem 'pry-byebug'
   gem 'factory_girl_rails'
 end
 
