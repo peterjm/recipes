@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
   def create
     password = params.require(:password)
     if log_in!(password)
-      redirect_to root_path
+      redirect_to_return_path
     else
       render 'new', status: :unprocessable_entity
     end

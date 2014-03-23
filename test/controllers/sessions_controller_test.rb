@@ -13,10 +13,11 @@ class SessionsControllerTest < ActionController::TestCase
     assert_redirected_to root_path
   end
 
-  test "#create logs in and redirects to the root path" do
+  test "#create logs in and redirects to the return path" do
+    session[:return_to] = recipes_path
     Authenticator.stubs(:password).returns("password")
     post :create, password: "password"
-    assert_redirected_to root_path
+    assert_redirected_to recipes_path
   end
 
   test "#create with an invalid password renders the login path" do
