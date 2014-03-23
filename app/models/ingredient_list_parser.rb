@@ -5,13 +5,13 @@ class IngredientListParser
     @text = text
   end
 
-  def ingredient_lines
-    @lines ||= parse_ingredient_lines
+  def list
+    @list ||= parse_ingredient_list
   end
 
   private
 
-  def parse_ingredient_lines
+  def parse_ingredient_list
     @text.lines.map(&:strip).reject(&:blank?)
   end
 end
