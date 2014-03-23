@@ -37,7 +37,8 @@ class RecipeIngredientTest < ActiveSupport::TestCase
     r = create(:recipe)
     assert_difference "RecipeIngredient.count", 1 do
       assert_difference "Ingredient.count", 1 do
-        r.recipe_ingredients.build_from("1 tomato, sliced").save!
+        ri = r.recipe_ingredients.build_from("1 tomato, sliced").tap(&:save!)
+        assert_equal r, ri.recipe
       end
     end
   end
