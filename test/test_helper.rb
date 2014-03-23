@@ -28,4 +28,12 @@ class ActionDispatch::IntegrationTest
     Capybara.reset_sessions!
     Capybara.use_default_driver
   end
+
+  protected
+
+  def log_in
+    visit "/login"
+    fill_in 'Password', :with => Authenticator.password
+    click_button 'Log in'
+  end
 end

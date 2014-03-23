@@ -11,6 +11,12 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "#show is successful" do
+    r = create(:recipe)
+    get :show, id: r.id
+    assert_response :success
+  end
+
   test "#new is successful" do
     get :new
     assert_response :success

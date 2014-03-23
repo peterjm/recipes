@@ -1,1 +1,14 @@
 <% set_page_title "New Recipe" %>
+
+<%= form_for @recipe do |f| %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %>
+
+  <%= f.label :ingredients_text, "Ingredients" %>
+  <%= f.text_area :ingredients_text %>
+
+  <%= f.label :instructions_text, "Instructions" %>
+  <%= f.text_area :instructions_text %>
+
+  <%= f.submit "Bon Appetit!" %>
+<% end %>

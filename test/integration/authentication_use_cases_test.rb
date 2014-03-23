@@ -22,11 +22,4 @@ class AuthenticationUseCasesTest < ActionDispatch::IntegrationTest
     click_link "Log out"
     assert_equal "/login", current_path
   end
-
-  private
-
-  def log_in
-    fill_in 'Password', :with => Authenticator.password
-    click_button 'Log in'
-  end
 end
