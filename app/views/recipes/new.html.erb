@@ -1,14 +1,39 @@
 <% set_page_title "New Recipe" %>
 
-<%= form_for @recipe do |f| %>
-  <%= f.label :title, "Title" %>
-  <%= f.text_field :title %>
+<%= form_for @recipe, class: "form-horizontal" do |f| %>
+  <fieldset>
+    <div class="form-group">
+      <%= f.label :title, "Title", class: "col-md-6 control-label" %>
+      <div class="col-md-6">
+        <%= f.text_field :title, class: "form-control input-md" %>
+      </div>
+    </div>
 
-  <%= f.label :ingredients_text, "Ingredients" %>
-  <%= f.text_area :ingredients_text %>
+    <div class="form-group">
+      <%= f.label :source, "Source", class: "col-md-6 control-label" %>
+      <div class="col-md-6">
+        <%= f.text_field :source, class: "form-control input-md", placeholder: "(optional)" %>
+      </div>
+    </div>
 
-  <%= f.label :instructions_text, "Instructions" %>
-  <%= f.text_area :instructions_text %>
+    <div class="form-group">
+      <%= f.label :ingredients_text, "Ingredients", class: "col-md-6 control-label" %>
+      <div class="col-md-6">
+        <%= f.text_area :ingredients_text, class: "form-control" %>
+      </div>
+    </div>
 
-  <%= f.submit "Bon Appetit!" %>
+    <div class="form-group">
+      <%= f.label :instructions_text, "Instructions", class: "col-md-6 control-label" %>
+      <div class="col-md-6">
+        <%= f.text_area :instructions_text, class: "form-control" %>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="col-md-6">
+        <%= f.submit "Bon Appetit!", class: 'btn btn-primary' %>
+      </div>
+    </div>
+  </fieldset>
 <% end %>

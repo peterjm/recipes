@@ -11,6 +11,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 gem 'eye-of-newt'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'sqlite3'
