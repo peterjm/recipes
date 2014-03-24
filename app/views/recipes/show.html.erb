@@ -1,5 +1,5 @@
 <% set_page_title @recipe.title %>
 
-<%= @recipe.ingredients_text %>
+<%= render_markdown @recipe.ingredients_text %>
 
-<%= @recipe.instructions_text %>
+<%= render_markdown @recipe.instructions_text %>
