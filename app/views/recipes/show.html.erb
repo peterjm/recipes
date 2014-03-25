@@ -1,7 +1,9 @@
 <% set_page_title @recipe.title %>
 
+<h2>Ingredients</h2>
 <%= render_markdown @recipe.ingredients_text %>
 
+<h2>Instructions</h2>
 <%= render_markdown @recipe.instructions_text %>
 
 <%= link_to "Edit", action: :edit %>
