@@ -5,7 +5,7 @@ class Ingredient < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   def self.from(name)
-    attrs = {name: name.pluralize}
+    attrs = {name: name}
     find_by(attrs) || new(attrs)
   end
 
