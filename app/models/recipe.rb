@@ -9,6 +9,10 @@ class Recipe < ActiveRecord::Base
     recipe_ingredients.update_from(list)
   end
 
+  def to_param
+    "#{id}-#{title_was.parameterize}"
+  end
+
   module RecipeIngredientExtension
     def build_from(*args)
       scoping { klass.build_from(*args) }.tap do |o|

@@ -46,7 +46,7 @@ class RecipesControllerTest < ActionController::TestCase
   test "#update is successful" do
     r = create(:recipe, title: "Bagels")
     patch :update, id: r.id, recipe: {title: "Dinner rolls"}
-    assert_redirected_to recipe_path(r)
+    assert_redirected_to recipe_path(r.reload)
     assert_equal "Dinner rolls", r.reload.title
   end
 

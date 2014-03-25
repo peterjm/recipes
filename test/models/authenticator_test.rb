@@ -1,3 +1,5 @@
+require 'test_helper'
+
 class AuthenticatorTest < ActiveSupport::TestCase
 
   test "#log_in logs in" do

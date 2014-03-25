@@ -10,6 +10,10 @@ class Ingredient < ActiveRecord::Base
     find_by(attrs) || new(attrs)
   end
 
+  def to_param
+    "#{id}-#{name_was.parameterize}"
+  end
+
   private
 
   def validate_name_is_pluralized
