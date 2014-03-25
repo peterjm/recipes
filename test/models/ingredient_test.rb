@@ -14,10 +14,6 @@ class IngredientTest < ActiveSupport::TestCase
     refute build(:ingredient, name: "tomatoes").valid?, "should not be valid"
   end
 
-  test "requires the name to be pluralized" do
-    refute build(:ingredient, name: "tomato").valid?, "should not be valid"
-  end
-
   test ".from pluralizes the name" do
     tomatoes = create(:ingredient, name: "tomatoes")
     assert_equal tomatoes, Ingredient.from("tomato")
