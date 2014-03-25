@@ -1,5 +1,8 @@
 class Authenticator
   class_attribute :password
+  def self.password
+    @password || ENV['SITE_PASSWORD']
+  end
 
   attr_reader :session
 
