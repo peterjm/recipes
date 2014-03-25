@@ -37,4 +37,24 @@ class RecipesControllerTest < ActionController::TestCase
     assert_template 'new'
   end
 
+  test "#edit is successful" do
+    r = create(:recipe)
+    get :edit, id: r.id
+    assert_response :success
+  end
+
+  test "#update is successful" do
+    r = create(:recipe, title: "Bagels")
+    patch :update, id: r.id, recipe: {title: "Dinner rolls"}
+    assert_redirected_to recipe_path(r)
+    assert_equal "Dinner rolls", r.reload.title
+  end
+
+  test "#update fails if the parameters are invalid" do
+    r = create(:recipe, title: "Bagels")
+    patch :update, id: r.id, recipe: {title: nil}
+    assert_response :success
+    assert_template 'edit'
+    assert_equal "Bagels", r.reload.title
+  end
 end
