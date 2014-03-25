@@ -4,6 +4,9 @@ class Recipe < ActiveRecord::Base
 
   validates :title, presence: true
 
+  include PerformsActionOnSave
+  action_on_save :update_recipe_ingredients
+
   def update_recipe_ingredients
     list = IngredientListParser.new(ingredients_text).list
     recipe_ingredients.update_from(list)

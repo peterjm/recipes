@@ -36,7 +36,10 @@ class RecipesController < AuthenticatedController
   private
 
   def recipe_params
-    params.require(:recipe).permit(:title, :ingredients_text, :instructions_text, :source)
+    params
+      .require(:recipe)
+      .permit(:title, :ingredients_text, :instructions_text, :source)
+      .merge(update_recipe_ingredients_on_save: true)
   end
 
 end
