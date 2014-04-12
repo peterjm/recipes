@@ -7,14 +7,17 @@ class RecipesControllerTest < ActionController::TestCase
   end
 
   test "#index is successful" do
+    create(:recipe, title: "foo")
     get :index
     assert_response :success
+    assert_equal "foo", @controller.recipes.first.title
   end
 
   test "#show is successful" do
-    r = create(:recipe)
+    r = create(:recipe, title: "foo")
     get :show, id: r.id
     assert_response :success
+    assert_equal "foo", @controller.recipe.title
   end
 
   test "#new is successful" do
