@@ -1,5 +1,3 @@
-require 'cached_enumerator'
-
 class Presenter
   extend Forwardable
 
