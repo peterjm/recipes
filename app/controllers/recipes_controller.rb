@@ -1,6 +1,7 @@
 class RecipesController < AuthenticatedController
   include Resourceful
-  resource :recipe
+
+  resource :recipe, presenter: RecipePresenter
 
   respond_to :html
 
