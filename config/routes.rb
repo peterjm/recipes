@@ -4,6 +4,7 @@ Recipes::Application.routes.draw do
   delete "/logout" => "sessions#destroy", as: 'logout'
 
   resources :recipes
+  resources :ingredients
 
   root to: "recipes#index"
 end
