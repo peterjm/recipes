@@ -29,7 +29,7 @@ class RecipeIngredientTest < ActiveSupport::TestCase
     ri = RecipeIngredient.build_from("1 tomato, sliced")
     assert_equal 1, ri.quantity
     assert_equal "units", ri.unit
-    assert_equal "tomatoes", ri.name
+    assert_equal "tomato", ri.name
     assert_equal "sliced", ri.style
   end
 
