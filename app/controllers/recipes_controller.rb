@@ -1,36 +1,33 @@
 class RecipesController < AuthenticatedController
+  include Resourceful
+  resource :recipe
 
   respond_to :html
 
   def index
-    @recipes = Recipe.all
-    respond_with @recipes
+    respond_with Recipe.all
   end
 
   def show
-    @recipe = Recipe.find(params[:id])
-    respond_with @recipe
+    respond_with Recipe.find(params[:id])
   end
 
   def new
-    @recipe = Recipe.new
-    respond_with @recipe
+    respond_with Recipe.new
   end
 
   def create
-    @recipe = Recipe.create(recipe_params)
-    respond_with @recipe
+    respond_with Recipe.create(recipe_params)
   end
 
   def edit
-    @recipe = Recipe.find(params[:id])
-    respond_with @recipe
+    respond_with Recipe.find(params[:id])
   end
 
   def update
-    @recipe = Recipe.find(params[:id])
-    @recipe.update_attributes(recipe_params)
-    respond_with @recipe
+    recipe = Recipe.find(params[:id])
+    recipe.update_attributes(recipe_params)
+    respond_with recipe
   end
 
   private
