@@ -17,6 +17,10 @@ class Presenter
     @element = element
   end
 
+  def urls
+    Rails.application.routes.url_helpers
+  end
+
   def respond_to_missing?(method, include_all)
     element.respond_to?(method, false)
   end
