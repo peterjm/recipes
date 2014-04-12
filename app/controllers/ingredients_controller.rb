@@ -1,7 +1,7 @@
 class IngredientsController < AuthenticatedController
   include Resourceful
 
-  resource :ingredient
+  resource :ingredient, presenter: IngredientPresenter
 
   respond_to :html
 
