@@ -15,7 +15,7 @@ class IngredientTest < ActiveSupport::TestCase
   end
 
   test ".from finds an existing ingredient" do
-    tomatoes = create(:ingredient, name: "tomatoes")
+    tomatoes = create(:ingredient, name: "tomatoes", ensure_ingredient_name_on_save: true)
     assert_equal tomatoes, Ingredient.from("tomatoes")
   end
 
@@ -23,5 +23,19 @@ class IngredientTest < ActiveSupport::TestCase
     tomatoes = Ingredient.from("tomatoes")
     assert_equal "tomatoes", tomatoes.name
     assert tomatoes.new_record?, "should not be saved"
+  end
+
+  test "#ensure_ingredient_name does nothing if the name already exists" do
+    tomatoes = create(:ingredient, name: "tomatoes", ensure_ingredient_name_on_save: true)
+    assert_no_difference "IngredientName.count" do
+      tomatoes.ensure_ingredient_name
+    end
+  end
+
+  test "#ensure_ingredient_name creates an ingredient name if it doesn't exist" do
+    tomatoes = create(:ingredient, name: "tomatoes")
+    assert_difference "IngredientName.count", 1 do
+      tomatoes.ensure_ingredient_name
+    end
   end
 end
