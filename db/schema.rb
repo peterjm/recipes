@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20140413133301) do
     t.boolean  "staple",       default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "grams_per_ml"
   end
 
   add_index "ingredients", ["name"], name: "index_ingredients_on_name"
