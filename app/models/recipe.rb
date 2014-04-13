@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :recipe_ingredients
-  has_many :recipe_ingredients, ->{ extending(RecipeIngredientExtension).order('position ASC') }, inverse_of: :recipe, autosave: true
+  has_many :recipe_ingredients, ->{ extending(RecipeIngredientExtension).order('position ASC') }, inverse_of: :recipe, dependent: :destroy, autosave: true
 
   validates :title, presence: true
 

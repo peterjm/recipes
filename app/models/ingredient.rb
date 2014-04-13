@@ -1,7 +1,7 @@
 class Ingredient < ActiveRecord::Base
-  has_many :recipe_ingredients, inverse_of: :ingredient
+  has_many :recipe_ingredients, inverse_of: :ingredient, dependent: :destroy
   has_many :recipes, through: :recipe_ingredients
-  has_many :ingredient_names, inverse_of: :ingredient, autosave: true
+  has_many :ingredient_names, inverse_of: :ingredient, dependent: :destroy, autosave: true
 
   validates :name, presence: true, uniqueness: true
 
@@ -10,6 +10,14 @@ class Ingredient < ActiveRecord::Base
 
   def ensure_ingredient_name
     ingredient_names.by(name) || ingredient_names.create!(name: name)
+  end
+
+  def names
+    ingredient_names.map(&:name)
+  end
+
+  def alternate_names
+    names - [name]
   end
 
   def self.from(name)

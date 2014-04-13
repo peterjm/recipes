@@ -4,7 +4,9 @@ Recipes::Application.routes.draw do
   delete "/logout" => "sessions#destroy", as: 'logout'
 
   resources :recipes
-  resources :ingredients
+  resources :ingredients do
+    resource :merge, only: [:create], controller: 'ingredient_merges'
+  end
 
   root to: "recipes#index"
 end

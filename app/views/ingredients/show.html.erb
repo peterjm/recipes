@@ -1,1 +1,18 @@
 <% set_page_title ingredient.name %>
+
+<h2>AKA</h2>
+<%= ingredient.alternate_names.join(', ') %>
+
+<h2>Recipes</h2>
+<ul>
+  <% ingredient.recipes.find_each do |recipe| %>
+    <li><%= link_to recipe.title, recipe %></li>
+  <% end %>
+</ul>
+
+<h2>Merge into:</h2>
+<ul>
+  <% Ingredient.find_each do |ing| %>
+    <li><%= link_to ing.name, ingredient_merge_path(ing, id: ingredient.id), method: :post %></li>
+  <% end %>
+</ul>
