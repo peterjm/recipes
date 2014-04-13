@@ -5,7 +5,5 @@ FactoryGirl.define do
     text "2 tomatoes, sliced"
     recipe
     ingredient
-    quantity 1
-    unit "units"
   end
 end

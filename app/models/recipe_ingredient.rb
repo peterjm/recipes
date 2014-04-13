@@ -5,8 +5,6 @@ class RecipeIngredient < ActiveRecord::Base
   validates :recipe, presence: true
   validates :ingredient, presence: true
   validates :text, presence: true
-  validates :quantity, presence: true, numericality: {greater_than: 0}
-  validates :unit, presence: true, inclusion: EyeOfNewt::Unit.all
 
   before_create :save_ingredient
 
@@ -16,14 +14,27 @@ class RecipeIngredient < ActiveRecord::Base
     ing = EyeOfNewt.parse(text)
     new(
       text: text,
-      quantity: ing.quantity,
-      unit: ing.unit.to_s,
-      style: ing.style,
       ingredient: Ingredient.from(ing.name)
     )
   end
 
+  def unit
+    parsed_ingredient.unit.to_s
+  end
+
+  def quantity
+    parsed_ingredient.quantity
+  end
+
+  def style
+    parsed_ingredient.style
+  end
+
   private
+
+  def parsed_ingredient
+    @parsed_ingredient ||= EyeOfNewt.parse(text)
+  end
 
   def save_ingredient
     ingredient.save if ingredient.new_record?

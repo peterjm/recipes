@@ -13,24 +13,10 @@ class RecipeIngredientTest < ActiveSupport::TestCase
     refute build(:recipe_ingredient, recipe: nil).valid?, "should not be valid"
   end
 
-  test "requires quantity" do
-    refute build(:recipe_ingredient, quantity: nil).valid?, "should not be valid"
-  end
-
-  test "requires a unit" do
-    refute build(:recipe_ingredient, unit: nil).valid?, "should not be valid"
-  end
-
-  test "requires that unit is recognized" do
-    refute build(:recipe_ingredient, unit: "asdf").valid?, "should not be valid"
-  end
-
   test ".build_from sets attributes from a parsed ingredient" do
     ri = RecipeIngredient.build_from("1 tomato, sliced")
     assert_equal 1, ri.quantity
-    assert_equal "units", ri.unit
     assert_equal "tomato", ri.name
-    assert_equal "sliced", ri.style
   end
 
   test ".build_from will save the ingredient when it saves the recipe ingredient" do
