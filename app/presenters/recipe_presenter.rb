@@ -4,7 +4,7 @@ class RecipePresenter < Presenter
   def ingredients_markdown
     text = recipe.ingredients_text
     recipe_ingredients.each do |ing|
-      text.gsub!(ing.text, ing.markdown)
+      text.gsub!(ing.text, ing.standard_markdown)
     end
     text
   end
