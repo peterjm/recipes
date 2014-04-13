@@ -1,13 +1,11 @@
 <% set_page_title "All Recipes" %>
 
-<ul class="activity">
+<ul>
   <% recipes.each do |recipe| %>
-    <li class="activity-item">
-      <div class="activity-info">
-        <%= link_to recipe_path(recipe) do %>
-          <h2><%= recipe.title %></h2>
-        <% end %>
-      </div>
+    <li>
+      <%= link_to recipe_path(recipe) do %>
+        <h2><%= recipe.title %></h2>
+      <% end %>
     </li>
   <% end %>
 </ul>

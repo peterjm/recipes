@@ -1,8 +1,4 @@
 <% content_for :application_content do %>
-  <div class="container">
-    <div id="login">
-      <%= content_for?(:login_content) ? yield(:login_content) : yield %>
-    </div>
-  </div>
+  <%= content_for?(:login_content) ? yield(:login_content) : yield %>
 <% end %>
 <%= render template: "layouts/application" %>
