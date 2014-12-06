@@ -14,6 +14,7 @@ class RecipeIngredientPresenter < Presenter
   end
 
   def fraction
+    return nil if unit.nil? && quantity == 1
     fraction = quantity.to_r
     whole = fraction.to_i
     fraction -= whole
@@ -21,7 +22,7 @@ class RecipeIngredientPresenter < Presenter
   end
 
   def amount
-    [fraction, unit].compact.join(' ')
+    [fraction, unit].compact.join(' ').presence
   end
 
   def unit
