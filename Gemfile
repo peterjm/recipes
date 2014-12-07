@@ -9,6 +9,7 @@ gem 'unicorn'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
+gem 'font-awesome-rails'
 
 gem 'eye-of-newt'
 gem 'redcarpet'

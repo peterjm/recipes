@@ -58,6 +58,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    font-awesome-rails (4.2.0.0)
+      railties (>= 3.2, < 5.0)
     hike (1.2.3)
     i18n (0.6.11)
     interception (0.5)
@@ -146,6 +148,7 @@ DEPENDENCIES
   coffee-rails
   eye-of-newt
   factory_girl_rails
+  font-awesome-rails
   jquery-rails
   mocha
   pry
