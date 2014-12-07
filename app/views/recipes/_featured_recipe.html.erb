@@ -2,11 +2,11 @@
   <div class="grid desk-6">
     <div class="entry-photo">
       <div class="badge">Recipe of the day</div>
-      <img src="assets/placeholder/food/560x380/21.jpg" alt="" />
+      <%= image_tag recipe.image('560x380'), alt: recipe.title %>
     </div>
   </div>
   <div class="grid desk-6">
-    <h3><a href="#">Meatballs with tomato sauce</a></h3>
+    <h3><%= link_to recipe.title, recipe_path(recipe) %></h3>
     <p>Pellentesque non nibh eros. Nunc lectus lacus, interdum et consequat et, varius sit amet ipsum. Fusce convallis, lorem sit amet bibendum accumsan, mark example consectetursup adipisicingsub nec mattis dui nisi a lacus. Aenean bibendum dui quis pellentesque dictum. Cras aliquet risus id nisi feugiat vulputate...</p>
 
     <div class="entry-meta clearfix">
@@ -26,7 +26,7 @@
     <div class="clear"></div>
 
     <div class="entry-info-author">
-      <img src="assets/placeholder/people/80x80/21.jpg" alt="" />
+      <%= image_tag 'avatar-80x80.jpg', alt: 'author photo' %>
       <div class="submited-by">Author:</div>
       <div class="author-name"><a href="#">Sandra Williams</a> <span class="mark green" title="Pro member!">Pro</span></div>
       <div class="total-recipes">136 recipes</div>

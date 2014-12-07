@@ -3,7 +3,7 @@
 <div class="rw-column rw-content">
 
   <div class="rw-row subtle large home-recipe-of-the-day">
-    <%= render 'featured_recipe' %>
+    <%= render 'featured_recipe', recipe: @recipes.first if @recipes.first %>
   </div>
 
   <div class="rw-row subtle large border-bottom">

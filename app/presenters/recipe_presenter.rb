@@ -15,8 +15,16 @@ class RecipePresenter < Presenter
 
   RANDOM_IMAGE_COUNT = 20
   def image(size)
-    hexdigest = Digest::SHA1.hexdigest(recipe.title)
-    number = (hexdigest.to_i(16) % RANDOM_IMAGE_COUNT) + 1
+    default_image(size)
+  end
+
+  def default_image(size)
+    hex = Digest::SHA1.hexdigest(recipe.title).to_i(16)
+    number = if size == '560x380'
+      hex % 2 == 0 ? 8 : 21
+    else
+      (hex % RANDOM_IMAGE_COUNT) + 1
+    end
     "defaults/food/#{size}/#{number}.jpg"
   end
 end
