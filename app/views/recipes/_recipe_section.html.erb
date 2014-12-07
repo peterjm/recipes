@@ -14,7 +14,7 @@
   <div class="home-carousel-posts clearfix">
 
     <% recipes.each do |recipe| %>
-      <%= render partial: 'small_recipe', recipe: recipe %>
+      <%= render 'small_recipe', recipe: recipe %>
     <% end %>
 
   </div> <!-- .home-carousel-posts -->

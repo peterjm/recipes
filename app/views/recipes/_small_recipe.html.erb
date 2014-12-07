@@ -1,9 +1,9 @@
 <div class="entry style-columns">
   <div class="entry-photo">
-    <img src="assets/placeholder/food/350x240/12.jpg" alt="" />
+    <%= image_tag recipe.image('350x240'), alt: recipe.title %>
   </div>
   <div class="entry-title">
-    <a href="#">African Chicken Peanut Stew</a>
+    <%= link_to recipe.title, recipe_path(recipe)%>
   </div>
   <div class="entry-meta">
     <span class="date">21 Aug 2014</span>

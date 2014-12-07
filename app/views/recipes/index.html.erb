@@ -7,11 +7,11 @@
   </div>
 
   <div class="rw-row subtle large border-bottom">
-    <%= render 'recipe_section', title: 'Featured recipes', recipes: (1..6).to_a %>
+    <%= render 'recipe_section', title: 'Featured recipes', recipes: @recipes %>
   </div> <!-- .rw-row -->
 
   <div class="rw-row subtle large">
-    <%= render 'recipe_section', title: 'Latest recipes', recipes: (1..6).to_a %>
+    <%= render 'recipe_section', title: 'Latest recipes', recipes: @recipes %>
   </div> <!-- .rw-row -->
 
 </div>
