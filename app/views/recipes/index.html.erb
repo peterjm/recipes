@@ -1,11 +1,17 @@
 <% set_page_title "All Recipes" %>
 
-<ul>
-  <% recipes.each do |recipe| %>
-    <li>
-      <%= link_to recipe_path(recipe) do %>
-        <h2><%= recipe.title %></h2>
-      <% end %>
-    </li>
-  <% end %>
-</ul>
+<div class="rw-column rw-content">
+
+  <div class="rw-row subtle large home-recipe-of-the-day">
+    <%= render 'featured_recipe' %>
+  </div>
+
+  <div class="rw-row subtle large border-bottom">
+    <%= render 'recipe_section', title: 'Featured recipes', recipes: (1..6).to_a %>
+  </div> <!-- .rw-row -->
+
+  <div class="rw-row subtle large">
+    <%= render 'recipe_section', title: 'Latest recipes', recipes: (1..6).to_a %>
+  </div> <!-- .rw-row -->
+
+</div>

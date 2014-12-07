@@ -12,9 +12,7 @@
 </head>
 <body>
 <section id="rw-layout" class="rw-layout">
-
-<%= content_for?(:application_content) ? yield(:application_content) : yield %>
-
+  <%= content_for?(:application_content) ? yield(:application_content) : yield %>
 </section><!-- .rw-layout -->
 
 <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
