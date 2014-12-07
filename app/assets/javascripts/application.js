@@ -13,4 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//
+//= require rw-sidebar
+//= require smk-menu
+//= require smk-accordion
+//= require smk-visual-select
+//= require owl.carousel
+//= require jquery.qtip
+//= require gustos
+//
 //= require_tree .
