@@ -13,7 +13,9 @@
 
   <div class="home-carousel-posts clearfix">
 
-    <%= render partial: 'recipe', collection: recipes %>
+    <% recipes.each do |recipe| %>
+      <%= render partial: 'small_recipe', recipe: recipe %>
+    <% end %>
 
   </div> <!-- .home-carousel-posts -->
 
