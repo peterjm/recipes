@@ -6,7 +6,6 @@ gem 'turbolinks'
 gem 'sqlite3'
 
 gem 'unicorn'
-gem 'sass-rails'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
