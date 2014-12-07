@@ -1,34 +1,35 @@
 class RecipesController < AuthenticatedController
-  include Resourceful
-
-  resource :recipe, presenter: RecipePresenter
-
   respond_to :html
 
   def index
-    respond_with Recipe.all
+    @recipes = presentable(Recipe.all)
+    respond_with @recipes
   end
 
   def show
-    respond_with Recipe.find(params[:id])
+    @recipe = presentable(Recipe.find(params[:id]))
+    respond_with @recipe
   end
 
   def new
-    respond_with Recipe.new
+    @recipe = presentable(Recipe.new)
+    respond_with @recipe
   end
 
   def create
-    respond_with Recipe.create(recipe_params)
+    @recipe = presentable(Recipe.create(recipe_params))
+    respond_with @recipe
   end
 
   def edit
-    respond_with Recipe.find(params[:id])
+    @recipe = presentable(Recipe.find(params[:id]))
+    respond_with @recipe
   end
 
   def update
-    recipe = Recipe.find(params[:id])
-    recipe.update_attributes(recipe_params)
-    respond_with recipe
+    @recipe = presentable(Recipe.find(params[:id]))
+    @recipe.update_attributes(recipe_params)
+    respond_with @recipe
   end
 
   private

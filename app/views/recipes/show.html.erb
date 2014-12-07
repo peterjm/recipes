@@ -1,9 +1,9 @@
-<% set_page_title recipe.title %>
+<% set_page_title @recipe.title %>
 
 <h2>Ingredients</h2>
-<%= render_markdown recipe.ingredients_markdown %>
+<%= render_markdown @recipe.ingredients_markdown %>
 
 <h2>Instructions</h2>
-<%= render_markdown recipe.instructions_text %>
+<%= render_markdown @recipe.instructions_text %>
 
 <%= link_to "Edit", action: :edit %>

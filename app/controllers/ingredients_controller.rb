@@ -1,12 +1,9 @@
 class IngredientsController < AuthenticatedController
-  include Resourceful
-
-  resource :ingredient, presenter: IngredientPresenter
-
   respond_to :html
 
   def show
-    respond_with Ingredient.find(params[:id])
+    @ingredient = presenter(Ingredient.find(params[:id]))
+    respond_with @ingredient
   end
 
 end
