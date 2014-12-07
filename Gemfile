@@ -3,18 +3,18 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'turbolinks'
+gem 'sqlite3'
 
 gem 'unicorn'
-gem 'sass-rails', '~> 4.0.2'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.0.0'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 gem 'jquery-rails'
 
 gem 'eye-of-newt'
 gem 'redcarpet'
 
 group :development, :test do
-  gem 'sqlite3'
   gem 'pry'
   gem 'pry-rescue'
   gem 'pry-byebug'
@@ -24,12 +24,4 @@ group :test do
   gem 'factory_girl_rails'
   gem "mocha"
   gem "capybara"
-end
-
-group :production do
-  gem 'pg'
-end
-
-group :doc do
-  gem 'sdoc', require: false
 end
