@@ -2,7 +2,7 @@ class Authenticator
   class_attribute :password
 
   def self.password
-    @password || ENV['SITE_PASSWORD']
+    @password || Rails.application.secrets.site_password
   end
 
   attr_reader :session
