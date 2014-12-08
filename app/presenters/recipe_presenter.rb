@@ -12,8 +12,11 @@ class RecipePresenter < Presenter
 
   def default_image(size)
     hex = Digest::SHA1.hexdigest(recipe.title).to_i(16)
-    number = if size == '560x380'
+    number = case size
+    when '560x380'
       hex % 2 == 0 ? 8 : 21
+    when '780x520'
+      1
     else
       (hex % RANDOM_IMAGE_COUNT) + 1
     end

@@ -18,7 +18,7 @@
     -->
     <div class="entry style-columns">
       <div class="entry-photo single-recipe-photo-cover">
-        <img src="assets/placeholder/1.jpg" alt="">
+        <%= image_tag @recipe.image('780x520'), alt: @recipe.title %>
         <div class="recipe-tools">
           <div class="tool like" title="Like (686)"><i class="the-icon fa fa-thumbs-o-up"></i></div>
           <div class="tool favorite active" title="Add to favorites (320)"><i class="the-icon fa fa-heart-o"></i></div>
@@ -66,7 +66,7 @@
           <ul>
             <li>
               <div class="entry-info-author">
-                <img src="assets/placeholder/50-3.jpg" >
+                <%= image_tag 'avatar-50x50.jpg', alt: 'avatar' %>
                 <div class="author-name"><a href="#">Sandra Williams</a> <span class="mark green" title="Pro member!">Pro</span></div>
                 <div><a href="#" class="follow-user button mini blue" title="851 followers">
                   <i class="fa fa-plus"></i> <span class="text">Follow</span>
