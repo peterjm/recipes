@@ -13,6 +13,6 @@
 <h2>Merge into:</h2>
 <ul>
   <% Ingredient.find_each do |ing| %>
-    <li><%= link_to ing.name, ingredient_merge_path(ing, id: ingredient.id), method: :post %></li>
+    <li><%= link_to ing.name, ingredient_merge_path(ing, id: @ingredient.id), method: :post %></li>
   <% end %>
 </ul>

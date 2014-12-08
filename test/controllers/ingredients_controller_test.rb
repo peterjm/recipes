@@ -10,6 +10,6 @@ class IngredientsControllerTest < ActionController::TestCase
     ing = create(:ingredient, name: "foo")
     get :show, id: ing.id
     assert_response :success
-    assert_equal "foo", @controller.ingredient.name
+    assert_equal "foo", assigns(:ingredient).name
   end
 end

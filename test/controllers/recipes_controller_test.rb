@@ -10,14 +10,14 @@ class RecipesControllerTest < ActionController::TestCase
     create(:recipe, title: "foo")
     get :index
     assert_response :success
-    assert_equal "foo", @controller.recipes.first.title
+    assert_equal "foo", assigns(:recipes).first.title
   end
 
   test "#show is successful" do
     r = create(:recipe, title: "foo")
     get :show, id: r.id
     assert_response :success
-    assert_equal "foo", @controller.recipe.title
+    assert_equal "foo", assigns(:recipe).title
   end
 
   test "#new is successful" do

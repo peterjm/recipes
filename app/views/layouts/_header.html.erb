@@ -9,6 +9,7 @@
         <nav id="the-main-menu" class="main-menu-nav menu-inline" data-breakpoint="1160">
           <ul class="menu horizontal">
             <li><%= link_to "Home", root_path %></li>
+            <li><%= link_to "New Recipe", new_recipe_path %></li>
           </ul>
         </nav>
       </div>
@@ -22,7 +23,7 @@
                 <%= link_to image_tag('avatar-50x50.jpg', alt: 'avatar'), root_path, class: 'avatar' %>
               </div>
               <ul class="sub-menu">
-                <li><%= link_to 'Sign out', logout_path, method: :destroy %></li>
+                <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
               </ul>
             </li>
           </ul>
