@@ -8,6 +8,7 @@ class RecipesController < AuthenticatedController
   end
 
   def show
+    setup_sidebar
     @recipe = presentable(Recipe.find(params[:id]))
     @related_recipes = presentable(Recipe.all)
     respond_with @recipe
@@ -35,6 +36,10 @@ class RecipesController < AuthenticatedController
   end
 
   private
+
+  def setup_sidebar
+    @popular_recipes = presentable(Recipe.all)
+  end
 
   def recipe_params
     params

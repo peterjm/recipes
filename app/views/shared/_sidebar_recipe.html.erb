@@ -1,0 +1,13 @@
+<div class="post">
+  <div class="entry-photo">
+    <%= image_tag recipe.image('50x50'), alt: recipe.title %>
+  </div>
+  <div class="entry-title">
+    <%= link_to recipe.title, recipe_path(recipe) %>
+  </div>
+  <div class="entry-controls minimal">
+    <a href="#" class="control entry-to-favorites" title="Add to favorites"> <i class="fa fa-heart-o"></i> </a><span class="control-tip">127</span>
+    <a href="#" class="control entry-like" title="I like this!"> <i class="fa fa-thumbs-o-up"></i> </a> <span class="control-tip">322</span>
+    <a href="#" class="control entry-comments" title="Comments"> <i class="fa fa-comments"></i> </a> <span class="control-tip">102</span>
+  </div>
+</div> <!-- .entry -->
