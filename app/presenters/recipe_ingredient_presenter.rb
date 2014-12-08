@@ -1,18 +1,6 @@
 class RecipeIngredientPresenter < Presenter
   alias_method :recipe_ingredient, :element
 
-  def markdown
-    text.sub(ingredient.name, linked_ingredient_name)
-  end
-
-  def standard_markdown
-    [[amount, linked_ingredient_name].compact.join(' '), style].compact.join(", ")
-  end
-
-  def linked_ingredient_name
-    "[#{ingredient.name}](#{ingredient_path})"
-  end
-
   def fraction
     return nil if unit.nil? && quantity == 1
     fraction = quantity.to_r
