@@ -16,4 +16,8 @@ module ApplicationHelper
     @page_title = title
   end
 
+  def home?
+    controller_name == 'recipes' && action_name == 'index'
+  end
+
 end

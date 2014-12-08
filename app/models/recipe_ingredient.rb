@@ -30,6 +30,9 @@ class RecipeIngredient < ActiveRecord::Base
     parsed_ingredient.style
   end
 
+  def notes
+  end
+
   private
 
   def parsed_ingredient

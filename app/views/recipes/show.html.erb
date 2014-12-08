@@ -1,9 +1,112 @@
 <% set_page_title @recipe.title %>
 
-<h2>Ingredients</h2>
-<%= render_markdown @recipe.ingredients_markdown %>
+<div class="rw-column rw-content">
 
-<h2>Instructions</h2>
-<%= render_markdown @recipe.instructions_text %>
+  <div class="rw-row page-breadcrumb">
+    <%= link_to 'Home', root_path %> &raquo; <span><%= @recipe.title %></span>
+  </div>
+  <div class="rw-row page-title">
+    <h1><%= @recipe.title %></h1>
+  </div>
 
-<%= link_to "Edit", action: :edit %>
+  <div class="rw-row">
+
+    <!--
+    // ===================================^__^=================================== //
+       Entry first
+    // ===================================^__^=================================== //
+    -->
+    <div class="entry style-columns">
+      <div class="entry-photo single-recipe-photo-cover">
+        <img src="assets/placeholder/1.jpg" alt="">
+        <div class="recipe-tools">
+          <div class="tool like" title="Like (686)"><i class="the-icon fa fa-thumbs-o-up"></i></div>
+          <div class="tool favorite active" title="Add to favorites (320)"><i class="the-icon fa fa-heart-o"></i></div>
+          <div class="tool collection" title="Add to collection (47)"><i class="the-icon fa fa-bookmark-o"></i></div>
+          <div class="tool print" title="Print (108)"><i class="the-icon fa fa-print"></i></div>
+          <div class="tool share" title="Share (210)"><i class="the-icon fa fa-share-alt"></i></div>
+        </div>
+      </div>
+      <div class="entry-content clearfix">
+
+        <div class="recipe-content">
+
+          <div class="single-recipe-ingredients">
+            <h3 class="recipe-headlines ingredients first">Ingredients:</h3>
+            <ul>
+              <% @recipe.recipe_ingredients.each do |ri| %>
+                <%= render 'recipe_ingredient', ingredient: ri %>
+              <% end %>
+            </ul>
+          </div>
+
+          <h3 class="recipe-headlines preparation-mode">Preparation mode:</h3>
+          <p><strong>1)</strong> Quisque in ornare mollis urna, a pharetra lectus bibendum et. Aenean sodales cursus nulla, faucibus tempor nibh porta id. Pellentesque non nibh eros. Nunc lectus lacus, interdum et consequat et, varius sit amet ipsum. Fusce convallis, lorem sit amet bibendum accumsan, consectetur adipisicing nec mattis dui nisi a lacus. Fusce non nisl pretium tellus eleifend tincidunt id id lorem. In hac habitasse platea dictumst. Pellentesque orci libero, fringilla et ultrices ut, cursus eu ipsum. Aenean bibendum dui quis pellentesque dictum. Cras aliquet risus id nisi feugiat vulputate.</p>
+          <p><strong>2)</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <a href="#">labore et dolore</a> a ut magna aliqua. Ut enim ad <strong>minim veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do est tempor incididunt ut <em>labore et dolore magna ex est aliqua</em>. Ut enim ad minim veniam, quis <del>nostrud</del> exercitation ullamco laboris. Phasellus ornare sem quis dui aliquet facilisis. Sed ipsum eros, ultricies at turpis eu, mattis dictum risus.</p>
+          <p><strong>3)</strong> Donec id egestas eros. Aliquam eget vestibulum mauris, sed lacinia ante. Aliquam pellentesque tellus mattis mi venenatis, eget lacinia purus interdum. Etiam sed auctor neque, <a href="#">eget sodales</a> purus. Aliquam vulputate commodo erat, et accumsan libero viverra vitae. Phasellus ornare sem quis dui aliquet facilisis. Sed ipsum eros, ultricies at turpis eu, mattis dictum risus. Quisque tristique, mi ac euismod scelerisque, neque erat pharetra metus, a malesuada ligula ipsum eu dui. Praesent dapibus interdum magna.</p>
+          <ul>
+            <li>Love and desire are the spirit’s wings to great deeds.</li>
+            <li>Grace is the beauty of form under the influence of freedom.</li>
+            <li>The truth is on the march and nothing will stop it.</li>
+          </ul>
+          <p><strong>4)</strong> Quisque tristique, mi ac euismod scelerisque, neque erat pharetra metus, a malesuada ligula ipsum eu dui. Praesent dapibus interdum magna. Nullam in orci porttitor, faucibus orci eget, varius arcu. Sed nec elit tempus, pellentesque quam lobortis, vehicula orci. Suspendisse ac hendrerit mauris, vitae pulvinar tortor.</p>
+
+          <h3 class="recipe-headlines footnotes">Footnotes:</h3>
+          <p>Curabitur massa tortor, euismod accumsan dui eu, interdum interdum sapien. Aenean sed dui lorem. Nullam quis hendrerit sem, nec mollis augue. Aenean dictum pulvinar lectus, eu vulputate leo ultricies quis. Morbi quis est lacinia, adipiscing enim ac, semper magna.</p>
+
+          <h3 class="recipe-headlines links">Links:</h3>
+          <ul>
+            <li><a href="#">Curabitur massa tortor, euismod accumsan dui eu</a></li>
+            <li><a href="#">Aenean sed dui lorem</a></li>
+            <li><a href="#">Nullam quis hendrerit sem, nec mollis augue</a></li>
+          </ul>
+        </div>
+
+        <div class="recipe-meta">
+          <ul>
+            <li>
+              <div class="entry-info-author">
+                <img src="assets/placeholder/50-3.jpg" >
+                <div class="author-name"><a href="#">Sandra Williams</a> <span class="mark green" title="Pro member!">Pro</span></div>
+                <div><a href="#" class="follow-user button mini blue" title="851 followers">
+                  <i class="fa fa-plus"></i> <span class="text">Follow</span>
+                </a></div>
+              </div>
+            </li>
+            <li><i class="the-icon fa fa-calendar" title="Submited on 21 Aug 2014"></i> <span>21 Aug 2014</span></li>
+            <li><div><i class="the-icon fa fa-book" title="Category"></i> <span><a href="#">Desserts</a></span></div></li>
+            <li><div><i class="the-icon fa fa-tasks" title="Difficulty"></i> <span>Easy</span></div></li>
+            <li><div><i class="the-icon fa fa-clock-o" title="Preparation time"></i> <span>45 minutes</span></div></li>
+            <li><i class="the-icon fa fa-bar-chart" title="2560 people read this"></i> <span>2560 views</span></li>
+            <li><div><i class="the-icon fa fa-heart" title="Favorited by 320 users"></i> <span>320 favorites</span></div></li>
+            <li><div><i class="the-icon fa fa-thumbs-up" title="686 like this"></i> <span>686 likes</span></div></li>
+          </ul>
+        </div>
+
+      </div> <!-- .entry-content -->
+      <div class="clear"></div>
+
+    </div> <!-- .entry -->
+    <div class="clear"></div>
+
+
+  </div> <!-- .rw-row -->
+
+  <div class="rw-row light border-tb">
+    <div class="recipe-tags">
+      <span class="tags-title">Tags:</span>
+      <span class="tag"><a href="#">Chicken</a></span>
+      <span class="tag"><a href="#">Chicken Roast</a></span>
+      <span class="tag"><a href="#">Gluten-Free</a></span>
+      <span class="tag"><a href="#">Low Carb</a></span>
+      <span class="tag"><a href="#">Main Course</a></span>
+      <span class="tag"><a href="#">Smoked Paprika</a></span>
+    </div>
+  </div> <!-- .rw-row -->
+
+  <% if @related_recipes.any? %>
+    <div class="rw-row subtle">
+      <%= render 'recipe_section', title: "Related recipes", recipes: @related_recipes %>
+    </div> <!-- .rw-row -->
+  <% end %>
+</div> <!-- .rw-content -->

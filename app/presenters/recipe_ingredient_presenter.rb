@@ -1,6 +1,10 @@
 class RecipeIngredientPresenter < Presenter
   alias_method :recipe_ingredient, :element
 
+  def description
+    [amount, style].compact.join(', ').presence
+  end
+
   def fraction
     return nil if unit.nil? && quantity == 1
     fraction = quantity.to_r
@@ -22,5 +26,9 @@ class RecipeIngredientPresenter < Presenter
 
   def ingredient_path
     urls.ingredient_path(recipe_ingredient.ingredient)
+  end
+
+  def to_param
+    ingredient.to_param
   end
 end

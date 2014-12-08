@@ -1,13 +1,15 @@
 class RecipesController < AuthenticatedController
+  layout 'sidebar'
   respond_to :html
 
   def index
     @recipes = presentable(Recipe.all)
-    respond_with @recipes
+    respond_with @recipes, layout: 'main'
   end
 
   def show
     @recipe = presentable(Recipe.find(params[:id]))
+    @related_recipes = presentable(Recipe.all)
     respond_with @recipe
   end
 

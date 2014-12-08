@@ -1,0 +1,19 @@
+<% content_for :application_content do %>
+  <%= render 'layouts/header' %>
+
+  <div class="rw-container rw-section">
+    <div class="rw-inner clearfix">
+      <div class="rw-section rw-container right-sidebar">
+        <div class="rw-inner clearfix">
+          <%= render 'shared/sidebar' %>
+
+          <%= content_for?(:sidebar_content) ? yield(:sidebar_content) : yield %>
+        </div> <!-- .rw-inner -->
+      </div> <!-- .rw-container -->
+    </div> <!-- .rw-inner -->
+  </div> <!-- .rw-container -->
+
+  <%= render 'layouts/footer' %>
+<% end %>
+
+<%= render template: "layouts/application" %>
