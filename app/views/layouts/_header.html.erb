@@ -15,6 +15,9 @@
       <div class="grid desk-4 mob-6 omega">
         <nav id="the-user-menu" class="main-menu-nav">
           <ul class="menu horizontal align-right">
+
+            <%= yield(:menubar) %>
+
             <!-- Submission -->
             <li class="to-left-more">
               <%= link_to new_recipe_path, class: 'menu-single-icon' do %>

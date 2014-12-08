@@ -1,5 +1,11 @@
 <% set_page_title @recipe.title %>
 
+<% content_for :menubar do %>
+  <li class ="to-left-more">
+    <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'menu-single-icon' %>
+  </li>
+<% end %>
+
 <div class="rw-column rw-content">
 
   <div class="rw-row page-breadcrumb">
@@ -21,9 +27,8 @@
         <%= image_tag @recipe.image('780x520'), alt: @recipe.title %>
         <div class="recipe-tools">
           <div class="tool like" title="Like (686)"><i class="the-icon fa fa-thumbs-o-up"></i></div>
-          <div class="tool favorite active" title="Add to favorites (320)"><i class="the-icon fa fa-heart-o"></i></div>
+          <div class="tool favorite" title="Add to favorites (320)"><i class="the-icon fa fa-heart-o"></i></div>
           <div class="tool collection" title="Add to collection (47)"><i class="the-icon fa fa-bookmark-o"></i></div>
-          <div class="tool print" title="Print (108)"><i class="the-icon fa fa-print"></i></div>
           <div class="tool share" title="Share (210)"><i class="the-icon fa fa-share-alt"></i></div>
         </div>
       </div>
@@ -41,15 +46,7 @@
           </div>
 
           <h3 class="recipe-headlines preparation-mode">Preparation mode:</h3>
-          <p><strong>1)</strong> Quisque in ornare mollis urna, a pharetra lectus bibendum et. Aenean sodales cursus nulla, faucibus tempor nibh porta id. Pellentesque non nibh eros. Nunc lectus lacus, interdum et consequat et, varius sit amet ipsum. Fusce convallis, lorem sit amet bibendum accumsan, consectetur adipisicing nec mattis dui nisi a lacus. Fusce non nisl pretium tellus eleifend tincidunt id id lorem. In hac habitasse platea dictumst. Pellentesque orci libero, fringilla et ultrices ut, cursus eu ipsum. Aenean bibendum dui quis pellentesque dictum. Cras aliquet risus id nisi feugiat vulputate.</p>
-          <p><strong>2)</strong> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <a href="#">labore et dolore</a> a ut magna aliqua. Ut enim ad <strong>minim veniam</strong>, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do est tempor incididunt ut <em>labore et dolore magna ex est aliqua</em>. Ut enim ad minim veniam, quis <del>nostrud</del> exercitation ullamco laboris. Phasellus ornare sem quis dui aliquet facilisis. Sed ipsum eros, ultricies at turpis eu, mattis dictum risus.</p>
-          <p><strong>3)</strong> Donec id egestas eros. Aliquam eget vestibulum mauris, sed lacinia ante. Aliquam pellentesque tellus mattis mi venenatis, eget lacinia purus interdum. Etiam sed auctor neque, <a href="#">eget sodales</a> purus. Aliquam vulputate commodo erat, et accumsan libero viverra vitae. Phasellus ornare sem quis dui aliquet facilisis. Sed ipsum eros, ultricies at turpis eu, mattis dictum risus. Quisque tristique, mi ac euismod scelerisque, neque erat pharetra metus, a malesuada ligula ipsum eu dui. Praesent dapibus interdum magna.</p>
-          <ul>
-            <li>Love and desire are the spirit’s wings to great deeds.</li>
-            <li>Grace is the beauty of form under the influence of freedom.</li>
-            <li>The truth is on the march and nothing will stop it.</li>
-          </ul>
-          <p><strong>4)</strong> Quisque tristique, mi ac euismod scelerisque, neque erat pharetra metus, a malesuada ligula ipsum eu dui. Praesent dapibus interdum magna. Nullam in orci porttitor, faucibus orci eget, varius arcu. Sed nec elit tempus, pellentesque quam lobortis, vehicula orci. Suspendisse ac hendrerit mauris, vitae pulvinar tortor.</p>
+          <%= render_markdown @recipe.instructions_text %>
 
           <h3 class="recipe-headlines footnotes">Footnotes:</h3>
           <p>Curabitur massa tortor, euismod accumsan dui eu, interdum interdum sapien. Aenean sed dui lorem. Nullam quis hendrerit sem, nec mollis augue. Aenean dictum pulvinar lectus, eu vulputate leo ultricies quis. Morbi quis est lacinia, adipiscing enim ac, semper magna.</p>
