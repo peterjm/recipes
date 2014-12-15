@@ -6,41 +6,46 @@
         <div class="logo-holder">
           <%= image_tag 'logo.png', alt: 'gustos', class: 'logo' %>
         </div>
-        <nav id="the-main-menu" class="main-menu-nav menu-inline" data-breakpoint="1160">
-          <ul class="menu horizontal">
-            <li><%= link_to "Home", root_path %></li>
-          </ul>
-        </nav>
+        <% if logged_in? %>
+          <nav id="the-main-menu" class="main-menu-nav menu-inline" data-breakpoint="1160">
+            <ul class="menu horizontal">
+              <li><%= link_to "Home", root_path %></li>
+            </ul>
+          </nav>
+        <% end %>
       </div>
-      <div class="grid desk-4 mob-6 omega">
-        <nav id="the-user-menu" class="main-menu-nav">
-          <ul class="menu horizontal align-right">
 
-            <%= yield(:menubar) %>
+      <% if logged_in? %>
+        <div class="grid desk-4 mob-6 omega">
+          <nav id="the-user-menu" class="main-menu-nav">
+            <ul class="menu horizontal align-right">
 
-            <!-- Submission -->
-            <li class="to-left-more">
-              <%= link_to new_recipe_path, class: 'menu-single-icon' do %>
-                <i class="fa fa-plus"></i>
-              <% end %>
-              <ul class="sub-menu">
-                <li><%= link_to 'New recipe', new_recipe_path %></li>
-                <li><%= link_to 'Bookmarklet', '#' %></li>
-              </ul>
-            </li>
+              <%= yield(:menubar) %>
 
-            <!-- User menu -->
-            <li class="to-left-more">
-              <div class="user-details-in-menu">
-                <%= link_to image_tag('avatar-50x50.jpg', alt: 'avatar'), root_path, class: 'avatar' %>
-              </div>
-              <ul class="sub-menu">
-                <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </div>
+              <!-- Submission -->
+              <li class="to-left-more">
+                <%= link_to new_recipe_path, class: 'menu-single-icon' do %>
+                  <i class="fa fa-plus"></i>
+                <% end %>
+                <ul class="sub-menu">
+                  <li><%= link_to 'New recipe', new_recipe_path %></li>
+                  <li><%= link_to 'Bookmarklet', '#' %></li>
+                </ul>
+              </li>
+
+              <!-- User menu -->
+              <li class="to-left-more">
+                <div class="user-details-in-menu">
+                  <%= link_to image_tag('avatar-50x50.jpg', alt: 'avatar'), root_path, class: 'avatar' %>
+                </div>
+                <ul class="sub-menu">
+                  <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
+                </ul>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      <% end %>
 
     </div> <!-- .grid-container -->
   </div> <!-- .rw-inner -->

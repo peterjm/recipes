@@ -1,8 +1,22 @@
 <% set_page_title "Log in" %>
 
-<h1>Welcome</h1>
-<%= form_tag login_path do %>
-  <%= label_tag :password, "Password" %>
-  <%= password_field_tag :password %>
-  <%= submit_tag "Log in" %>
-<% end %>
+<div class="rw-column rw-content">
+  <div class="rw-row page-title">
+    <h1>Welcome</h1>
+  </div>
+
+  <div class="rw-row">
+    <div class="grid-container">
+      <%= form_tag login_path do %>
+        <div class="grid desk-6 alpha">
+          <div class="form-label"><%= label_tag :password, "Password" %></div>
+          <%= password_field_tag :password %>
+        </div>
+
+        <div class="grid desk-12 both">
+          <%= submit_tag "Log in", class: 'button primary' %>
+        </div>
+      <% end %>
+    </div> <!-- .grid-container -->
+  </div> <!-- .rw-row -->
+</div> <!-- .rw-content -->
