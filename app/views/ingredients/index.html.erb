@@ -1,0 +1,35 @@
+<div class="rw-column rw-content">
+
+  <%= breadcrumb "Ingredients" %>
+
+  <div class="rw-row page-title">
+    <h1>Ingredients</h1>
+  </div>
+
+  <div class="rw-row">
+
+    <div class="keywords-filter-block">
+      <div class="filter-header clearfix">
+        <span class="title">Filter ingredients:</span>
+        <div class="filter-controls clearfix">
+          <span class="control block"><i class="fa fa-th-list"></i></span>
+          <span class="control inline active"><i class="fa fa-th"></i></span>
+        </div>
+      </div>
+      <input type="text" class="fullwidth filter-keywords" placeholder="" />
+    </div>
+
+    <div class="keywords-index-list">
+      <% @ingredients.sort.group_by(&:first_letter).each do |letter, ingredients| %>
+        <h4><%= letter %></h4>
+        <ul class="keywords">
+          <% ingredients.each do |ing| %>
+            <li><%= link_to ing.name, ingredient_path(ing) %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div> <!-- .recipe-index-list -->
+
+  </div> <!-- .rw-row -->
+
+</div> <!-- .rw-content -->

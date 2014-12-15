@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   post "/login" => "sessions#create"
   delete "/logout" => "sessions#destroy", as: 'logout'
 
-  resources :recipes
-  resources :ingredients do
+  resources :recipes, only: [:index, :show, :new, :create, :edit, :update]
+  resources :ingredients, only: [:index, :show] do
     resource :merge, only: [:create], controller: 'ingredient_merges'
   end
 

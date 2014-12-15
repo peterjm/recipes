@@ -1,6 +1,7 @@
-class RecipesController < AuthenticatedController
-  layout 'sidebar'
+class RecipesController < SidebarController
   respond_to :html
+
+  skip_before_filter :setup_sidebar, only: [:index]
 
   def index
     @recipes = presentable(Recipe.all)
@@ -8,14 +9,12 @@ class RecipesController < AuthenticatedController
   end
 
   def show
-    setup_sidebar
     @recipe = presentable(Recipe.find(params[:id]))
     @related_recipes = presentable(Recipe.all)
     respond_with @recipe
   end
 
   def new
-    setup_sidebar
     @recipe = presentable(Recipe.new)
     respond_with @recipe
   end
@@ -26,7 +25,6 @@ class RecipesController < AuthenticatedController
   end
 
   def edit
-    setup_sidebar
     @recipe = presentable(Recipe.find(params[:id]))
     respond_with @recipe
   end
@@ -38,10 +36,6 @@ class RecipesController < AuthenticatedController
   end
 
   private
-
-  def setup_sidebar
-    @popular_recipes = presentable(Recipe.all)
-  end
 
   def recipe_params
     params

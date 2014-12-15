@@ -8,7 +8,11 @@ module Presentable
   end
 
   def presenter_class(resource)
-    base_class = self.class.name.sub("Controller", "").singularize
+    base_class = if resource.respond_to?(:klass)
+      resource.klass.name
+    else
+      resource.class.name
+    end
     "#{base_class}Presenter".constantize
   end
 end

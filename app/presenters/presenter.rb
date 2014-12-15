@@ -1,5 +1,6 @@
 class Presenter
   extend Forwardable
+  include Presentable
 
   def_delegators :element, :to_param
 

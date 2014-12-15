@@ -7,9 +7,10 @@
           <%= image_tag 'logo.png', alt: 'gustos', class: 'logo' %>
         </div>
         <% if logged_in? %>
-          <nav id="the-main-menu" class="main-menu-nav menu-inline" data-breakpoint="1160">
+          <nav id="the-main-menu" class="main-menu-nav menu-inline">
             <ul class="menu horizontal">
               <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Ingredients", ingredients_path %></li>
             </ul>
           </nav>
         <% end %>
