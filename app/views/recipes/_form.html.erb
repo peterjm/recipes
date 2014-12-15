@@ -1,27 +1,25 @@
 <%= form_for @recipe do |f| %>
-  <fieldset>
-    <div>
-      <%= f.label :title, "Title" %>
-      <%= f.text_field :title %>
-    </div>
+  <div class="grid desk-8 alpha">
+    <div class="form-label"><%= f.label :title, "Title" %></div>
+    <%= f.text_field :title, class: 'fullwidth' %>
+  </div>
 
-    <div>
-      <%= f.label :source, "Source" %>
-      <%= f.text_field :source, placeholder: "(optional)" %>
-    </div>
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :source, "Source" %></div>
+    <%= f.text_field :source, class: 'fullwidth', placeholder: '(optional)' %>
+  </div>
 
-    <div>
-      <%= f.label :ingredients_text, "Ingredients" %>
-      <%= f.text_area :ingredients_text %>
-    </div>
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :ingredients_text, "Ingredients" %></div>
+    <%= f.text_area :ingredients_text %>
+  </div>
 
-    <div>
-      <%= f.label :instructions_text, "Instructions" %>
-      <%= f.text_area :instructions_text %>
-    </div>
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :instructions_text, "Instructions" %></div>
+    <%= f.text_area :instructions_text, class: 'big' %>
+  </div>
 
-    <div>
-      <%= f.submit "Done" %>
-    </div>
-  </fieldset>
+  <div class="grid desk-12 both">
+    <%= f.submit "Submit", class: 'button primary' %>
+  </div>
 <% end %>

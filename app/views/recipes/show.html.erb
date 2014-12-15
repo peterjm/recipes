@@ -8,9 +8,8 @@
 
 <div class="rw-column rw-content">
 
-  <div class="rw-row page-breadcrumb">
-    <%= link_to 'Home', root_path %> &raquo; <span><%= @recipe.title %></span>
-  </div>
+  <%= breadcrumb @recipe.title %>
+
   <div class="rw-row page-title">
     <h1><%= @recipe.title %></h1>
   </div>

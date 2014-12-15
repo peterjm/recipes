@@ -1,3 +1,19 @@
 <% set_page_title "New Recipe" %>
 
-<%= render 'form' %>
+<div class="rw-column rw-content">
+
+  <%= breadcrumb 'New Recipe' %>
+
+  <div class="rw-row page-title">
+    <h1>New Recipe</h1>
+  </div>
+
+  <div class="rw-row">
+
+    <div class="grid-container">
+      <%= render 'form' %>
+    </div> <!-- .grid-container -->
+
+  </div> <!-- .rw-row -->
+
+</div> <!-- .rw-content -->

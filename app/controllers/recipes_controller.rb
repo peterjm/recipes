@@ -15,6 +15,7 @@ class RecipesController < AuthenticatedController
   end
 
   def new
+    setup_sidebar
     @recipe = presentable(Recipe.new)
     respond_with @recipe
   end
@@ -25,6 +26,7 @@ class RecipesController < AuthenticatedController
   end
 
   def edit
+    setup_sidebar
     @recipe = presentable(Recipe.find(params[:id]))
     respond_with @recipe
   end
