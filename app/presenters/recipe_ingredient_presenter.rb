@@ -1,6 +1,10 @@
 class RecipeIngredientPresenter < Presenter
   alias_method :recipe_ingredient, :element
 
+  def self.model_name
+    RecipeIngredient.model_name
+  end
+
   def description
     [amount, style].compact.join(', ').presence
   end

@@ -1,6 +1,10 @@
 class RecipePresenter < Presenter
   alias_method :recipe, :element
 
+  def self.model_name
+    Recipe.model_name
+  end
+
   def recipe_ingredients
     RecipeIngredientPresenter.wrap(recipe.recipe_ingredients)
   end
