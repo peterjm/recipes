@@ -178,7 +178,7 @@ DEPENDENCIES
   pry
   pry-byebug
   pry-rescue
-  rails (~> 4.2.0)
+  rails (~> 4.2)
   redcarpet
   sqlite3
   turbolinks
