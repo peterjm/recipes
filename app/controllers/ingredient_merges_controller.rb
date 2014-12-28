@@ -1,7 +1,5 @@
 class IngredientMergesController < AuthenticatedController
 
-  respond_to :html
-
   def create
     dest = Ingredient.find(params[:ingredient_id])
     src = Ingredient.find(params[:id])
