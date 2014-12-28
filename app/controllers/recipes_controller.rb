@@ -16,10 +16,11 @@ class RecipesController < SidebarController
   end
 
   def create
-    @recipe = presentable(Recipe.create(recipe_params))
-    if @recipe.persisted?
-      redirect_to recipe_path(@recipe)
+    recipe = Recipe.new(recipe_params)
+    if recipe.save
+      redirect_to recipe_path(recipe)
     else
+      @recipe = presentable(recipe)
       render :new
     end
   end
@@ -29,10 +30,11 @@ class RecipesController < SidebarController
   end
 
   def update
-    @recipe = presentable(Recipe.find(params[:id]))
-    if @recipe.update_attributes(recipe_params)
-      redirect_to recipe_path(@recipe)
+    recipe = Recipe.find(params[:id])
+    if recipe.update_attributes(recipe_params)
+      redirect_to recipe_path(recipe)
     else
+      @recipe = presentable(recipe)
       render :edit
     end
   end
