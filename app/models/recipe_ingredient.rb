@@ -23,7 +23,7 @@ class RecipeIngredient < ActiveRecord::Base
   end
 
   def quantity
-    parsed_ingredient.quantity
+    parsed_ingredient.amount
   end
 
   def style
