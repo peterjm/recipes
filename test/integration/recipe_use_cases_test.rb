@@ -7,7 +7,7 @@ class AuthenticationUseCasesTest < ActionDispatch::IntegrationTest
     fill_in "Title", with: "Pizza"
     fill_in "Ingredients", with: "flour\ncheese"
     fill_in "Instructions", with: "make pizza"
-    click_button "Done"
+    click_button "Submit"
 
     assert page.has_content?("Pizza")
   end
@@ -18,7 +18,7 @@ class AuthenticationUseCasesTest < ActionDispatch::IntegrationTest
     visit recipe_path(r)
     click_link "Edit"
     fill_in "Title", with: "Not Pizza"
-    click_button "Done"
+    click_button "Submit"
 
     assert page.has_content?("Not Pizza")
   end
