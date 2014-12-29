@@ -16,7 +16,6 @@ class AuthenticationUseCasesTest < ActionDispatch::IntegrationTest
   end
 
   test "log out" do
-    visit "/login"
     log_in
     assert_equal "/", current_path
     click_link "Sign out"

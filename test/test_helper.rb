@@ -36,6 +36,7 @@ class ActionDispatch::IntegrationTest
   def log_in
     mock_omniauth(:google, credentials: {info: {email: Rails.application.secrets.google_account}}) do
       visit "/login"
+      click_link "Log in with Google"
     end
   end
 end
