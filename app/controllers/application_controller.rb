@@ -16,8 +16,8 @@ class ApplicationController < ActionController::Base
     session.delete(:return_to)
   end
 
-  def log_in!(password)
-    authenticator.authenticate(password)
+  def log_in!(credentials)
+    authenticator.authenticate(credentials)
   end
 
   def log_out!

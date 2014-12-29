@@ -1,8 +1,8 @@
 class Authenticator
-  class_attribute :password
+  class_attribute :google_account
 
-  def self.password
-    @password || Rails.application.secrets.site_password
+  def self.google_account
+    @google_account || Rails.application.secrets.google_account
   end
 
   attr_reader :session
@@ -11,10 +11,8 @@ class Authenticator
     @session = session
   end
 
-  def authenticate(password)
-    correct_password(password).tap do |valid|
-      log_in if valid
-    end
+  def authenticate(data)
+    log_in if correct_google_account?(data)
   end
 
   def log_in
@@ -31,7 +29,7 @@ class Authenticator
 
   private
 
-  def correct_password(password)
-    password == self.class.password
+  def correct_google_account?(account)
+    account == self.class.google_account
   end
 end

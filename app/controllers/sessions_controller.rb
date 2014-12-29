@@ -1,20 +1,23 @@
 class SessionsController < ApplicationController
-  layout 'main'
-
-  before_action only: [:new, :create], if: :logged_in? do
+  before_action only: [:new, :create, :error], if: :logged_in? do
     redirect_to root_path
   end
 
   def new
+    redirect_to "/auth/google"
   end
 
   def create
-    password = params[:password]
-    if log_in!(password)
+    email = request.env["omniauth.auth"]['info']['email']
+    if log_in!(email)
       redirect_to_return_path
     else
-      render 'new', status: :unprocessable_entity
+      redirect_to login_path
     end
+  end
+
+  def error
+    redirect_to login_path
   end
 
   def destroy
