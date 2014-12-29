@@ -12,13 +12,13 @@ class AuthenticatorTest < ActiveSupport::TestCase
     refute auth.logged_in?
   end
 
-  test "#authenticate returns true if the password is correct" do
-    assert auth.authenticate(Authenticator.password)
+  test "#authenticate returns true if the google account is correct" do
+    assert auth.authenticate(Authenticator.google_account)
     assert auth.logged_in?
   end
 
-  test "#authenticate returns false if the password is correct" do
-    refute auth.authenticate("bad password")
+  test "#authenticate returns false if the google account is not correct" do
+    refute auth.authenticate("bad account")
   end
 
   private

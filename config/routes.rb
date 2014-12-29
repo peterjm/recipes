@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get "/login" => "sessions#new", as: 'login'
-  post "/login" => "sessions#create"
+  get '/auth/google/callback' => 'sessions#create'
+  get 'auth/google/error' => 'sessions#error'
   delete "/logout" => "sessions#destroy", as: 'logout'
 
   resources :recipes, only: [:index, :show, :new, :create, :edit, :update]

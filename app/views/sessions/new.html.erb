@@ -7,16 +7,7 @@
 
   <div class="rw-row">
     <div class="grid-container">
-      <%= form_tag login_path do %>
-        <div class="grid desk-6 alpha">
-          <div class="form-label"><%= label_tag :password, "Password" %></div>
-          <%= password_field_tag :password %>
-        </div>
-
-        <div class="grid desk-12 both">
-          <%= submit_tag "Log in", class: 'button primary' %>
-        </div>
-      <% end %>
+      <%= link_to "Log in with Google", auth_path, class: 'button primary' %>
     </div> <!-- .grid-container -->
   </div> <!-- .rw-row -->
 </div> <!-- .rw-content -->

@@ -14,7 +14,10 @@ gem 'font-awesome-rails'
 gem 'eye-of-newt'
 gem 'redcarpet'
 
+gem 'omniauth-google-oauth2'
+
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'pry'
   gem 'pry-rescue'
   gem 'pry-byebug'
