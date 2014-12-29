@@ -15,6 +15,7 @@ gem 'eye-of-newt'
 gem 'redcarpet'
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'pry'
   gem 'pry-rescue'
   gem 'pry-byebug'

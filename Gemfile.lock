@@ -59,6 +59,9 @@ GEM
     coffee-script-source (1.8.0)
     columnize (0.9.0)
     debugger-linecache (1.2.0)
+    dotenv (1.0.2)
+    dotenv-rails (1.0.2)
+      dotenv (= 1.0.2)
     erubis (2.7.0)
     execjs (2.2.2)
     eye-of-newt (0.0.3)
@@ -170,6 +173,7 @@ DEPENDENCIES
   bcrypt (~> 3.1.7)
   capybara
   coffee-rails
+  dotenv-rails
   eye-of-newt
   factory_girl_rails
   font-awesome-rails
