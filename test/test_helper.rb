@@ -4,6 +4,8 @@ require 'rails/test_help'
 require 'mocha/mini_test'
 require 'capybara/rails'
 
+require 'support/omniauth'
+
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
 
@@ -32,8 +34,8 @@ class ActionDispatch::IntegrationTest
   protected
 
   def log_in
-    visit "/login"
-    fill_in 'Password', :with => Authenticator.password
-    click_button 'Log in'
+    mock_omniauth(:google, credentials: {info: {email: Rails.application.secrets.google_account}}) do
+      visit "/login"
+    end
   end
 end
