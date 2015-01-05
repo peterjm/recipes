@@ -1,3 +1,5 @@
+require 'striplines'
+
 module Parsers
   class WWW101CookbooksParser
     def initialize(content)
@@ -9,15 +11,15 @@ module Parsers
     end
 
     def notes
-      #recipe.querySelector('h1 + p')?.textContent
+      recipe.at_css('h1 + p').try(:text)
     end
 
     def ingredients
-      #recipe.querySelector('blockquote').textContent
+      recipe.at_css('blockquote').text.strip.striplines
     end
 
     def instructions
-      #(p.textContent for p in recipe.querySelectorAll('blockquote ~ p:not(.recipeend)')).join("\n\n")
+      recipe.css('blockquote ~ p:not(.recipeend)').map(&:text).join("\n\n").strip.striplines
     end
 
     private
