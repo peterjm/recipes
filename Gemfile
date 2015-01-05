@@ -13,6 +13,7 @@ gem 'font-awesome-rails'
 
 gem 'eye-of-newt'
 gem 'redcarpet'
+gem 'nokogiri'
 
 gem 'omniauth-google-oauth2'
 

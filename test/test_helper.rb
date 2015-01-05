@@ -5,6 +5,7 @@ require 'mocha/mini_test'
 require 'capybara/rails'
 
 require 'support/omniauth'
+require 'support/read_fixture'
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
