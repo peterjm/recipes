@@ -26,6 +26,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem "mocha"
-  gem "capybara"
+  gem 'mocha'
+  gem 'capybara'
+  gem 'webmock'
 end

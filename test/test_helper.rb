@@ -4,6 +4,7 @@ require 'rails/test_help'
 require 'mocha/mini_test'
 require 'capybara/rails'
 require 'minitest/pride'
+require 'webmock/minitest'
 
 require 'support/omniauth'
 require 'support/read_fixture'
