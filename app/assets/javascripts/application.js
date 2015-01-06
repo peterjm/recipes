@@ -21,5 +21,3 @@
 //= require owl.carousel
 //= require jquery.qtip
 //= require gustos
-//
-//= require_tree .
