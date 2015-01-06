@@ -13,6 +13,7 @@ gem 'font-awesome-rails'
 
 gem 'eye-of-newt'
 gem 'redcarpet'
+gem 'nokogiri'
 
 gem 'omniauth-google-oauth2'
 
@@ -25,6 +26,7 @@ end
 
 group :test do
   gem 'factory_girl_rails'
-  gem "mocha"
-  gem "capybara"
+  gem 'mocha'
+  gem 'capybara'
+  gem 'webmock'
 end

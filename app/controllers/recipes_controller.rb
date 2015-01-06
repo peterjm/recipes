@@ -12,7 +12,7 @@ class RecipesController < SidebarController
   end
 
   def new
-    @recipe = presentable(Recipe.new)
+    @recipe = presentable(new_recipe)
   end
 
   def create
@@ -40,6 +40,14 @@ class RecipesController < SidebarController
   end
 
   private
+
+  def new_recipe
+    if source = params[:source]
+      Importer.import_from_url(source)
+    else
+      Recipe.new
+    end
+  end
 
   def recipe_params
     params

@@ -25,6 +25,13 @@ class RecipesControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "#new populates the recipe from the provided source" do
+    recipe = Recipe.new(title: "foo")
+    Importer.expects(:import_from_url).with("http://foo.com").returns(recipe)
+    get :new, source: "http://foo.com"
+    assert_equal "foo", assigns(:recipe).title
+  end
+
   test "#create creates a new recipe" do
     assert_difference "Recipe.count", 1 do
       post :create, recipe: attributes_for(:recipe)
