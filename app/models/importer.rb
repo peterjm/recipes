@@ -12,14 +12,18 @@ class Importer
   end
 
   def import
-    Recipe.new(parser.parse)
+    Recipe.new(attrs)
   end
 
   def import!
-    import.tap(&:save!)
+    Recipe.create!(attrs)
   end
 
   private
+
+  def attrs
+    parser.parse.merge(source: url)
+  end
 
   def content
     @content ||= fetcher.get(url)
