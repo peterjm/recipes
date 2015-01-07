@@ -16,6 +16,7 @@ gem 'redcarpet'
 gem 'nokogiri'
 
 gem 'omniauth-google-oauth2'
+gem 'dropbox-sdk', require: 'dropbox_sdk'
 
 group :development, :test do
   gem 'dotenv-rails'

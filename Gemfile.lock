@@ -65,6 +65,8 @@ GEM
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
       dotenv (= 1.0.2)
+    dropbox-sdk (1.6.4)
+      json
     erubis (2.7.0)
     execjs (2.2.2)
     eye-of-newt (0.0.3)
@@ -204,6 +206,7 @@ DEPENDENCIES
   capybara
   coffee-rails
   dotenv-rails
+  dropbox-sdk
   eye-of-newt
   factory_girl_rails
   font-awesome-rails
