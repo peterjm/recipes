@@ -14,9 +14,10 @@ gem 'font-awesome-rails'
 gem 'eye-of-newt'
 gem 'redcarpet'
 gem 'nokogiri'
+gem 'dropbox-sdk', require: 'dropbox_sdk'
+gem 'carrierwave'
 
 gem 'omniauth-google-oauth2'
-gem 'dropbox-sdk', require: 'dropbox_sdk'
 
 group :development, :test do
   gem 'dotenv-rails'
