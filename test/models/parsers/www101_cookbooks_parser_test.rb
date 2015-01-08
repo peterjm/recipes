@@ -35,15 +35,15 @@ class Parsers::WWW101CookbooksParserTest < ActiveSupport::TestCase
   end
 
   test "#ingredients returns the ingredients text" do
-    assert_equal SALAD_INGREDIENTS, salad_parser.ingredients_text
-    assert_equal COOKIE_INGREDIENTS, cookie_parser.ingredients_text
-    assert_equal SHANDY_INGREDIENTS, shandy_parser.ingredients_text
+    assert_equal SALAD_INGREDIENTS, salad_parser.ingredients
+    assert_equal COOKIE_INGREDIENTS, cookie_parser.ingredients
+    assert_equal SHANDY_INGREDIENTS, shandy_parser.ingredients
   end
 
   test "#instructions returns the instructions text" do
-    assert_equal SALAD_INSTRUCTIONS, salad_parser.instructions_text
-    assert_equal COOKIE_INSTRUCTIONS, cookie_parser.instructions_text
-    assert_equal SHANDY_INSTRUCTIONS, shandy_parser.instructions_text
+    assert_equal SALAD_INSTRUCTIONS, salad_parser.instructions
+    assert_equal COOKIE_INSTRUCTIONS, cookie_parser.instructions
+    assert_equal SHANDY_INSTRUCTIONS, shandy_parser.instructions
   end
 
   test "#image_urls returns the recipe's image URLs" do

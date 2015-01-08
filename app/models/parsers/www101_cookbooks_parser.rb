@@ -10,11 +10,11 @@ module Parsers
       recipe_html.at_css('h1 + p').try(:text)
     end
 
-    def ingredients_text
+    def ingredients
       recipe_html.at_css('blockquote').text.strip.striplines
     end
 
-    def instructions_text
+    def instructions
       recipe_html.css('blockquote ~ p:not(.recipeend)').map(&:text).join("\n\n").strip.striplines
     end
 
