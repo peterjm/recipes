@@ -18,6 +18,11 @@ module Parsers
       recipe_html.css('blockquote ~ p:not(.recipeend)').map(&:text).join("\n\n").strip.striplines
     end
 
+    def image_urls
+      imgs = html.css('#maincontent .mainimagewide img') + html.css('#maincontent .entrybody p img')
+      imgs.map{|img| full_url(img.attr('src'))}
+    end
+
     private
 
     def recipe_html
