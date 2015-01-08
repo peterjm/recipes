@@ -4,7 +4,7 @@ class HTMLParser
   RECIPE_FIELDS = [:title, :instructions_text, :ingredients_text, :image_url]
 
   def self.build(source_url, content)
-    parser_for(source_url).new(content)
+    parser_for(source_url).new(source_url, content)
   end
 
   def self.parser_for(source_url)
