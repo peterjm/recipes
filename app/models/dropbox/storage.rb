@@ -1,5 +1,5 @@
 module Dropbox
-  class Storage < Carrierwave::Storage::Abstract
+  class Storage < CarrierWave::Storage::Abstract
 
     def store!(file)
       client.put_file(uploader.store_path, file.to_file)
