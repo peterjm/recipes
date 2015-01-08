@@ -1,7 +1,7 @@
 require 'striplines'
 
 class HTMLParser
-  RECIPE_FIELDS = [:title, :instructions_text, :ingredients_text, :image_url]
+  RECIPE_FIELDS = [:title, :instructions, :ingredients, :image_url]
 
   def self.build(source_url, content)
     parser_for(source_url).new(source_url, content)
@@ -19,12 +19,6 @@ class HTMLParser
   def initialize(url, content)
     @url = url
     @content = content
-  end
-
-  def parse
-    RECIPE_FIELDS.each_with_object({}) do |field, attrs|
-      attrs[field] = public_send(field)
-    end
   end
 
   def image_url

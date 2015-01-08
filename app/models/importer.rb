@@ -22,7 +22,13 @@ class Importer
   private
 
   def attrs
-    parser.parse.merge(source: url)
+    {
+      title: parser.title,
+      instructions_text: parser.instructions,
+      ingredients_text: parser.ingredients,
+      remote_image_url: parser.image_url,
+      source: url
+    }
   end
 
   def content
