@@ -16,6 +16,7 @@ gem 'redcarpet'
 gem 'nokogiri'
 gem 'dropbox-sdk', require: 'dropbox_sdk'
 gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'omniauth-google-oauth2'
 
