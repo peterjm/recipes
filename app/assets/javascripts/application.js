@@ -21,3 +21,5 @@
 //= require owl.carousel
 //= require jquery.qtip
 //= require gustos
+//
+//= require recipe_images
