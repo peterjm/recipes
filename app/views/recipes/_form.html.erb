@@ -11,7 +11,7 @@
 
   <div class="grid desk-12 both">
     <div class="form-label">Images</div>
-    <div class="image-uploader">
+    <div id="ImageDrop" class="image-uploader">
       <div class="images">
         <%= f.fields_for :images do |image_form| %>
           <% if image_form.object.new_record? %>
