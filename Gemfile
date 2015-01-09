@@ -14,6 +14,9 @@ gem 'font-awesome-rails'
 gem 'eye-of-newt'
 gem 'redcarpet'
 gem 'nokogiri'
+gem 'dropbox-sdk', require: 'dropbox_sdk'
+gem 'carrierwave'
+gem 'mini_magick'
 
 gem 'omniauth-google-oauth2'
 

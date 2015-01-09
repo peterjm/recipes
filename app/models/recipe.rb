@@ -4,6 +4,15 @@ class Recipe < ActiveRecord::Base
 
   validates :title, presence: true
 
+  class Uploader < ::Uploader
+    version(:mini)     { process :resize_to_fill => [ 50,  50] }
+    version(:thumb)    { process :resize_to_fill => [ 80,  80] }
+    version(:small)    { process :resize_to_fill => [240, 220] }
+    version(:medium)   { process :resize_to_fill => [350, 240] }
+    version(:large)    { process :resize_to_fill => [560, 380] }
+  end
+  mount_uploader :image, Uploader
+
   include PerformsActionOnSave
   action_on_save :update_recipe_ingredients
 

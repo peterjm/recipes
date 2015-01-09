@@ -4,7 +4,7 @@ class ImporterTest < ActiveSupport::TestCase
 
   def parser(attrs={})
     @parser ||= begin
-      p = stub(parse: attrs)
+      p = stub(attrs)
       HTMLParser.stubs(:build).returns(p)
       p
     end
@@ -17,8 +17,9 @@ class ImporterTest < ActiveSupport::TestCase
   test "#import returns a recipe" do
     parser(
       title: "the title",
-      instructions_text: "the instructions",
-      ingredients_text: "the ingredients"
+      instructions: "the instructions",
+      ingredients: "the ingredients",
+      image_url: "http://foo.com/img.jpg"
     )
     fetcher = stub
     fetcher.expects(:get).with("http://foo.com").returns("content")
@@ -29,11 +30,12 @@ class ImporterTest < ActiveSupport::TestCase
     assert_equal "the title", recipe.title
     assert_equal "the instructions", recipe.instructions_text
     assert_equal "the ingredients", recipe.ingredients_text
+    assert_equal "http://foo.com/img.jpg", recipe.remote_image_url
   end
 
   test "#import sets the source on the recipe" do
     url = "http://foo.com"
-    parser
+    parser(title: "", instructions: "", ingredients: "", image_url: "")
     importer = Importer.new(url, fetcher: fetcher)
     recipe = importer.import
     assert_equal url, recipe.source

@@ -7,7 +7,7 @@ class Parsers::WWW101CookbooksParserTest < ActiveSupport::TestCase
   end
 
   def parser(fixture)
-    Parsers::WWW101CookbooksParser.new(html(fixture))
+    Parsers::WWW101CookbooksParser.new("http://www.101cookbooks.com/archive/foo.html", html(fixture))
   end
 
   def salad_parser
@@ -35,16 +35,48 @@ class Parsers::WWW101CookbooksParserTest < ActiveSupport::TestCase
   end
 
   test "#ingredients returns the ingredients text" do
-    assert_equal SALAD_INGREDIENTS, salad_parser.ingredients_text
-    assert_equal COOKIE_INGREDIENTS, cookie_parser.ingredients_text
-    assert_equal SHANDY_INGREDIENTS, shandy_parser.ingredients_text
+    assert_equal SALAD_INGREDIENTS, salad_parser.ingredients
+    assert_equal COOKIE_INGREDIENTS, cookie_parser.ingredients
+    assert_equal SHANDY_INGREDIENTS, shandy_parser.ingredients
   end
 
   test "#instructions returns the instructions text" do
-    assert_equal SALAD_INSTRUCTIONS, salad_parser.instructions_text
-    assert_equal COOKIE_INSTRUCTIONS, cookie_parser.instructions_text
-    assert_equal SHANDY_INSTRUCTIONS, shandy_parser.instructions_text
+    assert_equal SALAD_INSTRUCTIONS, salad_parser.instructions
+    assert_equal COOKIE_INSTRUCTIONS, cookie_parser.instructions
+    assert_equal SHANDY_INSTRUCTIONS, shandy_parser.instructions
   end
+
+  test "#image_urls returns the recipe's image URLs" do
+    assert_equal SALAD_IMAGES, salad_parser.image_urls
+    assert_equal COOKIE_IMAGES, cookie_parser.image_urls
+    assert_equal SHANDY_IMAGES, shandy_parser.image_urls
+  end
+
+  test "#image_url returns the first image url" do
+    assert_equal SALAD_IMAGES.first, salad_parser.image_url
+    assert_equal COOKIE_IMAGES.first, cookie_parser.image_url
+    assert_equal SHANDY_IMAGES.first, shandy_parser.image_url
+  end
+
+  SALAD_IMAGES = [
+    "http://www.101cookbooks.com/mt-static/images/food/lacinato_kale_pecorino_salad.jpg",
+    "http://www.101cookbooks.com/mt-static/images/food/lacinato_kale_pecorino_salad_2.jpg",
+    "http://www.101cookbooks.com/mt-static/images/food/lacinato_kale_pecorino_salad_3.jpg"
+  ]
+
+  COOKIE_IMAGES = [
+    "http://www.101cookbooks.com/mt-static/images/food/rosewater_shortbread_recipe.jpg",
+    "http://www.101cookbooks.com/mt-static/images/food/rosewater_shortbread_recipe_2.jpg",
+    "http://www.101cookbooks.com/mt-static/images/food/rosewater_shortbread_recipe_3.jpg",
+    "http://www.101cookbooks.com/mt-static/images/food/rosewater_shortbread_recipe_4.jpg",
+    "http://www.101cookbooks.com/mt-static/images/food/rosewater_shortbread_recipe_5.jpg"
+  ]
+
+  SHANDY_IMAGES = [
+    "http://www.101cookbooks.com/mt-static/images/food/winter_shandy_punch_recipe.jpg",
+    "http://www.101cookbooks.com/mt-static/images/food/winter_shandy_punch_recipe_2.jpg",
+    "http://www.101cookbooks.com/mt-static/images/food/winter_shandy_punch_recipe_3.jpg"
+  ]
 
   SALAD_NOTES = <<-END.strip_heredoc.strip
     For the intended results, a few notes. I love pebbly-leafed, dark lacinato kale here. Shred it very finely and there is no need to de-stem each leaf (see photo). Also, you can toss the salad ahead of time, and pack it for lunch. On the olive front, Castelvetrano olives are my preference, but any meaty, good tasting green olives will do. Serve over quinoa, or other grain for a nice, substantial meal.

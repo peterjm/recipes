@@ -1,10 +1,10 @@
 require 'striplines'
 
 class HTMLParser
-  RECIPE_FIELDS = [:title, :instructions_text, :ingredients_text]
+  RECIPE_FIELDS = [:title, :instructions, :ingredients, :image_url]
 
   def self.build(source_url, content)
-    parser_for(source_url).new(content)
+    parser_for(source_url).new(source_url, content)
   end
 
   def self.parser_for(source_url)
@@ -16,23 +16,24 @@ class HTMLParser
     end
   end
 
-  def initialize(content)
+  def initialize(url, content)
+    @url = url
     @content = content
   end
 
-  def parse
-    RECIPE_FIELDS.each_with_object({}) do |field, attrs|
-      attrs[field] = public_send(field)
-    end
+  def image_url
+    image_urls.first
   end
 
-  RECIPE_FIELDS.each do |m|
-    define_method m do
-      raise NotImplementedError.new("#{m} must be implemented by subclass")
-    end
+  def image_urls
+    []
   end
 
   protected
+
+  def full_url(relative_url)
+    URI.join(@url, relative_url).to_s
+  end
 
   def html
     @html ||= Nokogiri::HTML(@content)
