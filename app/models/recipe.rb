@@ -4,7 +4,7 @@ class Recipe < ActiveRecord::Base
   has_many :images, class_name: RecipeImage, inverse_of: :recipe, dependent: :destroy, autosave: true
   belongs_to :image, class_name: RecipeImage, foreign_key: :recipe_image_id
 
-  accepts_nested_attributes_for :images
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, presence: true
 
