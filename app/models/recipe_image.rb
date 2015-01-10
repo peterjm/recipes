@@ -14,6 +14,9 @@ class RecipeImage < ActiveRecord::Base
   end
   mount_uploader :image, Uploader
 
+  def image_data_uri=(value)
+  end
+
   private
 
   def copy_source_url

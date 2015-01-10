@@ -1,4 +1,6 @@
 class Recipes.Images
+  ACCEPTED_TYPES: ['image/png', 'image/jpeg']
+
   constructor: ->
     @imageUploader = document.getElementById('ImageUploader')
     @fileUpload = document.getElementById('FileUpload')
@@ -27,6 +29,8 @@ class Recipes.Images
     input = image.querySelector('input')
     name = input.getAttribute('name')
     input.setAttribute('name', name.replace("NUM", number))
+    input.value = url
+    input.disabled = false
 
     image.removeAttribute('id')
     image.style['display'] = null
@@ -48,9 +52,20 @@ class Recipes.Images
     @handleFile(file) for file, index in files
 
   handleFile: (file) ->
-    url = URL.createObjectURL(file)
-    image = @newImage(url, @numImages())
-    @imageList.appendChild(image)
+    if file.type in @ACCEPTED_TYPES
+      @readDataUrl file, (fileUri) =>
+        image = @newImage(fileUri, @numImages())
+        @imageList.appendChild(image)
+
+        @fileChooser.value = ''
+
+  readDataUrl: (file, callback) ->
+    reader = new FileReader()
+    reader.onload = (evt) =>
+      fileUri = evt.target.result
+      callback(fileUri)
+
+    reader.readAsDataURL(file)
 
   removeOnClick: (image) ->
     image.querySelector('.remove').addEventListener "click", (e) ->
