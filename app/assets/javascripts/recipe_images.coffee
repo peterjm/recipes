@@ -15,6 +15,8 @@ newImage = (url, number) ->
   image.style['display'] = null
   image.style['background-image'] = "url(#{url})"
 
+  removeOnClick(image)
+
   image
 
 stop = (e) ->
@@ -22,16 +24,22 @@ stop = (e) ->
   e.preventDefault()
 
 numImages = ->
-  document.querySelectorAll('.image-uploader .images .image').length
+  imageList.querySelectorAll('.image').length
 
 handleFiles = (files) ->
-  elem.remove() for elem in document.querySelectorAll('.image-uploader .images .image.filechooser')
+  elem.remove() for elem in imageList.querySelectorAll('.image.filechooser')
   handleFile(file) for file, index in files
 
 handleFile = (file) ->
   url = URL.createObjectURL(file)
   image = newImage(url, numImages())
   imageList.appendChild(image)
+
+removeOnClick = (image) ->
+  image.querySelector('.remove').addEventListener "click", (e) ->
+    e.preventDefault()
+    image.querySelector('input').remove()
+    image.style['display'] = 'none'
 
 fileUpload.addEventListener "click", (e) ->
   e.preventDefault()
@@ -45,3 +53,5 @@ imageDrop.addEventListener "dragover", stop
 imageDrop.addEventListener "drop", (e) ->
   stop(e)
   handleFiles(e.dataTransfer.files)
+
+removeOnClick(image) for image in imageList.querySelectorAll('.image')
