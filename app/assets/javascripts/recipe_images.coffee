@@ -1,57 +1,59 @@
-fileUpload = document.getElementById('FileUpload')
-fileChooser = document.getElementById('FileChooser')
-imageDrop = document.getElementById('ImageDrop')
-imageList = document.getElementById('ImageList')
-imageTemplate = document.getElementById('ImageTemplate')
+class Recipes.Images
+  constructor: ->
+    @imageUploader = document.getElementById('ImageUploader')
+    @fileUpload = document.getElementById('FileUpload')
+    @fileChooser = document.getElementById('FileChooser')
+    @imageList = document.getElementById('ImageList')
+    @imageTemplate = document.getElementById('ImageTemplate')
 
-newImage = (url, number) ->
-  image = imageTemplate.cloneNode(true)
+    @removeOnClick(image) for image in @imageList.querySelectorAll('.image')
 
-  input = image.querySelector('input')
-  name = input.getAttribute('name')
-  input.setAttribute('name', name.replace("NUM", number))
+    @fileUpload.addEventListener "click", (e) =>
+      e.preventDefault()
+      @fileChooser.click()
 
-  image.removeAttribute('id')
-  image.style['display'] = null
-  image.style['background-image'] = "url(#{url})"
+    @fileChooser.addEventListener "change", (e) =>
+      @handleFiles(e.target.files)
 
-  removeOnClick(image)
+    @imageUploader.addEventListener "dragenter", @stop
+    @imageUploader.addEventListener "dragover", @stop
+    @imageUploader.addEventListener "drop", (e) =>
+      @stop(e)
+      @handleFiles(e.dataTransfer.files)
 
-  image
+  newImage: (url, number) ->
+    image = @imageTemplate.cloneNode(true)
 
-stop = (e) ->
-  e.stopPropagation()
-  e.preventDefault()
+    input = image.querySelector('input')
+    name = input.getAttribute('name')
+    input.setAttribute('name', name.replace("NUM", number))
 
-numImages = ->
-  imageList.querySelectorAll('.image').length
+    image.removeAttribute('id')
+    image.style['display'] = null
+    image.style['background-image'] = "url(#{url})"
 
-handleFiles = (files) ->
-  elem.remove() for elem in imageList.querySelectorAll('.image.filechooser')
-  handleFile(file) for file, index in files
+    @removeOnClick(image)
 
-handleFile = (file) ->
-  url = URL.createObjectURL(file)
-  image = newImage(url, numImages())
-  imageList.appendChild(image)
+    image
 
-removeOnClick = (image) ->
-  image.querySelector('.remove').addEventListener "click", (e) ->
+  stop: (e) ->
+    e.stopPropagation()
     e.preventDefault()
-    image.querySelector('input').remove()
-    image.style['display'] = 'none'
 
-fileUpload.addEventListener "click", (e) ->
-  e.preventDefault()
-  fileChooser.click()
+  numImages: ->
+    @imageList.querySelectorAll('.image').length
 
-fileChooser.addEventListener "change", (e) ->
-  handleFiles(e.target.files)
+  handleFiles: (files) ->
+    elem.remove() for elem in @imageList.querySelectorAll('.image.filechooser')
+    @handleFile(file) for file, index in files
 
-imageDrop.addEventListener "dragenter", stop
-imageDrop.addEventListener "dragover", stop
-imageDrop.addEventListener "drop", (e) ->
-  stop(e)
-  handleFiles(e.dataTransfer.files)
+  handleFile: (file) ->
+    url = URL.createObjectURL(file)
+    image = @newImage(url, @numImages())
+    @imageList.appendChild(image)
 
-removeOnClick(image) for image in imageList.querySelectorAll('.image')
+  removeOnClick: (image) ->
+    image.querySelector('.remove').addEventListener "click", (e) ->
+      e.preventDefault()
+      image.querySelector('input').remove()
+      image.style['display'] = 'none'

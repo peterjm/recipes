@@ -1,3 +1,11 @@
+<% content_for :javascript do %>
+  <%= javascript_tag do %>
+    $(function(){
+      var images = new Recipes.Images();
+    });
+  <% end %>
+<% end %>
+
 <%= form_for @recipe do |f| %>
   <div class="grid desk-8 alpha">
     <div class="form-label"><%= f.label :title, "Title" %></div>
@@ -11,7 +19,7 @@
 
   <div class="grid desk-12 both">
     <div class="form-label">Images</div>
-    <div id="ImageDrop" class="image-uploader">
+    <div id="ImageUploader" class="image-uploader">
       <div id="ImageList" class="images">
         <%= f.fields_for :images do |image_form| %>
           <% if image_form.object.new_record? %>
