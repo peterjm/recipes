@@ -52,7 +52,13 @@ class RecipesController < SidebarController
   def recipe_params
     params
       .require(:recipe)
-      .permit(:title, :ingredients_text, :instructions_text, :source)
+      .permit(
+        :title,
+        :ingredients_text,
+        :instructions_text,
+        :source,
+        images_attributes: [:id, :remote_image_url, :_destroy]
+      )
       .merge(update_recipe_ingredients_on_save: true, update_primary_image_on_save: true)
   end
 
