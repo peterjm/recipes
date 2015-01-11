@@ -26,6 +26,7 @@ group :development, :test do
   gem 'pry'
   gem 'pry-rescue'
   gem 'pry-byebug'
+  gem 'quiet_assets'
 end
 
 group :test do
