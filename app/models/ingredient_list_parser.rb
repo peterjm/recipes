@@ -12,6 +12,6 @@ class IngredientListParser
   private
 
   def parse_ingredient_list
-    @text.lines.map(&:strip).reject(&:blank?)
+    @text.strip.lines.map(&:strip)
   end
 end

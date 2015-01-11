@@ -14,10 +14,14 @@ class IngredientListParserTest < ActiveSupport::TestCase
     INGREDIENTS
   end
 
-  test "ignores blank list" do
+  test "ignores leading and trailing blank lines" do
     assert_list_found [
+      "1 tomato",
+      "",
       "1 bunch basil"
     ] , <<-INGREDIENTS
+
+      1 tomato
 
       1 bunch basil
 
