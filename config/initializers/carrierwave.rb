@@ -8,7 +8,7 @@ CarrierWave.configure do |config|
     config.root = "#{Rails.root}/tmp"
   elsif Rails.env.development?
     config.storage = :file
-    config.root = "#{Rails.root}/public"
+    config.root = "#{Rails.root}/public/dev"
   else
     config.storage = Dropbox::Storage
   end
