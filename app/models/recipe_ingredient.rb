@@ -7,10 +7,11 @@ class RecipeIngredient < ActiveRecord::Base
 
   before_create :save_ingredient
 
-  delegate :name, to: :ingredient
-
   def self.build_from(ingredient_name)
-    new(ingredient: Ingredient.from(ingredient_name))
+    new(
+      name: ingredient_name,
+      ingredient: Ingredient.from(ingredient_name)
+    )
   end
 
   private
