@@ -1,6 +1,6 @@
 class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :recipe_ingredients
-  has_many :recipe_ingredients, ->{ extending(RecipeIngredientExtension).order('position ASC') }, inverse_of: :recipe, dependent: :destroy, autosave: true
+  has_many :recipe_ingredients, ->{ extending(RecipeIngredientExtension) }, inverse_of: :recipe, dependent: :destroy, autosave: true
   has_many :images, class_name: RecipeImage, inverse_of: :recipe, dependent: :destroy, autosave: true
   belongs_to :image, class_name: RecipeImage, foreign_key: :recipe_image_id
 
@@ -12,9 +12,13 @@ class Recipe < ActiveRecord::Base
   action_on_save :update_recipe_ingredients
   action_on_save :update_primary_image
 
+  def ingredient_lines
+    IngredientListParser.new(ingredients_text).ingredients
+  end
+
   def update_recipe_ingredients
-    list = IngredientListParser.new(ingredients_text).list
-    recipe_ingredients.update_from(list)
+    names = ingredient_lines.select(&:parsed?).map(&:ingredient_name)
+    recipe_ingredients.update_from(names)
   end
 
   def update_primary_image
@@ -34,40 +38,29 @@ class Recipe < ActiveRecord::Base
       end
     end
 
-    def matching(text)
-      detect{|ri| ri.text == text}
-    end
-
-    def update_from(list)
-      add_new(list)
-      remove_old(list)
-      reorder_by(list)
-    end
-
-    def current_list
-      map(&:text)
+    def update_from(ingredient_names)
+      add_new(ingredient_names)
+      remove_old(ingredient_names)
     end
 
     private
 
+    def current_list
+      map(&:name)
+    end
+
     def add_new(list)
-      new_texts = list - current_list
-      new_texts.each do |t|
-        begin
-          build_from(t)
-        rescue EyeOfNewt::InvalidIngredient
-        end
-      end
+      new_names = list - current_list
+      new_names.each { |name| build_from(name) }
     end
 
     def remove_old(list)
-      unused_texts = current_list - list
-      destroy unused_texts.map{ |t| matching(t) }
+      unused_names = current_list - list
+      destroy unused_names.map{ |name| matching(name) }
     end
 
-    def reorder_by(list)
-      each { |ri| ri.position = list.index(ri.text) + 1 }
-      proxy_association.load_target.sort_by!(&:position)
+    def matching(name)
+      detect{|ri| ri.name == name}
     end
   end
 end

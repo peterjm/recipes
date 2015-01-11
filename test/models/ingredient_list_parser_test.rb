@@ -3,7 +3,7 @@ require 'test_helper'
 class IngredientListParserTest < ActiveSupport::TestCase
 
   test "parses list from a block of text" do
-    assert_list_found [
+    assert_lines_found [
       "1 tomato",
       "1 bunch basil",
       "10 slices of mazzarella cheese"
@@ -15,7 +15,7 @@ class IngredientListParserTest < ActiveSupport::TestCase
   end
 
   test "ignores leading and trailing blank lines" do
-    assert_list_found [
+    assert_lines_found [
       "1 tomato",
       "",
       "1 bunch basil"
@@ -30,10 +30,10 @@ class IngredientListParserTest < ActiveSupport::TestCase
 
   private
 
-  def assert_list_found(expected_list, text)
+  def assert_lines_found(expected_lines, text)
     parser = IngredientListParser.new(text)
-    parsed_list = parser.list
-    assert_equal expected_list, parsed_list
+    parsed_lines = parser.lines
+    assert_equal expected_lines, parsed_lines
   end
 
 end
