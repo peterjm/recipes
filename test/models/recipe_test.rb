@@ -9,6 +9,13 @@ class RecipeTest < ActiveSupport::TestCase
     refute build(:recipe, title: nil).valid?, "should not be valid"
   end
 
+  test "#update_recipe_ingredients succeeds with arbirary text" do
+    recipe = build(:recipe, ingredients_text: "For the filling:\n1 cup milk")
+    recipe.update_recipe_ingredients
+    assert_equal 1, recipe.recipe_ingredients.length
+    assert_equal "1 cup milk", recipe.recipe_ingredients[0].text
+  end
+
   test "#update_recipe_ingredients creates new ingredients" do
     recipe = build(:recipe, ingredients_text: "1 cup flour\n1 cup milk")
     recipe.update_recipe_ingredients

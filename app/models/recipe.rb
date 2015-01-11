@@ -52,7 +52,12 @@ class Recipe < ActiveRecord::Base
 
     def add_new(list)
       new_texts = list - current_list
-      new_texts.each { |t| build_from(t) }
+      new_texts.each do |t|
+        begin
+          build_from(t)
+        rescue EyeOfNewt::InvalidIngredient
+        end
+      end
     end
 
     def remove_old(list)
