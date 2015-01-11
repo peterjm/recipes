@@ -34,6 +34,8 @@ module Dropbox
 
       def delete
         client.file_delete(path)
+      rescue DropboxError => e
+        raise unless e.message =~ /not found/
       end
 
       private
