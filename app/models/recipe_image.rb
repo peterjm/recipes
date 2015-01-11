@@ -15,6 +15,7 @@ class RecipeImage < ActiveRecord::Base
   mount_uploader :image, Uploader
 
   def image_data_uri=(value)
+    self.image = DataUriUploadedFile.new(data_uri: value)
   end
 
   private

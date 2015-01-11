@@ -8,6 +8,7 @@ require 'webmock/minitest'
 
 require 'support/omniauth'
 require 'support/read_fixture'
+require 'support/data_uri'
 
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
