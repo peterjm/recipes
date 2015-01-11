@@ -6,6 +6,9 @@ CarrierWave.configure do |config|
     config.storage = :file
     config.enable_processing = false
     config.root = "#{Rails.root}/tmp"
+  elsif Rails.env.development?
+    config.storage = :file
+    config.root = "#{Rails.root}/public"
   else
     config.storage = Dropbox::Storage
   end
