@@ -11,8 +11,11 @@ class RecipeImage < ActiveRecord::Base
     version(:small)    { process :resize_to_fill => [240, 220] }
     version(:medium)   { process :resize_to_fill => [350, 240] }
     version(:large)    { process :resize_to_fill => [560, 380] }
+    version(:full)     { process :resize_to_fill => [780, 520] }
   end
   mount_uploader :image, Uploader
+
+  delegate :url, to: :image
 
   def image_data_uri=(value)
     self.image = DataUriUploadedFile.new(data_uri: value)

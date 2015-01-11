@@ -38,6 +38,10 @@ module Dropbox
 
       private
 
+      def key
+        "dropbox-image:#{path}"
+      end
+
       def fetched_url
         url = media['url']
         cache.write(key, url, expires_in: media_expires_in) if cache
@@ -45,7 +49,7 @@ module Dropbox
       end
 
       def media_expires_in
-        media_expiration_time - Time.now
+        media_expiration_time.to_i - DateTime.now.to_i
       end
 
       def media_expiration_time
