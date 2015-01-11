@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150108042527) do
+ActiveRecord::Schema.define(version: 20150109040905) do
 
   create_table "ingredient_names", force: :cascade do |t|
     t.integer  "ingredient_id",             null: false
@@ -33,6 +33,16 @@ ActiveRecord::Schema.define(version: 20150108042527) do
 
   add_index "ingredients", ["name"], name: "index_ingredients_on_name"
 
+  create_table "recipe_images", force: :cascade do |t|
+    t.integer  "recipe_id",        null: false
+    t.string   "image",            null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "source_image_url"
+  end
+
+  add_index "recipe_images", ["recipe_id"], name: "index_recipe_images_on_recipe_id"
+
   create_table "recipe_ingredients", force: :cascade do |t|
     t.integer  "recipe_id",                              null: false
     t.integer  "ingredient_id",                          null: false
@@ -52,7 +62,7 @@ ActiveRecord::Schema.define(version: 20150108042527) do
     t.string   "source",            limit: 255
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "image"
+    t.integer  "recipe_image_id"
   end
 
 end

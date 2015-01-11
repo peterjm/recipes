@@ -66,6 +66,7 @@ GEM
     columnize (0.9.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
+    data_uri (0.1.0)
     debugger-linecache (1.2.0)
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
@@ -212,6 +213,7 @@ DEPENDENCIES
   capybara
   carrierwave
   coffee-rails
+  data_uri
   dotenv-rails
   dropbox-sdk
   eye-of-newt

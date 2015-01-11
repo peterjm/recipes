@@ -1,3 +1,11 @@
+<% content_for :javascript do %>
+  <%= javascript_tag do %>
+    $(function(){
+      var images = new Recipes.Images();
+    });
+  <% end %>
+<% end %>
+
 <%= form_for @recipe do |f| %>
   <div class="grid desk-8 alpha">
     <div class="form-label"><%= f.label :title, "Title" %></div>
@@ -7,6 +15,33 @@
   <div class="grid desk-12 both">
     <div class="form-label"><%= f.label :source, "Source" %></div>
     <%= f.text_field :source, class: 'fullwidth', placeholder: '(optional)' %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <div class="form-label">Images</div>
+    <div id="ImageUploader" class="image-uploader">
+      <div id="ImageList" class="images">
+        <%= f.fields_for :images do |image_form| %>
+          <% if image_form.object.new_record? %>
+            <div class="image" style="<%= bg_image(image_form.object.remote_image_url) %>">
+              <%= image_form.hidden_field :remote_image_url %>
+              <span class="remove" title="Remove"><i class="fa fa-trash"></i></span>
+            </div>
+          <% else %>
+            <div class="image" style="<%= bg_image(image_form.object.image.url(:thumb)) %>">
+              <span class="remove" title="Remove"><i class="fa fa-trash"></i></span>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div id="FileUpload" class="upload" title="Select images to upload"><i class="fa fa-upload"></i></div>
+      <input id="FileChooser" type="file" multiple accept="image/*" style="display:none">
+      <div id="ImageTemplate" class="image filechooser" style="display:none;background-size:cover">
+        <input disabled type="hidden" name="recipe[images_attributes][NUM][image_data_uri]">
+        <span class="remove" title="Remove"><i class="fa fa-trash"></i></span>
+      </div>
+    </div>
   </div>
 
   <div class="grid desk-12 both">

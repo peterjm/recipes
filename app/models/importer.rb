@@ -26,7 +26,7 @@ class Importer
       title: parser.title,
       instructions_text: parser.instructions,
       ingredients_text: parser.ingredients,
-      remote_image_url: parser.image_url,
+      images_attributes: parser.image_urls.map{|img| {remote_image_url: img}},
       source: url
     }
   end

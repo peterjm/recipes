@@ -1,24 +1,26 @@
 class Recipe < ActiveRecord::Base
   has_many :ingredients, through: :recipe_ingredients
   has_many :recipe_ingredients, ->{ extending(RecipeIngredientExtension).order('position ASC') }, inverse_of: :recipe, dependent: :destroy, autosave: true
+  has_many :images, class_name: RecipeImage, inverse_of: :recipe, dependent: :destroy, autosave: true
+  belongs_to :image, class_name: RecipeImage, foreign_key: :recipe_image_id
+
+  accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, presence: true
 
-  class Uploader < ::Uploader
-    version(:mini)     { process :resize_to_fill => [ 50,  50] }
-    version(:thumb)    { process :resize_to_fill => [ 80,  80] }
-    version(:small)    { process :resize_to_fill => [240, 220] }
-    version(:medium)   { process :resize_to_fill => [350, 240] }
-    version(:large)    { process :resize_to_fill => [560, 380] }
-  end
-  mount_uploader :image, Uploader
-
   include PerformsActionOnSave
   action_on_save :update_recipe_ingredients
+  action_on_save :update_primary_image
 
   def update_recipe_ingredients
     list = IngredientListParser.new(ingredients_text).list
     recipe_ingredients.update_from(list)
+  end
+
+  def update_primary_image
+    if (image_id = images.first.try(:id)) != recipe_image_id
+      update_attribute :recipe_image_id, image_id
+    end
   end
 
   def to_param
