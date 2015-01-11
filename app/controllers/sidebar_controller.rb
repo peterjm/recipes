@@ -6,6 +6,6 @@ class SidebarController < AuthenticatedController
   protected
 
   def setup_sidebar
-    @popular_recipes = presentable(Recipe.all)
+    @popular_recipes = presentable(Recipe.includes(:image).limit(5))
   end
 end
