@@ -28,12 +28,10 @@ class IngredientListParser
   class ParsedIngredient
     attr_reader :ing
 
+    delegate :name, :style, :unit, :amount, to: :ing
+
     def initialize(ing)
       @ing = ing
-    end
-
-    def ingredient_name
-      ing.name
     end
 
     def parsed?

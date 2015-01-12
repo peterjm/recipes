@@ -5,8 +5,8 @@ class RecipePresenter < Presenter
     Recipe.model_name
   end
 
-  def recipe_ingredients
-    RecipeIngredientPresenter.wrap(recipe.recipe_ingredients)
+  def ingredient_lines
+    IngredientLinePresenter.wrap(recipe.ingredient_lines, recipe)
   end
 
   RANDOM_IMAGE_COUNT = 20

@@ -17,7 +17,7 @@ class Recipe < ActiveRecord::Base
   end
 
   def update_recipe_ingredients
-    names = ingredient_lines.select(&:parsed?).map(&:ingredient_name)
+    names = ingredient_lines.select(&:parsed?).map(&:name)
     recipe_ingredients.update_from(names)
   end
 
@@ -41,6 +41,10 @@ class Recipe < ActiveRecord::Base
     def update_from(ingredient_names)
       add_new(ingredient_names)
       remove_old(ingredient_names)
+    end
+
+    def named(ingredient_name)
+      detect{|ri| ri.name == ingredient_name}
     end
 
     private

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RecipeIngredientPresenterTest < ActiveSupport::TestCase
+class IngredientLinePresenterTest < ActiveSupport::TestCase
 
   test "#ingredient_path is the path to the ingredient" do
     p = presenter
@@ -9,7 +9,7 @@ class RecipeIngredientPresenterTest < ActiveSupport::TestCase
 
   def presenter
     ing = create(:recipe_ingredient)
-    p = RecipeIngredientPresenter.new(ing)
+    p = IngredientLinePresenter.new(ing)
   end
 
 end
