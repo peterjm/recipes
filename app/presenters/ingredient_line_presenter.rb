@@ -16,9 +16,6 @@ class IngredientLinePresenter < Presenter
     [quantity, style].compact.join(', ').presence
   end
 
-  def notes
-  end
-
   def ingredient
     recipe.recipe_ingredients.includes(:ingredient).named(name).ingredient
   end
