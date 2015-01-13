@@ -31,29 +31,8 @@ class IngredientLinePresenter < Presenter
     ingredient.to_param
   end
 
-  private
-
-  def rational_amount
-    @r ||= amount.rationalize(0.1)
-  end
-
-  def fraction
-    return nil if unit.nil? && amount == 1
-    fraction = rational_amount
-    whole = fraction.to_i
-    fraction -= whole
-    [whole, fraction].reject(&:zero?).join(' ')
-  end
-
   def quantity
-    [fraction, unit].compact.join(' ').presence
-  end
-
-  def unit
-    u = ingredient_line.unit
-    return nil if u == "units"
-    singular = amount <= 1 && rational_amount.numerator == 1
-    singular ? u.singularize : u
+    EyeOfNewt::Quantity.new(amount, unit).to_s
   end
 
 end
