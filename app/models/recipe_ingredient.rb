@@ -3,41 +3,18 @@ class RecipeIngredient < ActiveRecord::Base
   belongs_to :ingredient
 
   validates :recipe, presence: true
-  validates :ingredient, presence: true
-  validates :text, presence: true
+  validates :ingredient, presence: true, uniqueness: {scope: :recipe_id}
 
   before_create :save_ingredient
 
-  delegate :name, to: :ingredient
-
-  def self.build_from(text)
-    ing = EyeOfNewt.parse(text)
+  def self.build_from(ingredient_name)
     new(
-      text: text,
-      ingredient: Ingredient.from(ing.name)
+      name: ingredient_name,
+      ingredient: Ingredient.from(ingredient_name)
     )
   end
 
-  def unit
-    parsed_ingredient.unit.to_s
-  end
-
-  def quantity
-    parsed_ingredient.amount
-  end
-
-  def style
-    parsed_ingredient.style
-  end
-
-  def notes
-  end
-
   private
-
-  def parsed_ingredient
-    @parsed_ingredient ||= EyeOfNewt.parse(text)
-  end
 
   def save_ingredient
     ingredient.save if ingredient.new_record?

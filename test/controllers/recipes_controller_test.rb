@@ -14,7 +14,7 @@ class RecipesControllerTest < ActionController::TestCase
   end
 
   test "#show is successful" do
-    r = create(:recipe, title: "foo")
+    r = create(:recipe, title: "foo", update_recipe_ingredients_on_save: true)
     get :show, id: r.id
     assert_response :success
     assert_equal "foo", assigns(:recipe).title

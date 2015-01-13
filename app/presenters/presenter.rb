@@ -4,11 +4,11 @@ class Presenter
 
   def_delegators :element, :to_param
 
-  def self.wrap(element_or_elements)
+  def self.wrap(element_or_elements, *args)
     if element_or_elements.respond_to?(:each)
-      element_or_elements.map{|element| new(element)}
+      element_or_elements.map{|element| new(element, *args)}
     else
-      new(element_or_elements)
+      new(element_or_elements, *args)
     end
   end
 

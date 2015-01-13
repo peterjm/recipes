@@ -38,8 +38,8 @@
           <div class="single-recipe-ingredients">
             <h3 class="recipe-headlines ingredients first">Ingredients:</h3>
             <ul>
-              <% @recipe.recipe_ingredients.each do |ri| %>
-                <%= render 'recipe_ingredient', ingredient: ri %>
+              <% @recipe.ingredient_lines.each do |line| %>
+                <%= render 'recipe_ingredient', ingredient: line %>
               <% end %>
             </ul>
           </div>

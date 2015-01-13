@@ -13,15 +13,15 @@ class RecipeTest < ActiveSupport::TestCase
     recipe = build(:recipe, ingredients_text: "For the filling:\n1 cup milk")
     recipe.update_recipe_ingredients
     assert_equal 1, recipe.recipe_ingredients.length
-    assert_equal "1 cup milk", recipe.recipe_ingredients[0].text
+    assert_equal "milk", recipe.recipe_ingredients[0].name
   end
 
   test "#update_recipe_ingredients creates new ingredients" do
     recipe = build(:recipe, ingredients_text: "1 cup flour\n1 cup milk")
     recipe.update_recipe_ingredients
     assert_equal 2, recipe.recipe_ingredients.length
-    assert_equal "1 cup flour", recipe.recipe_ingredients[0].text
-    assert_equal "1 cup milk", recipe.recipe_ingredients[1].text
+    assert_equal "flour", recipe.recipe_ingredients[0].name
+    assert_equal "milk", recipe.recipe_ingredients[1].name
   end
 
   test "#update_recipe_ingredients is idempotent" do
@@ -29,8 +29,8 @@ class RecipeTest < ActiveSupport::TestCase
     recipe.update_recipe_ingredients
     recipe.update_recipe_ingredients
     assert_equal 2, recipe.recipe_ingredients.length
-    assert_equal "1 cup flour", recipe.recipe_ingredients[0].text
-    assert_equal "1 cup milk", recipe.recipe_ingredients[1].text
+    assert_equal "flour", recipe.recipe_ingredients[0].name
+    assert_equal "milk", recipe.recipe_ingredients[1].name
   end
 
   test "#update_recipe_ingredients removes no-longer used ingredients" do
@@ -39,17 +39,7 @@ class RecipeTest < ActiveSupport::TestCase
     recipe.ingredients_text = "1 cup flour\n1 cup soy milk"
     recipe.update_recipe_ingredients
     assert_equal 2, recipe.recipe_ingredients.length
-    assert_equal "1 cup flour", recipe.recipe_ingredients[0].text
-    assert_equal "1 cup soy milk", recipe.recipe_ingredients[1].text
-  end
-
-  test "#update_recipe_ingredients reorders the list" do
-    recipe = build(:recipe, ingredients_text: "1 cup flour\n1 cup milk")
-    recipe.update_recipe_ingredients
-    recipe.ingredients_text = "1 cup milk\n1 cup flour"
-    recipe.update_recipe_ingredients
-    assert_equal 2, recipe.recipe_ingredients.length
-    assert_equal "1 cup milk", recipe.recipe_ingredients[0].text
-    assert_equal "1 cup flour", recipe.recipe_ingredients[1].text
+    assert_equal "flour", recipe.recipe_ingredients[0].name
+    assert_equal "soy milk", recipe.recipe_ingredients[1].name
   end
 end
