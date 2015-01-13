@@ -1,3 +1,9 @@
+PATH
+  remote: ../eye_of_newt
+  specs:
+    eye-of-newt (0.0.5)
+      activesupport (~> 4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -75,8 +81,6 @@ GEM
       json
     erubis (2.7.0)
     execjs (2.2.2)
-    eye-of-newt (0.0.4)
-      activesupport (~> 4)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.5.0)
@@ -218,7 +222,7 @@ DEPENDENCIES
   data_uri
   dotenv-rails
   dropbox-sdk
-  eye-of-newt
+  eye-of-newt!
   factory_girl_rails
   font-awesome-rails
   jquery-rails

@@ -11,7 +11,7 @@ gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
 
-gem 'eye-of-newt'
+gem 'eye-of-newt', path: "../eye_of_newt"
 gem 'redcarpet'
 gem 'nokogiri'
 gem 'dropbox-sdk', require: 'dropbox_sdk'
