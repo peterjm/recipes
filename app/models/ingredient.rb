@@ -21,7 +21,6 @@ class Ingredient < ActiveRecord::Base
   end
 
   def self.from(name)
-    attrs = {name: name}
     IngredientName.find_ingredient(name) || new(name: name, ensure_ingredient_name_on_save: true)
   end
 
