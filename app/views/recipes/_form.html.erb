@@ -55,6 +55,11 @@
   </div>
 
   <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :notes, "Notes" %></div>
+    <%= f.text_area :notes, class: 'big' %>
+  </div>
+
+  <div class="grid desk-12 both">
     <%= f.submit "Submit", class: 'button primary' %>
   </div>
 <% end %>

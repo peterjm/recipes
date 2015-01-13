@@ -47,8 +47,10 @@
           <h3 class="recipe-headlines preparation-mode">Preparation mode:</h3>
           <%= render_markdown @recipe.instructions_text %>
 
-          <h3 class="recipe-headlines footnotes">Footnotes:</h3>
-          <p>Curabitur massa tortor, euismod accumsan dui eu, interdum interdum sapien. Aenean sed dui lorem. Nullam quis hendrerit sem, nec mollis augue. Aenean dictum pulvinar lectus, eu vulputate leo ultricies quis. Morbi quis est lacinia, adipiscing enim ac, semper magna.</p>
+          <% if @recipe.notes.present? %>
+            <h3 class="recipe-headlines footnotes">Footnotes:</h3>
+            <%= render_markdown @recipe.notes %>
+          <% end %>
 
           <h3 class="recipe-headlines links">Links:</h3>
           <ul>

@@ -56,6 +56,7 @@ class RecipesController < SidebarController
         :title,
         :ingredients_text,
         :instructions_text,
+        :notes,
         :source,
         images_attributes: [:id, :remote_image_url, :image_data_uri, :_destroy]
       )
