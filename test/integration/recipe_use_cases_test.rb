@@ -13,7 +13,7 @@ class AuthenticationUseCasesTest < ActionDispatch::IntegrationTest
   end
 
   test "edit a recipe" do
-    r = create(:recipe, title: "Pizza")
+    r = create(:recipe, title: "Pizza", update_recipe_ingredients_on_save: true)
     log_in
     visit recipe_path(r)
     click_link "Edit"
