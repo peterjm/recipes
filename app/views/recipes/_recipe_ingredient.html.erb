@@ -1,7 +1,7 @@
 <% if ingredient.parsed? %>
   <li>
     <div class="mark-as-ok"><i class="fa fa-check"></i></div>
-    <div class="ingredient"><%= link_to ingredient.name, ingredient_path(ingredient) %></div>
+    <div class="ingredient"><%= link_to_if ingredient.ingredient_path, ingredient.name, ingredient.ingredient_path %></div>
     <div class="quantity">
       <div class="qt"><%= ingredient.description %></div>
       <% if ingredient.note.present? %>

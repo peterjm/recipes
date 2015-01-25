@@ -17,15 +17,11 @@ class IngredientLinePresenter < Presenter
   end
 
   def ingredient
-    recipe.recipe_ingredients.includes(:ingredient).named(name).ingredient
+    recipe.recipe_ingredients.includes(:ingredient).named(name).try(:ingredient)
   end
 
   def ingredient_path
-    urls.ingredient_path(ingredient)
-  end
-
-  def to_param
-    ingredient.to_param
+    ingredient ? urls.ingredient_path(ingredient) : nil
   end
 
   def quantity
