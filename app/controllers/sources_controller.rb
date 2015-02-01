@@ -1,5 +1,7 @@
 class SourcesController < SidebarController
-  skip_before_filter :setup_sidebar, only: [:index]
+  def index
+    @sources = presentable(Source.all)
+  end
 
   def show
     @source = presentable(Source.find(params[:id]))
