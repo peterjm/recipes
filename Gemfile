@@ -5,7 +5,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'turbolinks'
 gem 'sqlite3'
 
-gem 'unicorn'
+gem 'puma'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
