@@ -2,7 +2,23 @@ require 'test_helper'
 
 class ImporterTest < ActiveSupport::TestCase
 
+  def default_attrs
+    {
+      title: "",
+      instructions: "",
+      ingredients: "",
+      image_urls: [""],
+      notes: "",
+      source: source
+    }
+  end
+
+  def source
+    @source ||= Source.new
+  end
+
   def parser(attrs={})
+    attrs = default_attrs.merge(attrs)
     @parser ||= begin
       p = stub(attrs)
       HTMLParser.stubs(:build).returns(p)
@@ -37,10 +53,17 @@ class ImporterTest < ActiveSupport::TestCase
 
   test "#import sets the basic source on the recipe" do
     url = "http://foo.com"
-    parser(title: "", instructions: "", ingredients: "", image_urls: [""], notes: "")
+    parser
     importer = Importer.new(url, fetcher: fetcher)
     recipe = importer.import
     assert_equal url, recipe.basic_source
+  end
+
+  test "#import sets the source on the recipe" do
+    parser
+    importer = Importer.new("http://foo.com", fetcher: fetcher)
+    recipe = importer.import
+    assert_equal source, recipe.source
   end
 
 end
