@@ -57,7 +57,7 @@ class RecipesController < SidebarController
         :ingredients_text,
         :instructions_text,
         :notes,
-        :source,
+        :basic_source,
         images_attributes: [:id, :remote_image_url, :image_data_uri, :_destroy]
       )
       .merge(update_recipe_ingredients_on_save: true, update_primary_image_on_save: true)

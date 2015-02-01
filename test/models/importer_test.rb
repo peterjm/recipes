@@ -35,12 +35,12 @@ class ImporterTest < ActiveSupport::TestCase
     assert_equal "the notes", recipe.notes
   end
 
-  test "#import sets the source on the recipe" do
+  test "#import sets the basic source on the recipe" do
     url = "http://foo.com"
     parser(title: "", instructions: "", ingredients: "", image_urls: [""], notes: "")
     importer = Importer.new(url, fetcher: fetcher)
     recipe = importer.import
-    assert_equal url, recipe.source
+    assert_equal url, recipe.basic_source
   end
 
 end

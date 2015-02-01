@@ -14,6 +14,6 @@ FactoryGirl.define do
       2. add the toppings
       3. Bake it!
     INS
-    source "The Pizza Book, page 10"
+    basic_source "The Pizza Book, page 10"
   end
 end
