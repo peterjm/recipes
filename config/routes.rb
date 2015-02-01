@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   resources :ingredients, only: [:index, :show] do
     resource :merge, only: [:create], controller: 'ingredient_merges'
   end
+  resources :sources, only: [:show]
 
   root to: "recipes#index"
 end
