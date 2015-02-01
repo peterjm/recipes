@@ -1,0 +1,33 @@
+<% set_page_title "Sources" %>
+
+<div class="rw-column rw-content">
+
+  <%= breadcrumb "Sources" %>
+
+  <div class="rw-row page-title">
+    <h1>Sources</h1>
+  </div>
+
+  <div class="rw-row">
+
+    <div class="recipes-list">
+
+      <% @sources.each do |source| %>
+        <%= render 'listed_source', source: source %>
+      <% end %>
+
+    </div> <!-- .recipes-list -->
+
+    <div class="recipes-pagination button-block center">
+      <a class="button small nobg primary" href="#">&larr; Prev</a>
+      <a class="button small nobg primary" href="#">...</a>
+      <span class="button small nobg primary current">4</span>
+      <a class="button small nobg primary" href="#">5</a>
+      <a class="button small nobg primary" href="#">6</a>
+      <a class="button small nobg primary" href="#">...</a>
+      <a class="button small nobg primary" href="#">192</a>
+      <a class="button small nobg primary" href="#">Next &rarr;</a>
+    </div>
+
+  </div>
+</div>
