@@ -1,0 +1,33 @@
+<% content_for :javascript do %>
+  <%= javascript_tag do %>
+    $(function(){
+      var images = new Recipes.Images();
+    });
+  <% end %>
+<% end %>
+
+<%= form_for @source, as: :source, url: source_path(@source) do |f| %>
+  <div class="grid desk-8 alpha">
+    <div class="form-label"><%= f.label :name, "Name" %></div>
+    <%= f.text_field :name, class: 'fullwidth' %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :url, "URL" %></div>
+    <%= f.text_field :url, class: 'fullwidth' %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :author, "Author" %></div>
+    <%= f.text_field :author, class: 'fullwidth' %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :description, "Description" %></div>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <%= f.submit "Submit", class: 'button primary' %>
+  </div>
+<% end %>

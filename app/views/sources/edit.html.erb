@@ -1,0 +1,19 @@
+<% set_page_title "Edit: #{@source.name}" %>
+
+<div class="rw-column rw-content">
+
+  <%= breadcrumb 'Edit', @source.name => source_path(@source) %>
+
+  <div class="rw-row page-title">
+    <h1><%= @source.name %></h1>
+  </div>
+
+  <div class="rw-row">
+
+    <div class="grid-container">
+      <%= render 'form' %>
+    </div> <!-- .grid-container -->
+
+  </div> <!-- .rw-row -->
+
+</div> <!-- .rw-content -->
