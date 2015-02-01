@@ -1,0 +1,8 @@
+#!/bin/bash
+set -ex
+
+echo "setting up local environment..."
+[ -f .env ] || cp config/env-example .env
+[ -f config/database.yml ] || cp config/database-example.yml config/database.yml
+
+source script/bootstrap
