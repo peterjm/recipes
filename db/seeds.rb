@@ -5,3 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+WebsiteSource.create(name: "101 Cookbooks", author: "Heidi Swanson", url: "http://www.101cookbooks.com")
