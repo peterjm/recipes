@@ -19,7 +19,8 @@ class ImporterTest < ActiveSupport::TestCase
       title: "the title",
       instructions: "the instructions",
       ingredients: "the ingredients",
-      image_urls: ["http://foo.com/img.jpg"]
+      image_urls: ["http://foo.com/img.jpg"],
+      notes: "the notes"
     )
     fetcher = stub
     fetcher.expects(:get).with("http://foo.com").returns("content")
@@ -31,11 +32,12 @@ class ImporterTest < ActiveSupport::TestCase
     assert_equal "the instructions", recipe.instructions_text
     assert_equal "the ingredients", recipe.ingredients_text
     assert_equal "http://foo.com/img.jpg", recipe.images.first.remote_image_url
+    assert_equal "the notes", recipe.notes
   end
 
   test "#import sets the source on the recipe" do
     url = "http://foo.com"
-    parser(title: "", instructions: "", ingredients: "", image_urls: [""])
+    parser(title: "", instructions: "", ingredients: "", image_urls: [""], notes: "")
     importer = Importer.new(url, fetcher: fetcher)
     recipe = importer.import
     assert_equal url, recipe.source
