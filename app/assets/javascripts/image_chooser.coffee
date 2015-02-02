@@ -1,7 +1,9 @@
-class Recipes.Images
+class Recipes.ImageChooser
   ACCEPTED_TYPES: ['image/png', 'image/jpeg']
 
-  constructor: ->
+  constructor: (options={}) ->
+    {@maxImages} = options
+
     @imageUploader = document.getElementById('ImageUploader')
     @fileUpload = document.getElementById('FileUpload')
     @fileChooser = document.getElementById('FileChooser')
@@ -54,7 +56,11 @@ class Recipes.Images
   handleFile: (file) ->
     if file.type in @ACCEPTED_TYPES
       @readDataUrl file, (fileUri) =>
-        image = @newImage(fileUri, @numImages())
+        numImages = @numImages()
+        image = @newImage(fileUri, numImages)
+        excessImages = numImages - @maxImages if @maxImages
+        for elem, index in @imageList.querySelectorAll('.image')
+          elem.remove() if excessImages && index < excessImages
         @imageList.appendChild(image)
 
         @fileChooser.value = ''
@@ -68,7 +74,8 @@ class Recipes.Images
     reader.readAsDataURL(file)
 
   removeOnClick: (image) ->
-    image.querySelector('.remove').addEventListener "click", (e) ->
+    image.querySelector('.remove').addEventListener "click", (e) =>
       e.preventDefault()
-      image.querySelector('input').remove()
+      image.querySelector('input.image_data_uri')?.remove()
+      image.querySelector('input.remove_image')?.value = '1'
       image.style['display'] = 'none'

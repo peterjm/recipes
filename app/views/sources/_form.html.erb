@@ -1,7 +1,7 @@
 <% content_for :javascript do %>
   <%= javascript_tag do %>
     $(function(){
-      var images = new Recipes.Images();
+      var images = new Recipes.ImageChooser({maxImages: 1});
     });
   <% end %>
 <% end %>

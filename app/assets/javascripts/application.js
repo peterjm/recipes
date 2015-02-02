@@ -23,6 +23,6 @@
 //= require gustos
 //
 //= require_self
-//= require recipe_images
+//= require image_chooser
 
 window.Recipes = {}
