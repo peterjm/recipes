@@ -25,7 +25,18 @@ class SourcesController < SidebarController
   private
 
   def source_params
-    params.require(:source).permit(:name, :type, :author, :url)
+    params
+      .require(:source)
+      .permit(
+        :name,
+        :type,
+        :author,
+        :url,
+        :description,
+        :remote_image_url,
+        :image_data_uri,
+        :remove_image
+      )
   end
 
 end

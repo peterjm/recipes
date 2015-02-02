@@ -10,8 +10,6 @@ class Source < ActiveRecord::Base
   end
   mount_uploader :image, Uploader
 
-  delegate :url, to: :image
-
   def to_param
     "#{id}-#{name_was.parameterize}"
   end
