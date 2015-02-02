@@ -1,4 +1,6 @@
 class SourcePresenter < Presenter
+  include HasImage
+
   alias_method :source, :element
 
   def self.new(element, *args)
