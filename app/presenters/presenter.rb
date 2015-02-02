@@ -6,7 +6,7 @@ class Presenter
 
   def self.wrap(element_or_elements, *args)
     if element_or_elements.respond_to?(:each)
-      element_or_elements.map{|element| new(element, *args)}
+      MultiplePresenter.new(element_or_elements, self, *args)
     else
       new(element_or_elements, *args)
     end
