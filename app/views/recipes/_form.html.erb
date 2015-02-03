@@ -18,6 +18,11 @@
   </div>
 
   <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :source, "Source" %></div>
+    <%= f.select :source_id, Source.all.map_ary(:name, :id), {include_blank: "Choose source&hellip;".html_safe}, class: 'fullwidth' %>
+  </div>
+
+  <div class="grid desk-12 both">
     <div class="form-label">Images</div>
     <div id="ImageUploader" class="image-uploader">
       <div id="ImageList" class="images">
