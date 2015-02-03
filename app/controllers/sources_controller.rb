@@ -5,7 +5,7 @@ class SourcesController < SidebarController
 
   def show
     @source = presentable(Source.find(params[:id]))
-    @recipes = presentable(@source.recipes.page(params[:page]).per(1))
+    @recipes = presentable(@source.recipes.page(params[:page]).per(10))
   end
 
   def edit
