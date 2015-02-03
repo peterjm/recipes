@@ -8,11 +8,6 @@ module Presentable
   end
 
   def presenter_class(resource)
-    base_class = if resource.respond_to?(:klass)
-      resource.klass.name
-    else
-      resource.class.name
-    end
-    "#{base_class}Presenter".constantize
+    Presenter.class_for(resource)
   end
 end

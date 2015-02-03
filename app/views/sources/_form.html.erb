@@ -1,0 +1,55 @@
+<% content_for :javascript do %>
+  <%= javascript_tag do %>
+    $(function(){
+      var images = new Recipes.ImageChooser({maxImages: 1});
+    });
+  <% end %>
+<% end %>
+
+<%= form_for @source, as: :source, url: source_path(@source) do |f| %>
+  <div class="grid desk-8 alpha">
+    <div class="form-label"><%= f.label :name, "Name" %></div>
+    <%= f.text_field :name, class: 'fullwidth' %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :url, "URL" %></div>
+    <%= f.text_field :url, class: 'fullwidth' %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :author, "Author" %></div>
+    <%= f.text_field :author, class: 'fullwidth' %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <div class="form-label">Image</div>
+    <div id="ImageUploader" class="image-uploader">
+      <div id="ImageList" class="images">
+        <% if @source.image.present? %>
+          <div class="image" style="<%= bg_image(@source.image.url(:thumb)) %>">
+            <input type="hidden" class="remove_image" name="source[remove_image]">
+            <span class="remove" title="Remove"><i class="fa fa-trash"></i></span>
+          </div>
+        <% end %>
+      </div>
+
+      <div id="FileUpload" class="upload" title="Select images to upload"><i class="fa fa-upload"></i></div>
+      <input id="FileChooser" type="file" accept="image/*" style="display:none">
+      <div id="ImageTemplate" class="image filechooser" style="display:none;background-size:cover">
+        <input disabled type="hidden" class="image_data_uri" name="source[image_data_uri]">
+        <input disabled type="hidden" class="remove_image" name="source[remove_image]">
+        <span class="remove" title="Remove"><i class="fa fa-trash"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :description, "Description" %></div>
+    <%= f.text_area :description %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <%= f.submit "Submit", class: 'button primary' %>
+  </div>
+<% end %>

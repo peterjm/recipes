@@ -5,3 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+unless WebsiteSource.find_by(name: "101 Cookbooks")
+  WebsiteSource.create(name: "101 Cookbooks", author: "Heidi Swanson", url: "http://www.101cookbooks.com")
+end

@@ -1,0 +1,62 @@
+<div class="recipe clearfix">
+
+  <div class="recipe-main-info clearfix">
+    <div class="grid-container">
+
+      <div class="entry-photo grid desk-4 alpha">
+        <%= image_tag recipe.image('small'), alt: recipe.title %>
+      </div>
+
+      <div class="grid desk-8 omega">
+        <div class="entry-title">
+          <h2><%= link_to recipe.title, recipe_path(recipe) %></h2>
+        </div>
+        <div class="entry-controls minimal">
+          <div class="control"> <i class="fa fa-calendar"></i> </div><span class="control-tip">04 August 2013</span>
+          <a href="#" class="control entry-to-favorites" title="Add to favorites"> <i class="fa fa-heart-o"></i> </a><span class="control-tip">44</span>
+          <a href="#" class="control entry-like" title="I like this!"> <i class="fa fa-thumbs-o-up"></i> </a> <span class="control-tip">294</span>
+          <a href="#" class="control entry-comments" title="Comments"> <i class="fa fa-comments"></i> </a> <span class="control-tip">2 comments</span>
+          <div class="control"> <i class="fa fa-bar-chart"></i> </div> <span class="control-tip">1810 views</span>
+        </div>
+        <div class="entry-content">
+          <p>Septima ossibus deliciae superbam praecustodio gualitatibus glaebam eminentiam destitutus. Firmare navigabile possessores hibernorum. Liber apparct legitima titulo massam mentis.</p>
+        </div>
+        <div class="entry-info-author">
+          <img src="assets/placeholder/people/50x50/5.jpg" alt="" />
+          <div class="author-name"><a href="#">Laura Gonzalez</a></div>
+          <div class="total-recipes">220 recipes</div>
+        </div>
+        <div class="clear"></div>
+      </div>
+
+    </div> <!-- .grid-container -->
+  </div>
+
+  <div class="recipe-info-pointer"><i class="the-icon fa fa-angle-double-left"></i></div>
+
+  <div class="recipe-info clearfix">
+    <div class="info preparation">
+      <i class="the-icon fa fa-clock-o"></i>
+      <span class="type">Preparation</span>
+      <span class="value">40 minutes</span>
+    </div>
+    <div class="info ingredients">
+      <i class="the-icon fa fa-flask"></i>
+      <span class="type">Contains</span>
+      <span class="value">9 ingredients</span>
+    </div>
+    <div class="info category">
+      <i class="the-icon fa fa-book"></i>
+      <span class="type">Category</span>
+      <span class="value">Desserts</span>
+    </div>
+    <div class="info difficulty moderate">
+      <i class="the-icon fa fa-tasks"></i>
+      <span class="type">Difficulty</span>
+      <span class="value">Moderate</span>
+    </div>
+    <div class="clear"></div>
+  </div>
+</div> <!-- .entry -->
+
+<div class="clear"></div>

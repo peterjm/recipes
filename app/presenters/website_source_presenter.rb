@@ -1,0 +1,2 @@
+class WebsiteSourcePresenter < SourcePresenter
+end

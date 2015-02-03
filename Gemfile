@@ -10,6 +10,7 @@ gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
 gem 'font-awesome-rails'
+gem 'kaminari'
 
 gem 'eye-of-newt', path: "../eye_of_newt"
 gem 'redcarpet'

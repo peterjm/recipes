@@ -2,6 +2,9 @@ require 'striplines'
 
 module Parsers
   class WWW101CookbooksParser < HTMLParser
+
+    SOURCE_NAME = "101 Cookbooks"
+
     def title
       recipe_html.at_css('h1').text
     end
@@ -21,6 +24,10 @@ module Parsers
     def image_urls
       imgs = html.css('#maincontent .mainimagewide img') + html.css('#maincontent .entrybody p img')
       imgs.map{|img| full_url(img.attr('src'))}
+    end
+
+    def source
+      @source ||= WebsiteSource.find_by(name: SOURCE_NAME)
     end
 
     private
