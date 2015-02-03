@@ -24,16 +24,7 @@
 
     </div> <!-- .recipes-list -->
 
-    <div class="recipes-pagination button-block center">
-      <a class="button small nobg primary" href="#">&larr; Prev</a>
-      <a class="button small nobg primary" href="#">...</a>
-      <span class="button small nobg primary current">4</span>
-      <a class="button small nobg primary" href="#">5</a>
-      <a class="button small nobg primary" href="#">6</a>
-      <a class="button small nobg primary" href="#">...</a>
-      <a class="button small nobg primary" href="#">192</a>
-      <a class="button small nobg primary" href="#">Next &rarr;</a>
-    </div>
+    <%= paginate @recipes %>
 
   </div>
 </div>
