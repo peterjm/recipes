@@ -1,5 +1,9 @@
 class RecipesController < SidebarController
 
+  def index
+    @recipes = presentable(Recipe.includes(:image).page(params[:page]).per(10))
+  end
+
   def show
     @recipe = presentable(Recipe.find(params[:id]))
     @related_recipes = presentable(Recipe.includes(:image).limit(3))
