@@ -3,6 +3,8 @@ class RecipeImage < ActiveRecord::Base
 
   validates_presence_of :image
 
+  attr_accessor :tmp_remote_image_url
+  before_validation :copy_remote_url
   before_save :copy_source_url, on: :create
 
   class Uploader < ::Uploader
@@ -23,7 +25,11 @@ class RecipeImage < ActiveRecord::Base
 
   private
 
+  def copy_remote_url
+    self.remote_image_url = tmp_remote_image_url if tmp_remote_image_url
+  end
+
   def copy_source_url
-    self.source_image_url = remote_image_url
+    self.source_image_url = remote_image_url if remote_image_url
   end
 end
