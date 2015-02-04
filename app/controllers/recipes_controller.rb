@@ -1,10 +1,4 @@
 class RecipesController < SidebarController
-  skip_before_filter :setup_sidebar, only: [:index]
-
-  def index
-    @recipes = presentable(Recipe.includes(:image).limit(4))
-    render layout: 'main'
-  end
 
   def show
     @recipe = presentable(Recipe.find(params[:id]))
