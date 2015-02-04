@@ -12,7 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+//
+//= require turbograft
 //
 //= require rw-sidebar
 //= require smk-menu

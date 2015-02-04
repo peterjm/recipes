@@ -8,6 +8,7 @@
   <link rel="icon" href="<%= asset_path 'favicon.png' %>" />
   <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Dosis">
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,7 +16,6 @@
   <%= content_for?(:application_content) ? yield(:application_content) : yield %>
 </section><!-- .rw-layout -->
 
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 <%= content_for :javascript %>
 </body>
 </html>
