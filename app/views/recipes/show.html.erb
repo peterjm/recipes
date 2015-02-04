@@ -36,7 +36,7 @@
         <div class="recipe-content">
 
           <div class="single-recipe-ingredients">
-            <h3 class="recipe-headlines ingredients first">Ingredients:</h3>
+            <h3 class="recipe-headlines ingredients first">Ingredients</h3>
             <ul>
               <% @recipe.ingredient_lines.each do |line| %>
                 <%= render 'recipe_ingredient', ingredient: line %>
@@ -44,15 +44,15 @@
             </ul>
           </div>
 
-          <h3 class="recipe-headlines preparation-mode">Preparation mode:</h3>
+          <h3 class="recipe-headlines preparation-mode">Preparation</h3>
           <%= render_markdown @recipe.instructions_text %>
 
           <% if @recipe.notes.present? %>
-            <h3 class="recipe-headlines footnotes">Footnotes:</h3>
+            <h3 class="recipe-headlines footnotes">Notes</h3>
             <%= render_markdown @recipe.notes %>
           <% end %>
 
-          <h3 class="recipe-headlines links">Links:</h3>
+          <h3 class="recipe-headlines links">Links</h3>
           <ul>
             <li><a href="#">Curabitur massa tortor, euismod accumsan dui eu</a></li>
             <li><a href="#">Aenean sed dui lorem</a></li>
