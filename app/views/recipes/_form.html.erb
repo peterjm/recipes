@@ -1,9 +1,9 @@
 <% content_for :javascript do %>
-  <%= javascript_tag do %>
+  <script>
     $(function(){
       var images = new Recipes.ImageChooser();
     });
-  <% end %>
+  </script>
 <% end %>
 
 <%= form_for @recipe do |f| %>
