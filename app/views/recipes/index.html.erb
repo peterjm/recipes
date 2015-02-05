@@ -9,16 +9,12 @@
   </div>
 
   <div class="rw-row">
-
     <div class="recipes-list">
-
       <% @recipes.each do |recipe| %>
         <%= render 'recipes/listed_recipe', recipe: recipe %>
       <% end %>
-
-    </div> <!-- .recipes-list -->
+    </div>
 
     <%= paginate @recipes %>
-
   </div>
 </div>

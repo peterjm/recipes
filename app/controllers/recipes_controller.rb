@@ -6,7 +6,7 @@ class RecipesController < SidebarController
 
   def show
     @recipe = presentable(Recipe.find(params[:id]))
-    @related_recipes = presentable(Recipe.includes(:image).limit(3))
+    @related_recipes = presentable(Recipe.includes(:image).limit(4))
   end
 
   def new

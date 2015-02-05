@@ -20,9 +20,9 @@
 //= require smk-visual-select
 //= require owl.carousel
 //= require jquery.qtip
-//= require gustos
 //
 //= require_self
 //= require image_chooser
+//= require events
 
 window.Recipes = {}

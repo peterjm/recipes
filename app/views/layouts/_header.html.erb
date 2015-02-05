@@ -1,3 +1,15 @@
+<% content_for :javascript do %>
+  <script>
+    $(document).ready(function(){
+      $('#the-main-menu').smk_Menu();
+      $('#the-user-menu').smk_Menu({
+        responsive: false,
+        subMenuMarkText: false
+      });
+    });
+  </script>
+<% end %>
+
 <div class="rw-section rw-header">
   <div class="rw-inner clearfix">
     <div class="grid-container">

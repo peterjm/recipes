@@ -17,7 +17,7 @@ module ApplicationHelper
   end
 
   def home?
-    controller_name == 'recipes' && action_name == 'index'
+    controller_name == 'home' && action_name == 'index'
   end
 
   def breadcrumb(current, crumbs={})

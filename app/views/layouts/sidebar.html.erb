@@ -16,4 +16,12 @@
   <%= render 'layouts/footer' %>
 <% end %>
 
+<% content_for :javascript do %>
+  <script>
+    $(document).ready(function(){
+      $('.rw-sidebar').rw_Sidebar();
+    });
+  </script>
+<% end %>
+
 <%= render template: "layouts/application" %>
