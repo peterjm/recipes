@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //
 //= require turbograft
+//= require twine
 //
 //= require rw-sidebar
 //= require smk-menu
@@ -22,7 +23,9 @@
 //= require jquery.qtip
 //
 //= require_self
+//= require twine_init
 //= require image_chooser
 //= require events
+//= require utils
 
 window.Recipes = {}

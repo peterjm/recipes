@@ -12,19 +12,7 @@ smk_theme_keyword_index_filter = (elem) ->
     else
       $(this).addClass('hide-keyword')
 
-smk_theme_jump_to_it = ( _selector, _speed ) ->
-  $(document).on 'click', _selector, (event) ->
-    event.preventDefault()
-    url = $(this).attr('href') # cache the url. This is the comment id(parent)
-
-    # Animate the jump
-    $("html, body").animate
-      scrollTop: parseInt( $(url).offset().top ) - 50
-    , _speed
-
 $(document).ready ->
-  smk_theme_jump_to_it('.footer-to-top', 500)
-
   $(document).on 'mouseover', '[title]', (event) ->
     $(this).qtip
       overwrite: false

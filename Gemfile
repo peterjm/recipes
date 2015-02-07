@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '~> 4.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'turbograft'
+gem 'twine-rails'
 gem 'sqlite3'
 
 gem 'puma'

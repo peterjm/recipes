@@ -199,6 +199,8 @@ GEM
     tilt (1.4.1)
     turbograft (0.1.12)
       coffee-rails
+    twine-rails (0.0.13)
+      coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (2.5.3)
@@ -239,5 +241,6 @@ DEPENDENCIES
   redcarpet
   sqlite3
   turbograft
+  twine-rails
   uglifier
   webmock
