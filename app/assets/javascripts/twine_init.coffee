@@ -1,4 +1,4 @@
-context = {}
+window.context = {}
 
 reset = (nodes) ->
   if nodes

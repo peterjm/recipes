@@ -5,3 +5,6 @@ class Recipes.Utils
     $("html, body").animate
       scrollTop: parseInt( $(dest).offset().top ) - 50
     , speed
+
+  contains: (str, substr) ->
+    str.toLowerCase().search(substr.toLowerCase()) >= 0

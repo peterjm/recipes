@@ -8,28 +8,29 @@
 
   <div class="rw-row">
 
-    <div class="keywords-filter-block">
-      <div class="filter-header clearfix">
-        <span class="title">Filter ingredients:</span>
-        <div class="filter-controls clearfix">
-          <span class="control block"><i class="fa fa-th-list"></i></span>
-          <span class="control inline active"><i class="fa fa-th"></i></span>
+    <div define="{query: '', display: 'inline', utils: new Recipes.Utils}">
+      <div class="keywords-filter-block">
+        <div class="filter-header clearfix">
+          <span class="title">Filter ingredients:</span>
+          <div class="filter-controls clearfix">
+            <span class="control" bind-class="{active: (display=='block')}" bind-event-click="display='block'"><i class="fa fa-th-list"></i></span>
+            <span class="control" bind-class="{active: (display=='inline')}" bind-event-click="display='inline'"><i class="fa fa-th"></i></span>
+          </div>
         </div>
+        <input type="text" class="fullwidth filter-keywords" placeholder="" bind="query"/>
       </div>
-      <input type="text" class="fullwidth filter-keywords" placeholder="" />
+
+      <div bind-class="{'display-block': (display=='block')}" class="keywords-index-list">
+        <% @ingredients.sort.group_by(&:first_letter).each do |letter, ingredients| %>
+          <h4 bind-show="query.length == 0"><%= letter %></h4>
+          <ul class="keywords">
+            <% ingredients.each do |ing| %>
+              <li bind-class='{"hide-keyword": !utils.contains("<%= ing.name %>",query)}'><%= link_to ing.name, ingredient_path(ing) %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div> <!-- .recipe-index-list -->
+
     </div>
-
-    <div class="keywords-index-list">
-      <% @ingredients.sort.group_by(&:first_letter).each do |letter, ingredients| %>
-        <h4><%= letter %></h4>
-        <ul class="keywords">
-          <% ingredients.each do |ing| %>
-            <li><%= link_to ing.name, ingredient_path(ing) %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div> <!-- .recipe-index-list -->
-
   </div> <!-- .rw-row -->
-
 </div> <!-- .rw-content -->
