@@ -15,9 +15,6 @@ $(document).ready ->
     , event
 
 
-  $(document).on 'click', '.single-recipe-ingredients li', ->
-    $(this).toggleClass('active')
-
   $(document).on 'click', '.carousel-posts-nav-prev', ->
     $(this).parents('.grid-container').find('.carousel-posts, .home-carousel-posts').trigger('owl.prev')
   $(document).on 'click', '.carousel-posts-nav-next', ->
