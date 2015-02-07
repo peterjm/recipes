@@ -1,6 +1,6 @@
-<div class="recipe clearfix">
+<div class="recipe clearfix" define="{viewInfo: false}">
 
-  <div class="recipe-main-info clearfix">
+  <div bind-class="{'active': !viewInfo, 'inactive': viewInfo}" class="recipe-main-info clearfix">
     <div class="grid-container">
 
       <div class="entry-photo grid desk-4 alpha">
@@ -32,9 +32,9 @@
     </div> <!-- .grid-container -->
   </div>
 
-  <div class="recipe-info-pointer"><i class="the-icon fa fa-angle-double-left"></i></div>
+  <div bind-event-mouseover="viewInfo=true" bind-event-mouseout="viewInfo=false" class="recipe-info-pointer"><i class="the-icon fa fa-angle-double-left"></i></div>
 
-  <div class="recipe-info clearfix">
+  <div bind-class="{'active': viewInfo, 'inactive': !viewInfo}" class="recipe-info clearfix">
     <div class="info preparation">
       <i class="the-icon fa fa-clock-o"></i>
       <span class="type">Preparation</span>

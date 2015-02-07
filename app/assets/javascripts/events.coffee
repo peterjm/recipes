@@ -15,13 +15,6 @@ $(document).ready ->
     , event
 
 
-  $(document).on 'mouseenter', '.recipe .recipe-info-pointer', ->
-    $(this).next().addClass('active')
-    $(this).prev().addClass('inactive')
-  $(document).on 'mouseleave', '.recipe .recipe-info-pointer', ->
-    $(this).prev().removeClass('inactive')
-    $(this).next().removeClass('active')
-
   $(document).on 'click', '.single-recipe-ingredients li', ->
     $(this).toggleClass('active')
 
