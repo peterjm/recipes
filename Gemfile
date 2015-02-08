@@ -17,6 +17,7 @@ gem 'eye-of-newt', path: "../eye_of_newt"
 gem 'redcarpet'
 gem 'nokogiri'
 gem 'dragonfly'
+gem 'dragonfly-dropbox_data_store'
 gem 'dropbox-sdk', require: 'dropbox_sdk'
 gem 'mini_magick'
 gem 'data_uri'

@@ -1,4 +1,5 @@
 require 'dragonfly'
+require 'dragonfly/dropbox_data_store'
 
 # Configure
 Dragonfly.app.configure do
@@ -12,6 +13,13 @@ Dragonfly.app.configure do
     # List of allowed file paths when using fetch_file (strings or regexps)
     /public/
   ]
+
+  datastore :dropbox,
+    app_key:              Rails.application.secrets.dropbox_app_key,
+    app_secret:           Rails.application.secrets.dropbox_app_secret,
+    access_token:         Rails.application.secrets.dropbox_access_token,
+    access_token_secret:  Rails.application.secrets.dropbox_access_token_secret,
+    user_id:              Rails.application.secrets.dropbox_user_id
 
   datastore :file,
     root_path: Rails.root.join('public/system/dragonfly', Rails.env),

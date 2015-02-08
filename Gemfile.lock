@@ -76,6 +76,9 @@ GEM
       addressable (~> 2.3)
       multi_json (~> 1.0)
       rack
+    dragonfly-dropbox_data_store (0.0.1)
+      dragonfly (~> 1.0)
+      dropbox-sdk (~> 1.6)
     dropbox-sdk (1.6.4)
       json
     erubis (2.7.0)
@@ -221,6 +224,7 @@ DEPENDENCIES
   data_uri
   dotenv-rails
   dragonfly
+  dragonfly-dropbox_data_store
   dropbox-sdk
   eye-of-newt!
   factory_girl_rails
