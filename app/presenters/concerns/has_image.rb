@@ -1,27 +1,28 @@
 module HasImage
   extend ActiveSupport::Concern
 
-  RANDOM_IMAGE_COUNT = 20
-  def image(size=nil)
-    return element.image unless size
+  def dragonfly_image
+    element.image
+  end
 
-    if element.image
-      element.image.url(size)
+  def image(size=nil)
+    size = translate_size(size)
+    if size.present?
+      dragonfly_image.thumb(size).url
     else
-      default_image(size)
+      dragonfly_image.url
     end
   end
 
-  def default_image(size)
-    hex = Digest::SHA1.hexdigest(title).to_i(16)
-    number = case size.to_s
-    when 'large'
-      hex % 2 == 0 ? 8 : 21
-    when 'full'
-      1
-    else
-      (hex % RANDOM_IMAGE_COUNT) + 1
+  def translate_size(size)
+    case size.to_s
+    when "mini" then "50x50#"
+    when "thumb" then "80x80#"
+    when "small" then "240x220#"
+    when "medium" then "350x240#"
+    when "large" then "560x380#"
+    when "full" then "780x520#"
+    else size
     end
-    "defaults/food/#{size}/#{number}.jpg"
   end
 end

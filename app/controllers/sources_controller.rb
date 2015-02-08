@@ -33,7 +33,7 @@ class SourcesController < SidebarController
         :author,
         :url,
         :description,
-        :remote_image_url,
+        :image_url,
         :image_data_uri,
         :remove_image
       )

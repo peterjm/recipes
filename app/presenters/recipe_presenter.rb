@@ -10,4 +10,9 @@ class RecipePresenter < Presenter
   def ingredient_lines
     IngredientLinePresenter.wrap(recipe.ingredient_lines, recipe)
   end
+
+  def dragonfly_image
+    recipe.build_image unless recipe.image
+    recipe.image.image
+  end
 end
