@@ -37,3 +37,7 @@ group :test do
   gem 'capybara'
   gem 'webmock'
 end
+
+group :production do
+  gem 'pg'
+end

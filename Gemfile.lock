@@ -139,6 +139,7 @@ GEM
       multi_json (~> 1.3)
       oauth2 (~> 1.0)
       omniauth (~> 1.2)
+    pg (0.18.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -232,6 +233,7 @@ DEPENDENCIES
   mocha
   nokogiri
   omniauth-google-oauth2
+  pg
   pry
   pry-byebug
   pry-rescue
