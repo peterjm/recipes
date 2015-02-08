@@ -35,18 +35,18 @@
 
         <div class="recipe-content">
 
-          <div class="single-recipe-ingredients" define="{editingIngredients: false}">
+          <div id="Ingredients" refresh="ingredients" class="single-recipe-ingredients" define="{editIngr: new Recipes.InplaceEditor(this, 'ul')}">
             <h3 class="recipe-headlines ingredients first">
               Ingredients
-              <span class="edit">- <a href="#" bind-event-click="editingIngredients=!editingIngredients">edit</a></span>
+              <span class="edit">- <a href="#" bind-event-click="editIngr.toggle()">edit</a></span>
             </h3>
-            <ul bind-show="!editingIngredients">
+            <ul>
               <% @recipe.ingredient_lines.each do |line| %>
                 <%= render 'recipe_ingredient', ingredient: line %>
               <% end %>
             </ul>
 
-            <%= form_for @recipe, html: {'bind-show' => 'editingIngredients'} do |f| %>
+            <%= form_for @recipe, html: {'tg-remote' => '1', 'refresh-on-success' => 'ingredients'} do |f| %>
               <div class="grid desk-12 both">
                 <%= f.text_area :ingredients_text %>
               </div>

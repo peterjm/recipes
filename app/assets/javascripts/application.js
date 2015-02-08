@@ -27,6 +27,7 @@
 //= require qtip_init
 //= require menu
 //= require sidebar
+//= require inplace_editor
 //= require image_chooser
 //= require utils
 //= require carousel
