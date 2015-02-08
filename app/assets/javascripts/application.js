@@ -25,7 +25,7 @@
 //= require_self
 //= require twine_init
 //= require image_chooser
-//= require events
+//= require qtip_init
 //= require utils
 
 window.Recipes = {}

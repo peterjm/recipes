@@ -13,9 +13,3 @@ $(document).ready ->
       hide:
         event: 'click mouseleave'
     , event
-
-
-  $(document).on 'click', '.carousel-posts-nav-prev', ->
-    $(this).parents('.grid-container').find('.carousel-posts, .home-carousel-posts').trigger('owl.prev')
-  $(document).on 'click', '.carousel-posts-nav-next', ->
-    $(this).parents('.grid-container').find('.carousel-posts, .home-carousel-posts').trigger('owl.next')
