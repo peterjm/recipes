@@ -24,8 +24,9 @@
 //
 //= require_self
 //= require twine_init
-//= require image_chooser
 //= require qtip_init
+//= require menu
+//= require image_chooser
 //= require utils
 //= require carousel
 

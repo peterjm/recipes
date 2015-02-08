@@ -1,15 +1,3 @@
-<% content_for :javascript do %>
-  <script>
-    $(document).ready(function(){
-      $('#the-main-menu').smk_Menu();
-      $('#the-user-menu').smk_Menu({
-        responsive: false,
-        subMenuMarkText: false
-      });
-    });
-  </script>
-<% end %>
-
 <div class="rw-section rw-header">
   <div class="rw-inner clearfix">
     <div class="grid-container">
@@ -19,7 +7,7 @@
           <%= image_tag 'logo.png', alt: 'gustos', class: 'logo' %>
         </div>
         <% if logged_in? %>
-          <nav id="the-main-menu" class="main-menu-nav menu-inline">
+          <nav class="main-menu-nav menu-inline" define="{mainMenu: new Recipes.Menu(this)}">
             <ul class="menu horizontal">
               <li><%= link_to "Home", root_path %></li>
               <li><%= link_to "Recipes", recipes_path %></li>
@@ -32,7 +20,7 @@
 
       <% if logged_in? %>
         <div class="grid desk-4 mob-6 omega">
-          <nav id="the-user-menu" class="main-menu-nav">
+          <nav class="main-menu-nav" define="{userMenu: new Recipes.Menu(this, {responsive:false, subMenuMarkText:false})}">
             <ul class="menu horizontal align-right">
 
               <%= yield(:menubar) %>
