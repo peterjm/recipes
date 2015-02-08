@@ -35,13 +35,26 @@
 
         <div class="recipe-content">
 
-          <div class="single-recipe-ingredients">
-            <h3 class="recipe-headlines ingredients first">Ingredients</h3>
-            <ul>
+          <div class="single-recipe-ingredients" define="{editingIngredients: false}">
+            <h3 class="recipe-headlines ingredients first">
+              Ingredients
+              <span class="edit">- <a href="#" bind-event-click="editingIngredients=!editingIngredients">edit</a></span>
+            </h3>
+            <ul bind-show="!editingIngredients">
               <% @recipe.ingredient_lines.each do |line| %>
                 <%= render 'recipe_ingredient', ingredient: line %>
               <% end %>
             </ul>
+
+            <%= form_for @recipe, html: {'bind-show' => 'editingIngredients'} do |f| %>
+              <div class="grid desk-12 both">
+                <%= f.text_area :ingredients_text %>
+              </div>
+
+              <div class="grid desk-12 both">
+                <%= f.submit "Update", class: 'button primary' %>
+              </div>
+            <% end %>
           </div>
 
           <h3 class="recipe-headlines preparation-mode">Preparation</h3>
