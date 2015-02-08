@@ -12,7 +12,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<section id="rw-layout" class="rw-layout">
+<section id="rw-layout" class="rw-layout" define="{utils: new Recipes.Utils}">
   <%= content_for?(:application_content) ? yield(:application_content) : yield %>
 </section><!-- .rw-layout -->
 
