@@ -1,12 +1,12 @@
-<div class="grid-container carousel-container">
+<div class="grid-container carousel-container" define="{carousel: new Recipes.Carousel(this, <%= recipes.count %>)}" %>
 
   <div class="grid desk-6 <%= 'mob-6' if home? %>">
     <h4 class="carousel-posts-heading"><%= title %></h4>
   </div>
   <div class="grid desk-6 <%= 'mob-6' if home? %>">
     <div class="carousel-posts-nav clearfix">
-      <div class="carousel-posts-nav-next"><i class="fa fa-chevron-right"></i></div>
-      <div class="carousel-posts-nav-prev"><i class="fa fa-chevron-left"></i></div>
+      <div class="carousel-posts-nav-next" bind-event-click="carousel.next()"><i class="fa fa-chevron-right"></i></div>
+      <div class="carousel-posts-nav-prev" bind-event-click="carousel.prev()"><i class="fa fa-chevron-left"></i></div>
     </div>
   </div>
   <div class="clear"></div>

@@ -27,5 +27,6 @@
 //= require image_chooser
 //= require qtip_init
 //= require utils
+//= require carousel
 
 window.Recipes = {}

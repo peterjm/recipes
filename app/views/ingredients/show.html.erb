@@ -1,17 +1,5 @@
 <% set_page_title @ingredient.name %>
 
-<% content_for :javascript do %>
-  <script>
-    $(document).ready(function(){
-      $(".carousel-posts").owlCarousel({
-        items: 3,
-        paginationSpeed: 300,
-        rewindSpeed: 400
-      });
-    });
-  </script>
-<% end %>
-
 <div class="rw-column rw-content">
 
   <%= breadcrumb @ingredient.name %>

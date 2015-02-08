@@ -2,6 +2,6 @@ class HomeController < AuthenticatedController
   layout 'main'
 
   def index
-    @recipes = presentable(Recipe.includes(:image).limit(4))
+    @recipes = presentable(Recipe.includes(:image).limit(10))
   end
 end
