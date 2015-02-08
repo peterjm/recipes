@@ -16,8 +16,8 @@ gem 'kaminari'
 gem 'eye-of-newt', path: "../eye_of_newt"
 gem 'redcarpet'
 gem 'nokogiri'
+gem 'dragonfly'
 gem 'dropbox-sdk', require: 'dropbox_sdk'
-gem 'carrierwave'
 gem 'mini_magick'
 gem 'data_uri'
 
