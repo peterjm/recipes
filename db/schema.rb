@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150201221209) do
+ActiveRecord::Schema.define(version: 20150208183047) do
 
   create_table "ingredient_names", force: :cascade do |t|
     t.integer  "ingredient_id",             null: false
@@ -35,10 +35,10 @@ ActiveRecord::Schema.define(version: 20150201221209) do
 
   create_table "recipe_images", force: :cascade do |t|
     t.integer  "recipe_id",        null: false
-    t.string   "image",            null: false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "source_image_url"
+    t.string   "image_uid"
   end
 
   add_index "recipe_images", ["recipe_id"], name: "index_recipe_images_on_recipe_id"
@@ -71,8 +71,8 @@ ActiveRecord::Schema.define(version: 20150201221209) do
     t.string "name",        null: false
     t.string "author"
     t.string "url"
-    t.string "image"
     t.text   "description"
+    t.string "image_uid"
   end
 
   add_index "sources", ["name"], name: "index_sources_on_name", unique: true

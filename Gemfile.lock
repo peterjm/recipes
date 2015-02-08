@@ -50,11 +50,6 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     coderay (1.1.0)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -71,6 +66,13 @@ GEM
     dotenv (1.0.2)
     dotenv-rails (1.0.2)
       dotenv (= 1.0.2)
+    dragonfly (1.0.7)
+      addressable (~> 2.3)
+      multi_json (~> 1.0)
+      rack
+    dragonfly-dropbox_data_store (0.0.1)
+      dragonfly (~> 1.0)
+      dropbox-sdk (~> 1.6)
     dropbox-sdk (1.6.4)
       json
     erubis (2.7.0)
@@ -215,10 +217,11 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   capybara
-  carrierwave
   coffee-rails
   data_uri
   dotenv-rails
+  dragonfly
+  dragonfly-dropbox_data_store
   dropbox-sdk
   eye-of-newt
   factory_girl_rails

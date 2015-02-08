@@ -3,12 +3,9 @@ class Source < ActiveRecord::Base
 
   has_many :recipes, inverse_of: :source
 
-  class Uploader < ::Uploader
-    version(:mini)     { process :resize_to_fill => [ 50,  50] }
-    version(:thumb)    { process :resize_to_fill => [ 80,  80] }
-    version(:small)    { process :resize_to_fill => [240, 220] }
+  dragonfly_accessor :image do
+    default 'public/images/defaults/source.jpg'
   end
-  mount_uploader :image, Uploader
 
   def to_param
     "#{id}-#{name_was.parameterize}"

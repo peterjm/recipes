@@ -47,7 +47,7 @@ class ImporterTest < ActiveSupport::TestCase
     assert_equal "the title", recipe.title
     assert_equal "the instructions", recipe.instructions_text
     assert_equal "the ingredients", recipe.ingredients_text
-    assert_equal "http://foo.com/img.jpg", recipe.images.first.tmp_remote_image_url
+    assert_equal "http://foo.com/img.jpg", recipe.images.first.source_image_url
     assert_equal "the notes", recipe.notes
   end
 
