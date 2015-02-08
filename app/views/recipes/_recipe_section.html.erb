@@ -1,17 +1,18 @@
-<div class="grid-container carousel-container" define="{carousel: new Recipes.Carousel(this, <%= count %>)}" %>
+<% carousel = string_to_dom_id(title) %>
+<div class="grid-container carousel-container" define="{carousel<%=carousel%>: new Recipes.Carousel(this, '#<%=carousel%>', <%= count %>)}" %>
 
   <div class="grid desk-6 <%= 'mob-6' if home? %>">
     <h4 class="carousel-posts-heading"><%= title %></h4>
   </div>
   <div class="grid desk-6 <%= 'mob-6' if home? %>">
     <div class="carousel-posts-nav clearfix">
-      <div class="carousel-posts-nav-next" bind-event-click="carousel.next()"><i class="fa fa-chevron-right"></i></div>
-      <div class="carousel-posts-nav-prev" bind-event-click="carousel.prev()"><i class="fa fa-chevron-left"></i></div>
+      <div class="carousel-posts-nav-next" bind-event-click="carousel<%=carousel%>.next()"><i class="fa fa-chevron-right"></i></div>
+      <div class="carousel-posts-nav-prev" bind-event-click="carousel<%=carousel%>.prev()"><i class="fa fa-chevron-left"></i></div>
     </div>
   </div>
   <div class="clear"></div>
 
-  <div class="<%= home? ? 'home-carousel-posts' : 'carousel-posts' %> clearfix">
+  <div id="<%=carousel%>" class="<%= home? ? 'home-carousel-posts' : 'carousel-posts' %> clearfix">
     <% recipes.each do |recipe| %>
       <%= render 'recipes/small_recipe', recipe: recipe %>
     <% end %>

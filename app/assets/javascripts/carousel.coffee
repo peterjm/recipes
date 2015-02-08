@@ -1,6 +1,6 @@
 class Recipes.Carousel
-  constructor: (node, count) ->
-    carousel_node = node.querySelector('.carousel-posts, .home-carousel-posts')
+  constructor: (node, selector, count) ->
+    carousel_node = node.querySelector(selector)
     @$node = $(carousel_node)
     @$node.owlCarousel
       items: count

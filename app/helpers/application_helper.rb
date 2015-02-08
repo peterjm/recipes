@@ -16,6 +16,10 @@ module ApplicationHelper
     @page_title = title
   end
 
+  def string_to_dom_id(str)
+    str.titleize.gsub(/\s/, '')
+  end
+
   def home?
     controller_name == 'home' && action_name == 'index'
   end
