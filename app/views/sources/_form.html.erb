@@ -1,11 +1,3 @@
-<% content_for :javascript do %>
-  <script>
-    $(function(){
-      var images = new Recipes.ImageChooser({maxImages: 1});
-    });
-  </script>
-<% end %>
-
 <%= form_for @source, as: :source, url: source_path(@source) do |f| %>
   <div class="grid desk-8 alpha">
     <div class="form-label"><%= f.label :name, "Name" %></div>
@@ -22,7 +14,7 @@
     <%= f.text_field :author, class: 'fullwidth' %>
   </div>
 
-  <div class="grid desk-12 both">
+  <div class="grid desk-12 both" define="{images: new Recipes.ImageChooser({maxImages: 1})}">
     <div class="form-label">Image</div>
     <div id="ImageUploader" class="image-uploader">
       <div id="ImageList" class="images">

@@ -1,11 +1,3 @@
-<% content_for :javascript do %>
-  <script>
-    $(function(){
-      var images = new Recipes.ImageChooser();
-    });
-  </script>
-<% end %>
-
 <%= form_for @recipe do |f| %>
   <div class="grid desk-8 alpha">
     <div class="form-label"><%= f.label :title, "Title" %></div>
@@ -22,7 +14,7 @@
     <%= f.select :source_id, Source.all.map_ary(:name, :id), {include_blank: "Choose source&hellip;".html_safe}, class: 'fullwidth' %>
   </div>
 
-  <div class="grid desk-12 both">
+  <div class="grid desk-12 both" define="{images: new Recipes.ImageChooser}">
     <div class="form-label">Images</div>
     <div id="ImageUploader" class="image-uploader">
       <div id="ImageList" class="images">

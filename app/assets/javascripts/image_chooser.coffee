@@ -1,9 +1,10 @@
 class Recipes.ImageChooser
   ACCEPTED_TYPES: ['image/png', 'image/jpeg']
 
-  constructor: (options={}) ->
+  constructor: (node, options={}) ->
     {@maxImages} = options
 
+    @node = node
     @imageUploader = document.getElementById('ImageUploader')
     @fileUpload = document.getElementById('FileUpload')
     @fileChooser = document.getElementById('FileChooser')
