@@ -1,6 +1,5 @@
 <% if ingredient.parsed? %>
-  <% a = "a#{rand(100000)}"%>
-  <li define="{<%=a%>: false}" bind-class="{'active': <%=a%>}" bind-event-click="<%=a%>=!<%=a%>">
+  <li bind-event-click="utils.toggleClass(this, 'active')">
     <div class="mark-as-ok"><i class="fa fa-check"></i></div>
     <div class="ingredient"><%= link_to_if ingredient.ingredient_path, ingredient.name, ingredient.ingredient_path %></div>
     <div class="quantity">
