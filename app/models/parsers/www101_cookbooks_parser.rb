@@ -14,11 +14,11 @@ module Parsers
     end
 
     def ingredients
-      recipe_html.at_css('blockquote').text.strip.striplines
+      recipe_html.at_css('blockquote').text.striplines
     end
 
     def instructions
-      recipe_html.css('blockquote ~ p:not(.recipeend)').map(&:text).join("\n\n").strip.striplines
+      recipe_html.css('blockquote ~ p:not(.recipeend)').map(&:text).join("\n\n").striplines
     end
 
     def image_urls

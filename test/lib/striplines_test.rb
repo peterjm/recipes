@@ -9,4 +9,16 @@ class StriplinesTest < ActiveSupport::TestCase
     assert_equal expected, original.striplines
   end
 
+  test "#striplines strips leading and trailing whitespace" do
+    original = "\t foo \t"
+    expected = "foo"
+    assert_equal expected, original.striplines
+  end
+
+  test "#striplines strips unicode line separators" do
+    original = "\u2028 foo"
+    expected = "foo"
+    assert_equal expected, original.striplines
+  end
+
 end

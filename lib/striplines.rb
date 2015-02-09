@@ -1,6 +1,6 @@
 module Striplines
   def striplines
-    gsub(/[ \t]*([\r\n]+)[ \t]*/, '\1')
+    gsub(/^[ \t\u2028]+/, '').gsub(/[ \t\u2028]+$/, '').strip
   end
 end
 
