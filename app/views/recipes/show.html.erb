@@ -35,16 +35,24 @@
 
         <div class="recipe-content">
 
-          <div id="Ingredients" refresh="ingredients" class="single-recipe-ingredients" define="{editIngr: new Recipes.InplaceEditor(this, 'ul')}">
+          <div id="Ingredients" refresh="ingredients" class="single-recipe-ingredients" define="{editIngr: new Recipes.InplaceEditor(this, '#IngredientList')}">
             <h3 class="recipe-headlines ingredients first">
               Ingredients
               <span class="edit">- <a href="#" bind-event-click="editIngr.toggle()">edit</a></span>
             </h3>
-            <ul>
-              <% @recipe.ingredient_lines.each do |line| %>
-                <%= render 'recipe_ingredient', ingredient: line %>
+
+            <div id="IngredientList">
+              <% @recipe.ingredient_groups.each do |group| %>
+                <% if group.header %>
+                  <h4><%= group.header %></h4>
+                <% end %>
+                <ul>
+                  <% group.lines.each do |line| %>
+                    <%= render 'recipe_ingredient', ingredient: line %>
+                  <% end %>
+                </ul>
               <% end %>
-            </ul>
+            </div>
 
             <%= form_for @recipe, html: {'tg-remote' => '1', 'refresh-on-success' => 'ingredients'} do |f| %>
               <div class="grid desk-12 both">

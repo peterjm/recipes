@@ -28,4 +28,16 @@ class IngredientLinePresenter < Presenter
     EyeOfNewt::Quantity.new(amount, unit, modifier: unit_modifier).to_s
   end
 
+  def blank?
+    !parsed? && line.blank?
+  end
+
+  def header?
+    !parsed? && line.starts_with?('#')
+  end
+
+  def header
+    line.sub(/^#+\s+/, '')
+  end
+
 end

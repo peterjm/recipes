@@ -7,8 +7,13 @@ class RecipePresenter < Presenter
     Recipe.model_name
   end
 
-  def ingredient_lines
-    IngredientLinePresenter.wrap(recipe.ingredient_lines, recipe)
+  def ingredient_groups
+    lines = IngredientLinePresenter.wrap(recipe.ingredient_lines, recipe).to_a
+    groups = lines.each_with_index.each_with_object([[]]) do |(line, index), groups|
+      groups << [] if index > 0 && !line.blank? && lines[index - 1].blank?
+      groups.last << line
+    end
+    IngredientGroupPresenter.wrap(groups)
   end
 
   def dragonfly_image
