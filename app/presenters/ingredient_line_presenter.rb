@@ -25,7 +25,7 @@ class IngredientLinePresenter < Presenter
   end
 
   def quantity
-    EyeOfNewt::Quantity.new(amount, unit).to_s
+    EyeOfNewt::Quantity.new(amount, unit, modifier: unit_modifier).to_s
   end
 
 end
