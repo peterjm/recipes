@@ -4,7 +4,7 @@ class IngredientLinePresenter < Presenter
   attr_reader :recipe
 
   def self.model_name
-    raise "no applicable"
+    raise "not applicable"
   end
 
   def initialize(element, recipe)
