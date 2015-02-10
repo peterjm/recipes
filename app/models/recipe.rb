@@ -19,7 +19,7 @@ class Recipe < ActiveRecord::Base
   end
 
   def update_recipe_ingredients
-    names = ingredient_lines.select(&:parsed?).map(&:name)
+    names = ingredient_lines.select(&:parsed?).map(&:names).flatten.uniq
     recipe_ingredients.update_from(names)
   end
 

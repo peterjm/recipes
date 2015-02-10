@@ -16,12 +16,18 @@ class IngredientLinePresenter < Presenter
     [quantity, style].compact.join(', ').presence
   end
 
-  def ingredient
-    recipe.recipe_ingredients.includes(:ingredient).named(name).try(:ingredient)
+  def linked_ingredient_list
+    ingredient_links.to_sentence(two_words_connector: ' or ', last_word_connector: ' or ').html_safe
   end
 
-  def ingredient_path
-    ingredient ? urls.ingredient_path(ingredient) : nil
+  def ingredient_links
+    names.map { |name|
+      if ing = ingredient_for(name)
+        helpers.link_to(ing.name, urls.ingredient_path(ing))
+      else
+        name
+      end
+    }
   end
 
   def quantity
@@ -38,6 +44,12 @@ class IngredientLinePresenter < Presenter
 
   def header
     line.sub(/^#+\s+/, '')
+  end
+
+  private
+
+  def ingredient_for(name)
+    recipe.recipe_ingredients.includes(:ingredient).named(name).try(:ingredient)
   end
 
 end
