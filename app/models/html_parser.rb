@@ -1,5 +1,3 @@
-require 'striplines'
-
 class HTMLParser
   RECIPE_FIELDS = [:title, :instructions, :ingredients, :image_url]
 

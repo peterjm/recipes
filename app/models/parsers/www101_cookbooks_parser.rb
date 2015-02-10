@@ -1,5 +1,3 @@
-require 'striplines'
-
 module Parsers
   class WWW101CookbooksParser < HTMLParser
 

@@ -22,7 +22,7 @@ class IngredientListParser
   private
 
   def parse_ingredient_lines
-    @text.strip.lines.map(&:strip)
+    @text.striplines.lines.map(&:strip)
   end
 
   class ParsedIngredient
