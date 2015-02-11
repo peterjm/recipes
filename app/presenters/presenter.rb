@@ -5,6 +5,8 @@ class Presenter
   def_delegators :element, :to_param
 
   def self.wrap(element_or_elements, *args)
+    return unless element_or_elements
+
     if element_or_elements.respond_to?(:each)
       MultiplePresenter.new(element_or_elements, self, *args)
     else
