@@ -18,8 +18,8 @@
     <div class="form-label">Image</div>
     <div id="ImageUploader" class="image-uploader">
       <div id="ImageList" class="images">
-        <% if @source.image.present? %>
-          <div class="image" style="<%= bg_image(@source.image.url(:thumb)) %>">
+        <% if @source.image_uid.present? %>
+          <div class="image" style="<%= bg_image(@source.image(:thumb)) %>">
             <input type="hidden" class="remove_image" name="source[remove_image]">
             <span class="remove" title="Remove"><i class="fa fa-trash"></i></span>
           </div>
