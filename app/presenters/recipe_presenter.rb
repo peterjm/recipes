@@ -16,6 +16,10 @@ class RecipePresenter < Presenter
     IngredientGroupPresenter.wrap(groups)
   end
 
+  def images
+    RecipeImagePresenter.wrap(recipe.images).to_a
+  end
+
   def dragonfly_image
     recipe.build_image unless recipe.image
     recipe.image.image

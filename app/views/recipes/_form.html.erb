@@ -25,7 +25,7 @@
               <span class="remove" title="Remove"><i class="fa fa-trash"></i></span>
             </div>
           <% else %>
-            <div class="image" style="<%= bg_image(image_form.object.image.url(:thumb)) %>">
+            <div class="image" style="<%= bg_image(image_form.object.image(:thumb)) %>">
               <span class="remove" title="Remove"><i class="fa fa-trash"></i></span>
               <%= image_form.hidden_field :_destroy, class: 'remove_image' %>
             </div>

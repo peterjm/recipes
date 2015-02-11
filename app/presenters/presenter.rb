@@ -35,6 +35,10 @@ class Presenter
     ActionController::Base.helpers
   end
 
+  def to_model
+    self
+  end
+
   def respond_to_missing?(method, include_all)
     element.respond_to?(method, false)
   end
