@@ -84,13 +84,7 @@
           <ul>
             <% if @recipe.source %>
               <li>
-                <div class="entry-info-author">
-                  <%= image_tag @recipe.source.image(:mini) %>
-                  <div class="author-name"><%= link_to @recipe.source.name, source_path(@recipe.source) %></div>
-                  <% if @recipe.source.author %>
-                    <div class="author-name">by <%= @recipe.source.author %></div>
-                  <% end %>
-                </div>
+                <%= render 'source_info', source: @recipe.source %>
               </li>
             <% end %>
             <li><i class="the-icon fa fa-calendar" title="Submited on 21 Aug 2014"></i> <span>21 Aug 2014</span></li>

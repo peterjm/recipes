@@ -21,11 +21,9 @@
         <div class="entry-content">
           <p>Septima ossibus deliciae superbam praecustodio gualitatibus glaebam eminentiam destitutus. Firmare navigabile possessores hibernorum. Liber apparct legitima titulo massam mentis.</p>
         </div>
-        <div class="entry-info-author">
-          <img src="assets/placeholder/people/50x50/5.jpg" alt="" />
-          <div class="author-name"><a href="#">Laura Gonzalez</a></div>
-          <div class="total-recipes">220 recipes</div>
-        </div>
+        <% if recipe.source %>
+          <%= render 'recipes/source_info', source: recipe.source %>
+        <% end %>
         <div class="clear"></div>
       </div>
 
