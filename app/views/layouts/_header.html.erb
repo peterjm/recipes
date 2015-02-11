@@ -39,7 +39,7 @@
               <!-- User menu -->
               <li class="to-left-more">
                 <div class="user-details-in-menu">
-                  <%= link_to image_tag('avatar-50x50.jpg', alt: 'avatar'), root_path, class: 'avatar' %>
+                  <%= link_to image_tag(avatar_url, alt: 'avatar'), root_path, class: 'avatar' %>
                 </div>
                 <ul class="sub-menu">
                   <li><%= link_to 'Sign out', logout_path, method: :delete %></li>
