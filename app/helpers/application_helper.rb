@@ -7,7 +7,9 @@ module ApplicationHelper
   end
 
   def head_title
-    page_title ? "#{application_name}: #{page_title}" : application_name
+    prefix = "DEV " if Rails.env.development?
+    title = page_title ? "#{application_name}: #{page_title}" : application_name
+    [prefix, title].join(' ')
   end
 
   def page_title
