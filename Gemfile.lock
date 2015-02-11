@@ -77,7 +77,7 @@ GEM
       json
     erubis (2.7.0)
     execjs (2.2.2)
-    eye-of-newt (0.0.10)
+    eye-of-newt (0.0.11)
       activesupport (~> 4)
     factory_girl (4.5.0)
       activesupport (>= 3.0.0)
