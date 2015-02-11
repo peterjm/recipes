@@ -1,0 +1,23 @@
+<% id      = string_to_dom_id(title) %>
+<% refresh = "refresh" + id %>
+<% editor  = "editor" + id %>
+<div id="<%=id%>" refresh="<%=refresh%>" define="{<%=editor%>: new Recipes.InplaceEditor(this, '#<%=id%>Content')}">
+  <h3 class="recipe-headlines <%= title_classes %>">
+    <%= title %>
+    <span class="edit">- <a href="#" bind-event-click="<%=editor%>.toggle()">edit</a></span>
+  </h3>
+
+  <div id="<%=id%>Content">
+    <%= yield %>
+  </div>
+
+  <%= form_for @recipe, html: {'tg-remote' => '1', 'refresh-on-success' => refresh} do |f| %>
+    <div class="grid desk-12 both">
+      <%= f.text_area field %>
+    </div>
+
+    <div class="grid desk-12 both">
+      <%= f.submit "Update", class: 'button primary' %>
+    </div>
+  <% end %>
+</div>

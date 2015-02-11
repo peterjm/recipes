@@ -35,13 +35,12 @@
 
         <div class="recipe-content">
 
-          <div id="Ingredients" refresh="ingredients" class="single-recipe-ingredients" define="{editIngr: new Recipes.InplaceEditor(this, '#IngredientList')}">
-            <h3 class="recipe-headlines ingredients first">
-              Ingredients
-              <span class="edit">- <a href="#" bind-event-click="editIngr.toggle()">edit</a></span>
-            </h3>
-
-            <div id="IngredientList">
+          <%= render layout: 'recipes/inplace_editor', locals: {
+            title: 'Ingredients',
+            title_classes: 'ingredients first',
+            field: :ingredients_text
+          } do %>
+            <div class="single-recipe-ingredients">
               <% @recipe.ingredient_groups.each do |group| %>
                 <% if group.header %>
                   <h4><%= group.header %></h4>
@@ -53,24 +52,24 @@
                 </ul>
               <% end %>
             </div>
+          <% end %>
 
-            <%= form_for @recipe, html: {'tg-remote' => '1', 'refresh-on-success' => 'ingredients'} do |f| %>
-              <div class="grid desk-12 both">
-                <%= f.text_area :ingredients_text %>
-              </div>
-
-              <div class="grid desk-12 both">
-                <%= f.submit "Update", class: 'button primary' %>
-              </div>
-            <% end %>
-          </div>
-
-          <h3 class="recipe-headlines preparation-mode">Preparation</h3>
-          <%= render_markdown @recipe.instructions_text %>
+          <%= render layout: 'recipes/inplace_editor', locals: {
+            title: 'Instructions',
+            title_classes: 'preparation-mode',
+            field: :instructions_text
+          } do %>
+            <%= render_markdown @recipe.instructions_text %>
+          <% end %>
 
           <% if @recipe.notes.present? %>
-            <h3 class="recipe-headlines footnotes">Notes</h3>
-            <%= render_markdown @recipe.notes %>
+            <%= render layout: 'recipes/inplace_editor', locals: {
+              title: 'Notes',
+              title_classes: 'footnotes',
+              field: :notes
+            } do %>
+              <%= render_markdown @recipe.notes %>
+            <% end %>
           <% end %>
 
           <h3 class="recipe-headlines links">Links</h3>
