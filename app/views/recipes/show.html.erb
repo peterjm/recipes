@@ -86,7 +86,7 @@
             <% if @recipe.source %>
               <li>
                 <div class="entry-info-author">
-                  <%= image_tag 'avatar-50x50.jpg', alt: 'avatar' %>
+                  <%= image_tag @recipe.source.image(:mini) %>
                   <div class="author-name"><%= link_to @recipe.source.name, source_path(@recipe.source) %></div>
                   <% if @recipe.source.author %>
                     <div class="author-name">by <%= @recipe.source.author %></div>

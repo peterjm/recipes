@@ -20,6 +20,10 @@ class RecipePresenter < Presenter
     RecipeImagePresenter.wrap(recipe.images).to_a
   end
 
+  def source
+    SourcePresenter.wrap(recipe.source)
+  end
+
   def dragonfly_image
     recipe.build_image unless recipe.image
     recipe.image.image
