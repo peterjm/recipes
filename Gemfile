@@ -4,7 +4,6 @@ gem 'rails', '~> 4.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'turbograft'
 gem 'twine-rails'
-gem 'sqlite3'
 
 gem 'puma'
 gem 'uglifier'
@@ -25,6 +24,7 @@ gem 'data_uri'
 gem 'omniauth-google-oauth2'
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'dotenv-rails'
   gem 'pry'
   gem 'pry-rescue'
