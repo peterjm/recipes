@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get "/ping" => PingController.action(:ping)
+
   get "/login" => "sessions#new", as: 'login'
   get '/auth/google/callback' => 'sessions#create'
   get 'auth/google/error' => 'sessions#error'
