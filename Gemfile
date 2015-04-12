@@ -25,6 +25,7 @@ gem 'data_uri'
 gem 'omniauth-google-oauth2'
 
 group :development, :test do
+  gem 'foreman'
   gem 'sqlite3'
   gem 'dotenv-rails'
   gem 'pry'
