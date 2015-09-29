@@ -25,7 +25,7 @@ module Parsers
     end
 
     def source
-      @source ||= WebsiteSource.find_by(name: SOURCE_NAME)
+      @source ||= Source.find_by(name: SOURCE_NAME)
     end
 
     private
