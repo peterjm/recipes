@@ -1,7 +1,12 @@
-<%= form_for @source, as: :source, url: source_path(@source) do |f| %>
+<%= form_for @source do |f| %>
   <div class="grid desk-8 alpha">
     <div class="form-label"><%= f.label :name, "Name" %></div>
     <%= f.text_field :name, class: 'fullwidth' %>
+  </div>
+
+  <div class="grid desk-12 both">
+    <div class="form-label"><%= f.label :source, "Type" %></div>
+    <%= f.select :source_type, Source::TYPES, {prompt: "Choose type&hellip;".html_safe}, class: 'fullwidth' %>
   </div>
 
   <div class="grid desk-12 both">

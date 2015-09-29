@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :ingredients, only: [:index, :show] do
     resource :merge, only: [:create], controller: 'ingredient_merges'
   end
-  resources :sources, only: [:index, :show, :edit, :update]
+  resources :sources, only: [:index, :new, :create, :show, :edit, :update]
 
   root to: "home#index"
 end

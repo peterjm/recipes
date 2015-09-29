@@ -8,6 +8,20 @@ class SourcesController < SidebarController
     @recipes = presentable(@source.recipes.page(params[:page]).per(10))
   end
 
+  def new
+    @source = presentable(Source.new)
+  end
+
+  def create
+    source = Source.new(source_params)
+    if source.save
+      redirect_to source_path(source)
+    else
+      @source = presentable(source)
+      render :new
+    end
+  end
+
   def edit
     @source = presentable(Source.find(params[:id]))
   end
@@ -17,7 +31,7 @@ class SourcesController < SidebarController
     if source.update_attributes(source_params)
       redirect_to source_path(source)
     else
-      @source = source
+      @source = presentable(source)
       render :edit
     end
   end
@@ -29,7 +43,7 @@ class SourcesController < SidebarController
       .require(:source)
       .permit(
         :name,
-        :type,
+        :source_type,
         :author,
         :url,
         :description,
