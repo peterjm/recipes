@@ -19,4 +19,19 @@ class SourcesControllerTest < ActionController::TestCase
     assert_response :success
     assert_equal "Awesome Food", assigns(:source).name
   end
+
+  test "#edit is successful" do
+    s = create(:website_source, name: "Awesome Food", url: "http://awesomefood.com")
+    get :edit, id: s.id
+    assert_response :success
+    assert_equal "Awesome Food", assigns(:source).name
+  end
+
+  test "#update is successful" do
+    s = create(:website_source, name: "Awesome Food", url: "http://awesomefood.com")
+    put :update, id: s.id, source: {name: "Awesomer Food"}
+    s.reload
+    assert_redirected_to source_path(s)
+    assert_equal "Awesomer Food", s.name
+  end
 end
