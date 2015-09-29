@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208183047) do
+ActiveRecord::Schema.define(version: 20150929022949) do
 
   create_table "ingredient_names", force: :cascade do |t|
     t.integer  "ingredient_id",             null: false
@@ -67,7 +67,7 @@ ActiveRecord::Schema.define(version: 20150208183047) do
   end
 
   create_table "sources", force: :cascade do |t|
-    t.string "type",        null: false
+    t.string "source_type", null: false
     t.string "name",        null: false
     t.string "author"
     t.string "url"
