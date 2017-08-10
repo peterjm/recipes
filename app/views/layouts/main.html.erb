@@ -1,15 +1,9 @@
 <% content_for :application_content do %>
-  <%= render 'layouts/header' %>
+  <div id="main">
+    <%= content_for?(:main_content) ? yield(:main_content) : yield %>
+  </div>
 
-  <div class="rw-container rw-section">
-    <div class="rw-inner clearfix">
-
-      <%= content_for?(:main_content) ? yield(:main_content) : yield %>
-
-    </div> <!-- .rw-inner -->
-  </div> <!-- .rw-container -->
-
-  <%= render 'layouts/footer' %>
+  <%= render 'layouts/side_menu' %>
 <% end %>
 
 <%= render template: "layouts/application" %>

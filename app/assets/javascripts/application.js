@@ -22,6 +22,7 @@
 //= require twine_init
 //= require inplace_editor
 //= require image_chooser
+//= require side_menu
 //= require utils
 
 window.Recipes = {}

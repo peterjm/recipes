@@ -1,0 +1,27 @@
+<!-- Menu toggle -->
+<a href="#menu" id="menuLink" class="menu-link">
+  <!-- Hamburger icon -->
+  <span></span>
+</a>
+
+<div id="menu">
+  <div class="pure-menu">
+    <a class="pure-menu-heading" href="#">Company</a>
+
+    <ul class="pure-menu-list">
+      <% if logged_in? %>
+        <li class='pure-menu-item pure-menu-selected'><%= link_to "Home", root_path, class: 'pure-menu-link' %></li>
+        <li class='pure-menu-item'><%= link_to "Recipes", recipes_path, class: 'pure-menu-link' %></li>
+        <li class='pure-menu-item'><%= link_to "Ingredients", ingredients_path, class: 'pure-menu-link' %></li>
+        <li class='pure-menu-item'><%= link_to "Sources", sources_path, class: 'pure-menu-link' %></li>
+      <% end %>
+
+      <% if logged_in? %>
+        <li class='pure-menu-item menu-item-divided'><%= link_to 'New recipe', new_recipe_path, class: 'pure-menu-link' %></li>
+        <li class='pure-menu-item'><%= link_to 'New source', new_source_path, class: 'pure-menu-link' %></li>
+        <li class='pure-menu-item'><%= link_to 'Bookmarklet', '#', class: 'pure-menu-link' %></li>
+        <li class='pure-menu-item'><%= link_to 'Sign out', logout_path, method: :delete, class: 'pure-menu-link' %></li>
+      <% end %>
+    </ul>
+  </div>
+</div>
