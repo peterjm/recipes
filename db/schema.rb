@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -14,67 +13,62 @@
 ActiveRecord::Schema.define(version: 20150929022949) do
 
   create_table "ingredient_names", force: :cascade do |t|
-    t.integer  "ingredient_id",             null: false
-    t.string   "name",          limit: 255, null: false
+    t.integer "ingredient_id", null: false
+    t.string "name", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["ingredient_id"], name: "index_ingredient_names_on_ingredient_id"
+    t.index ["name"], name: "index_ingredient_names_on_name"
   end
-
-  add_index "ingredient_names", ["ingredient_id"], name: "index_ingredient_names_on_ingredient_id"
-  add_index "ingredient_names", ["name"], name: "index_ingredient_names_on_name"
 
   create_table "ingredients", force: :cascade do |t|
-    t.string   "name",         limit: 255,                 null: false
-    t.boolean  "staple",                   default: false, null: false
+    t.string "name", null: false
+    t.boolean "staple", default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "grams_per_ml"
+    t.float "grams_per_ml"
+    t.index ["name"], name: "index_ingredients_on_name"
   end
-
-  add_index "ingredients", ["name"], name: "index_ingredients_on_name"
 
   create_table "recipe_images", force: :cascade do |t|
-    t.integer  "recipe_id",        null: false
+    t.integer "recipe_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "source_image_url"
-    t.string   "image_uid"
+    t.string "source_image_url"
+    t.string "image_uid"
+    t.index ["recipe_id"], name: "index_recipe_images_on_recipe_id"
   end
-
-  add_index "recipe_images", ["recipe_id"], name: "index_recipe_images_on_recipe_id"
 
   create_table "recipe_ingredients", force: :cascade do |t|
-    t.integer  "recipe_id",                  null: false
-    t.integer  "ingredient_id",              null: false
+    t.integer "recipe_id", null: false
+    t.integer "ingredient_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "name",          default: "", null: false
+    t.string "name", default: "", null: false
+    t.index ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
+    t.index ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
   end
 
-  add_index "recipe_ingredients", ["ingredient_id"], name: "index_recipe_ingredients_on_ingredient_id"
-  add_index "recipe_ingredients", ["recipe_id"], name: "index_recipe_ingredients_on_recipe_id"
-
   create_table "recipes", force: :cascade do |t|
-    t.string   "title",             limit: 255, null: false
-    t.text     "ingredients_text"
-    t.text     "instructions_text"
-    t.string   "basic_source",      limit: 255
+    t.string "title", null: false
+    t.text "ingredients_text"
+    t.text "instructions_text"
+    t.string "basic_source"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "recipe_image_id"
-    t.text     "notes"
-    t.integer  "source_id"
+    t.integer "recipe_image_id"
+    t.text "notes"
+    t.integer "source_id"
   end
 
   create_table "sources", force: :cascade do |t|
     t.string "source_type", null: false
-    t.string "name",        null: false
+    t.string "name", null: false
     t.string "author"
     t.string "url"
-    t.text   "description"
+    t.text "description"
     t.string "image_uid"
+    t.index ["name"], name: "index_sources_on_name", unique: true
   end
-
-  add_index "sources", ["name"], name: "index_sources_on_name", unique: true
 
 end

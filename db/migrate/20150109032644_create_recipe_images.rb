@@ -1,4 +1,4 @@
-class CreateRecipeImages < ActiveRecord::Migration
+class CreateRecipeImages < ActiveRecord::Migration[4.2]
   def change
     create_table :recipe_images do |t|
       t.integer :recipe_id, null: false, index: true
