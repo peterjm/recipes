@@ -78,8 +78,8 @@ GEM
       json
     erubi (1.6.1)
     execjs (2.7.0)
-    eye-of-newt (0.0.3)
-      activesupport
+    eye-of-newt (0.0.12)
+      activesupport (~> 5)
     factory_girl (4.8.0)
       activesupport (>= 3.0.0)
     factory_girl_rails (4.8.0)
