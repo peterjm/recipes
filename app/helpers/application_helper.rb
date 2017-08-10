@@ -1,5 +1,3 @@
-require 'digest/md5'
-
 module ApplicationHelper
 
   def application_name
