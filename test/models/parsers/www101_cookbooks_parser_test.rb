@@ -31,7 +31,7 @@ class Parsers::WWW101CookbooksParserTest < ActiveSupport::TestCase
   test "#notes returns the notes" do
     assert_equal SALAD_NOTES, salad_parser.notes
     assert_equal COOKIE_NOTES, cookie_parser.notes
-    assert_equal SHANDY_NOTES, shandy_parser.notes
+    assert_nil shandy_parser.notes
   end
 
   test "#ingredients returns the ingredients text" do
@@ -139,8 +139,6 @@ class Parsers::WWW101CookbooksParserTest < ActiveSupport::TestCase
 
     Store leftovers in a big jar, they keep beautifully for days. The recipe makes dozens of tiny cookies, the yield really depends on the size of your cookie cutter.
   END
-
-  SHANDY_NOTES = nil
 
   SHANDY_INGREDIENTS = <<-END.strip_heredoc.strip
     1 cup freshly squeezed lemon juice
