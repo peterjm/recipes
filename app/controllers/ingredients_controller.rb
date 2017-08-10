@@ -1,4 +1,4 @@
-class IngredientsController < SidebarController
+class IngredientsController < AuthenticatedController
 
   def index
     @ingredients = presentable(Ingredient.all)
