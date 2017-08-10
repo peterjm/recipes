@@ -18,12 +18,9 @@
 //
 //= require rw-sidebar
 //= require smk-visual-select
-//= require jquery.qtip
 //
 //= require_self
 //= require twine_init
-//= require qtip_init
-//= require menu
 //= require sidebar
 //= require inplace_editor
 //= require image_chooser
