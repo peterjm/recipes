@@ -8,7 +8,7 @@ class IngredientsControllerTest < ActionController::TestCase
 
   test "#show is successful" do
     ing = create(:ingredient, name: "foo")
-    get :show, id: ing.id
+    get :show, params: { id: ing.id }
     assert_response :success
     assert_equal "foo", assigns(:ingredient).name
   end

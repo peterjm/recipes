@@ -15,7 +15,7 @@ class SourcesControllerTest < ActionController::TestCase
 
   test "#show is successful" do
     s = create(:website_source, name: "Awesome Food", url: "http://awesomefood.com")
-    get :show, id: s.id
+    get :show, params: { id: s.id }
     assert_response :success
     assert_equal "Awesome Food", assigns(:source).name
   end
@@ -28,10 +28,12 @@ class SourcesControllerTest < ActionController::TestCase
 
   test "#create is successful" do
     assert_difference "Source.count", 1 do
-      post :create, source: {
-        name: "Awesome Food",
-        source_type: Source::WEBSITE_TYPE,
-        url: "http://awesomefood.com"
+      post :create, params: {
+        source: {
+          name: "Awesome Food",
+          source_type: Source::WEBSITE_TYPE,
+          url: "http://awesomefood.com"
+        }
       }
     end
     s = Source.last
@@ -43,14 +45,14 @@ class SourcesControllerTest < ActionController::TestCase
 
   test "#edit is successful" do
     s = create(:website_source, name: "Awesome Food", url: "http://awesomefood.com")
-    get :edit, id: s.id
+    get :edit, params: { id: s.id }
     assert_response :success
     assert_equal "Awesome Food", assigns(:source).name
   end
 
   test "#update is successful" do
     s = create(:website_source, name: "Awesome Food", url: "http://awesomefood.com")
-    put :update, id: s.id, source: {name: "Awesomer Food"}
+    put :update, params: { id: s.id, source: {name: "Awesomer Food"} }
     s.reload
     assert_redirected_to source_path(s)
     assert_equal "Awesomer Food", s.name

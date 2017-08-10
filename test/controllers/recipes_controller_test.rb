@@ -15,7 +15,7 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "#show is successful" do
     r = create(:recipe, title: "foo", update_recipe_ingredients_on_save: true)
-    get :show, id: r.id
+    get :show, params: { id: r.id }
     assert_response :success
     assert_equal "foo", assigns(:recipe).title
   end
@@ -28,20 +28,20 @@ class RecipesControllerTest < ActionController::TestCase
   test "#new populates the recipe from the provided source" do
     recipe = Recipe.new(title: "foo")
     Importer.expects(:import_from_url).with("http://foo.com").returns(recipe)
-    get :new, source: "http://foo.com"
+    get :new, params: { source: "http://foo.com" }
     assert_equal "foo", assigns(:recipe).title
   end
 
   test "#create creates a new recipe" do
     assert_difference "Recipe.count", 1 do
-      post :create, recipe: attributes_for(:recipe)
+      post :create, params: { recipe: attributes_for(:recipe) }
     end
     assert_redirected_to recipe_path(Recipe.last)
   end
 
   test "#create fails if the params are missing" do
     assert_no_difference "Recipe.count" do
-      post :create, recipe: {title: ""}
+      post :create, params: { recipe: {title: ""} }
     end
     assert_response 200
     assert_template 'new'
@@ -49,20 +49,20 @@ class RecipesControllerTest < ActionController::TestCase
 
   test "#edit is successful" do
     r = create(:recipe)
-    get :edit, id: r.id
+    get :edit, params: { id: r.id }
     assert_response :success
   end
 
   test "#update is successful" do
     r = create(:recipe, title: "Bagels")
-    patch :update, id: r.id, recipe: {title: "Dinner rolls"}
+    patch :update, params: { id: r.id, recipe: {title: "Dinner rolls"} }
     assert_redirected_to recipe_path(r.reload)
     assert_equal "Dinner rolls", r.reload.title
   end
 
   test "#update fails if the parameters are invalid" do
     r = create(:recipe, title: "Bagels")
-    patch :update, id: r.id, recipe: {title: nil}
+    patch :update, params: { id: r.id, recipe: {title: nil} }
     assert_response :success
     assert_template 'edit'
     assert_equal "Bagels", r.reload.title
