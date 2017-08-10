@@ -2,9 +2,9 @@ class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :recipe_ingredients, ->{ extending(RecipeIngredientExtension) }, inverse_of: :recipe, dependent: :destroy, autosave: true
   has_many :images, class_name: 'RecipeImage', inverse_of: :recipe, dependent: :destroy, autosave: true
-  belongs_to :image, class_name: 'RecipeImage', foreign_key: :recipe_image_id
+  belongs_to :image, class_name: 'RecipeImage', foreign_key: :recipe_image_id, optional: true
 
-  belongs_to :source, inverse_of: :recipes
+  belongs_to :source, inverse_of: :recipes, optional: true
 
   accepts_nested_attributes_for :images, allow_destroy: true
 

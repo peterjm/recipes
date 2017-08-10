@@ -2,8 +2,7 @@ class RecipeIngredient < ApplicationRecord
   belongs_to :recipe
   belongs_to :ingredient
 
-  validates :recipe, presence: true
-  validates :ingredient, presence: true, uniqueness: {scope: :recipe_id}
+  validates :ingredient, uniqueness: {scope: :recipe_id}
 
   before_create :save_ingredient
 

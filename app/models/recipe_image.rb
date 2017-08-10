@@ -1,5 +1,5 @@
 class RecipeImage < ApplicationRecord
-  belongs_to :recipe, inverse_of: :images, required: true
+  belongs_to :recipe, inverse_of: :images
 
   validates_presence_of :image
 
