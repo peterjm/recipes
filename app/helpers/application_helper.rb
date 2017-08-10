@@ -26,16 +26,6 @@ module ApplicationHelper
     controller_name == 'home' && action_name == 'index'
   end
 
-  def breadcrumb(current, crumbs={})
-    content_tag('div', class: 'rw-row page-breadcrumb') do
-      [
-        link_to('Home', root_path),
-        crumbs.map{|text, link| link_to(text, link)},
-        content_tag('span', current)
-      ].flatten.join(' &raquo; ').html_safe
-    end.html_safe
-  end
-
   def avatar_url
     email = Rails.application.secrets.google_account.downcase.strip
     email_hash = Digest::MD5.hexdigest(email)
