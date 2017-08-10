@@ -9,4 +9,20 @@ module ComponentHelper
     end
   end
 
+  def ui_editable_content_section(title:, object:, field:, &block)
+    render(layout: 'shared/inplace_editor', locals: { title: title, object: object, field: field }, &block)
+  end
+
+  def ui_content_title(title=nil, &block)
+    if block_given?
+      content_tag(:h2, class: 'content-subhead', &block)
+    else
+      content_tag(:h2, title, class: 'content-subhead')
+    end
+  end
+
+  def ui_content_section(title:, &block)
+    ui_content_title(title) + capture(&block)
+  end
+
 end

@@ -1,6 +1,14 @@
 <% content_for :application_content do %>
   <div id="main">
-    <%= content_for?(:main_content) ? yield(:main_content) : yield %>
+    <% if page_title %>
+      <div class="header">
+        <h1><%= page_title %></h1>
+      </div>
+    <% end %>
+
+    <div class="content">
+      <%= content_for?(:main_content) ? yield(:main_content) : yield %>
+    </div>
   </div>
 
   <%= render 'layouts/side_menu' %>
