@@ -1,4 +1,4 @@
-class CreateIngredientNames < ActiveRecord::Migration
+class CreateIngredientNames < ActiveRecord::Migration[4.2]
   def change
     create_table :ingredient_names do |t|
       t.integer :ingredient_id, null: false
