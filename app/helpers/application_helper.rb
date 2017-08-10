@@ -3,7 +3,7 @@ require 'digest/md5'
 module ApplicationHelper
 
   def application_name
-    "Recipes by Peter"
+    "Recipes @ 424"
   end
 
   def head_title
