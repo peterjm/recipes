@@ -1,4 +1,4 @@
-class Recipe < ActiveRecord::Base
+class Recipe < ApplicationRecord
   has_many :ingredients, through: :recipe_ingredients
   has_many :recipe_ingredients, ->{ extending(RecipeIngredientExtension) }, inverse_of: :recipe, dependent: :destroy, autosave: true
   has_many :images, class_name: RecipeImage, inverse_of: :recipe, dependent: :destroy, autosave: true

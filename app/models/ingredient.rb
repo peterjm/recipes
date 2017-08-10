@@ -1,4 +1,4 @@
-class Ingredient < ActiveRecord::Base
+class Ingredient < ApplicationRecord
   has_many :recipe_ingredients, inverse_of: :ingredient, dependent: :destroy
   has_many :recipes, through: :recipe_ingredients
   has_many :ingredient_names, inverse_of: :ingredient, dependent: :destroy, autosave: true

@@ -1,4 +1,4 @@
-class Source < ActiveRecord::Base
+class Source < ApplicationRecord
   TYPES = [
     WEBSITE_TYPE = "website",
     BOOK_TYPE = "book",
