@@ -1,4 +1,4 @@
-class SourcesController < SidebarController
+class SourcesController < AuthenticatedController
   def index
     @sources = presentable(Source.page(params[:page]).per(10))
   end

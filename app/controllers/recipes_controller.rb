@@ -1,4 +1,4 @@
-class RecipesController < SidebarController
+class RecipesController < AuthenticatedController
 
   def index
     @recipes = presentable(Recipe.includes(:image).page(params[:page]).per(10))
