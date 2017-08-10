@@ -38,6 +38,7 @@ group :test do
   gem 'mocha'
   gem 'capybara'
   gem 'webmock'
+  gem 'rails-controller-testing'
 end
 
 group :production do
