@@ -41,8 +41,7 @@ module ApplicationHelper
   def avatar_url
     email = Rails.application.secrets.google_account.downcase.strip
     email_hash = Digest::MD5.hexdigest(email)
-    default_image = image_url('avatar-50x50.jpg')
-    "http://www.gravatar.com/avatar/#{email_hash}.jpg?s=50&d=#{URI.encode(default_image)}"
+    "http://www.gravatar.com/avatar/#{email_hash}.jpg?s=50"
   end
 
 end
