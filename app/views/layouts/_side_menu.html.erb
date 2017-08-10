@@ -14,10 +14,13 @@
         <%= ui_side_menu_link("Ingredients", ingredients_path) %>
         <%= ui_side_menu_link("Sources", sources_path) %>
 
+        <%= yield(:side_menu) if content_for?(:side_menu) %>
+
         <%= ui_side_menu_link("New recipe", new_recipe_path, separated: true) %>
         <%= ui_side_menu_link("New source", new_source_path) %>
         <%= ui_side_menu_link("Bookmarklet", '#') %>
-        <%= ui_side_menu_link("Sign out", logout_path, link_params: { method: :delete }) %>
+
+        <%= ui_side_menu_link("Sign out", logout_path, separated: true, link_params: { method: :delete }) %>
       <% end %>
     </ul>
   </div>

@@ -1,9 +1,7 @@
 <% set_page_title @recipe.title %>
 
-<% content_for :menubar do %>
-  <li class ="to-left-more">
-    <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'menu-single-icon' %>
-  </li>
+<% content_for :side_menu do %>
+  <%= ui_side_menu_link('Edit this recipe', edit_recipe_path(@recipe), separated: true) %>
 <% end %>
 
 <div class="rw-column rw-content">
