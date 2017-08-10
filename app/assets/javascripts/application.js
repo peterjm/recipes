@@ -16,12 +16,10 @@
 //= require turbograft
 //= require twine
 //
-//= require rw-sidebar
 //= require smk-visual-select
 //
 //= require_self
 //= require twine_init
-//= require sidebar
 //= require inplace_editor
 //= require image_chooser
 //= require utils
