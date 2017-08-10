@@ -1,34 +1,19 @@
-<div class="rw-column rw-content">
+<% set_page_title "Ingredients" %>
 
-  <div class="rw-row page-title">
-    <h1>Ingredients</h1>
+<div define="{query: ''}">
+  <div>
+    <span>Filter ingredients:</span>
+    <input type="text" placeholder="" bind="query"/>
   </div>
 
-  <div class="rw-row">
-
-    <div define="{query: '', inline: true}">
-      <div class="keywords-filter-block">
-        <div class="filter-header clearfix">
-          <span class="title">Filter ingredients:</span>
-          <div class="filter-controls clearfix">
-            <span class="control" bind-class="{active: !inline}" bind-event-click="inline=false"><i class="fa fa-th-list"></i></span>
-            <span class="control" bind-class="{active: inline}" bind-event-click="inline=true"><i class="fa fa-th"></i></span>
-          </div>
-        </div>
-        <input type="text" class="fullwidth filter-keywords" placeholder="" bind="query"/>
-      </div>
-
-      <div bind-class="{'display-block': !inline}" class="keywords-index-list">
-        <% @ingredients.sort.group_by(&:first_letter).each do |letter, ingredients| %>
-          <h4 bind-show="query.length == 0"><%= letter %></h4>
-          <ul class="keywords">
-            <% ingredients.each do |ing| %>
-              <li bind-class='{"hide-keyword": !utils.contains("<%= ing.name %>",query)}'><%= link_to ing.name, ingredient_path(ing) %></li>
-            <% end %>
-          </ul>
-        <% end %>
-      </div> <!-- .recipe-index-list -->
-
-    </div>
-  </div> <!-- .rw-row -->
-</div> <!-- .rw-content -->
+  <% @ingredients.sort.group_by(&:first_letter).each do |letter, ingredients| %>
+    <h4 bind-show="query.length == 0"><%= letter %></h4>
+    <ul>
+      <% ingredients.each do |ing| %>
+        <li bind-class='{"hide": !utils.contains("<%= ing.name %>",query)}'>
+          <%= link_to ing.name, ingredient_path(ing) %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</div>

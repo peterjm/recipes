@@ -1,27 +1,13 @@
-<% set_page_title @ingredient.name %>
+<% set_page_title @ingredient.name.titleize %>
 
-<div class="rw-column rw-content">
+<%= ui_content_section(title: "Other names") do %>
+  <%= @ingredient.alternate_names.join(', ') %>
+<% end %>
 
-  <div class="rw-row page-title">
-    <h1><%= @ingredient.name.titleize %></h1>
-  </div>
-
-  <div class="rw-row">
-    <div class="grid-container">
-      <h2>Other names</h2>
-      <%= @ingredient.alternate_names.join(', ') %>
-    </div> <!-- .grid-container -->
-  </div>
-
-  <div class="rw-row border-top">
-    <div class="grid-container">
-      <h2>Merge into:</h2>
-      <ul>
-        <% Ingredient.find_each do |ing| %>
-          <li><%= link_to ing.name, ingredient_merge_path(ing, id: @ingredient.id), method: :post %></li>
-        <% end %>
-      </ul>
-    </div> <!-- .grid-container -->
-  </div> <!-- .rw-row -->
-
-</div> <!-- .rw-content -->
+<%= ui_content_section(title: "Mergo into:") do %>
+  <ul>
+    <% Ingredient.not_including(@ingredient).find_each do |ing| %>
+      <li><%= link_to ing.name, ingredient_merge_path(ing, id: @ingredient.id), method: :post %></li>
+    <% end %>
+  </ul>
+<% end %>
