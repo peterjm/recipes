@@ -6,12 +6,4 @@
     <%= render 'featured_recipe', recipe: @recipes.first if @recipes.first %>
   </div>
 
-  <div class="rw-row subtle large border-bottom">
-    <%= render 'recipes/recipe_section', title: 'Featured recipes', recipes: @recipes, count: 4 %>
-  </div> <!-- .rw-row -->
-
-  <div class="rw-row subtle large">
-    <%= render 'recipes/recipe_section', title: 'Latest recipes', recipes: @recipes, count: 4 %>
-  </div> <!-- .rw-row -->
-
 </div>
