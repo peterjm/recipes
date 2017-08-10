@@ -17,7 +17,6 @@
 //= require twine
 //
 //= require rw-sidebar
-//= require smk-menu
 //= require smk-visual-select
 //= require jquery.qtip
 //
