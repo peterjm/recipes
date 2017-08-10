@@ -19,7 +19,6 @@
 //= require rw-sidebar
 //= require smk-menu
 //= require smk-visual-select
-//= require owl.carousel
 //= require jquery.qtip
 //
 //= require_self
@@ -30,6 +29,5 @@
 //= require inplace_editor
 //= require image_chooser
 //= require utils
-//= require carousel
 
 window.Recipes = {}
