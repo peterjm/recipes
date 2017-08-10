@@ -8,31 +8,10 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require font-awesome
- *= require gusto
  *= require_self
  *= require_tree .
  */
 
-body {
-  background-image: url(<%= asset_path('patterns/kale-salad.jpg') %>);
-}
-.home-recipe-of-the-day {
-  background-image: url(<%= asset_path('bg.jpg') %>);
-}
-input[type="password"] {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-input[type="password"] {
-  padding: 7px 10px;
-  margin: 5px 0 19px 0;
-  border-radius: 3px;
-  border: 1px solid #c8c9d3;
-  background: #ffffff;
-  color: #23242c;
-}
 .hide {
   display: none;
 }
@@ -41,14 +20,4 @@ h3 span.edit {
 }
 h3:hover span.edit {
   display:inline;
-}
-#IngredientList ul {
-  padding-bottom: 10px;
-}
-#IngredientList ul li:last-of-type {
-  border-bottom:none;
-}
-#IngredientList h4 {
-  font-size: 17px;
-  margin: 2px 0;
 }

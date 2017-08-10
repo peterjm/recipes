@@ -7,7 +7,7 @@
           <%= image_tag 'logo.png', alt: 'gustos', class: 'logo' %>
         </div>
         <% if logged_in? %>
-          <nav class="main-menu-nav menu-inline" define="{mainMenu: new Recipes.Menu(this)}">
+          <nav class="main-menu-nav menu-inline">
             <ul class="menu horizontal">
               <li><%= link_to "Home", root_path %></li>
               <li><%= link_to "Recipes", recipes_path %></li>
@@ -20,7 +20,7 @@
 
       <% if logged_in? %>
         <div class="grid desk-4 mob-6 omega">
-          <nav class="main-menu-nav" define="{userMenu: new Recipes.Menu(this, {responsive:false, subMenuMarkText:false})}">
+          <nav class="main-menu-nav">
             <ul class="menu horizontal align-right">
 
               <%= yield(:menubar) %>
