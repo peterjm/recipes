@@ -35,6 +35,10 @@
 
 <% if @recipe.source %>
   <%= ui_content_section(title: "Source") do %>
-    <%= render 'source_info', source: @recipe.source %>
+    <%= image_tag @recipe.source.image(:mini) %>
+    <%= link_to @recipe.source.name, source_path(@recipe.source) %>
+    <% if @recipe.source.author %>
+      by <%= @recipe.source.author %>
+    <% end %>
   <% end %>
 <% end %>

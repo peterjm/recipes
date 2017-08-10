@@ -1,13 +1,12 @@
 <% if ingredient.parsed? %>
-  <li bind-event-click="utils.toggleClass(this, 'active')">
-    <div class="mark-as-ok"><i class="fa fa-check"></i></div>
-    <div class="ingredient">
+  <li>
+    <div>
       <%= ingredient.linked_ingredient_list %>
     </div>
-    <div class="quantity">
-      <div class="qt"><%= ingredient.description %></div>
+    <div>
+      <div><%= ingredient.description %></div>
       <% if ingredient.note.present? %>
-        <div class="qt-notes"><%= ingredient.note %></div>
+        <div><%= ingredient.note %></div>
       <% end %>
     </div>
   </li>
