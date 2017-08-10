@@ -6,7 +6,6 @@ class RecipesController < AuthenticatedController
 
   def show
     @recipe = presentable(Recipe.find(params[:id]))
-    @related_recipes = presentable(Recipe.includes(:image).limit(5))
   end
 
   def new

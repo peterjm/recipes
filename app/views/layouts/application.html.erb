@@ -2,17 +2,21 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="<%= asset_path 'favicon.png' %>">
+
   <title><%= head_title %></title>
-  <link rel="icon" href="<%= asset_path 'favicon.png' %>" />
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-" crossorigin="anonymous">
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<section id="rw-layout" class="rw-layout" define="{utils: new Recipes.Utils}">
+<div id="layout" define="{utils: new Recipes.Utils}">
   <%= content_for?(:application_content) ? yield(:application_content) : yield %>
-</section><!-- .rw-layout -->
+</div>
 </body>
 </html>

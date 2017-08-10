@@ -1,20 +1,7 @@
 <% set_page_title "Recipes" %>
 
-<div class="rw-column rw-content">
+<% @recipes.each do |recipe| %>
+  <%= render 'recipes/listed_recipe', recipe: recipe %>
+<% end %>
 
-  <%= breadcrumb "Recipes" %>
-
-  <div class="rw-row page-title">
-    <h1>Recipes</h1>
-  </div>
-
-  <div class="rw-row">
-    <div class="recipes-list">
-      <% @recipes.each do |recipe| %>
-        <%= render 'recipes/listed_recipe', recipe: recipe %>
-      <% end %>
-    </div>
-
-    <%= paginate @recipes %>
-  </div>
-</div>
+<%= paginate @recipes %>

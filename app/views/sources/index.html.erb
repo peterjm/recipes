@@ -1,24 +1,7 @@
 <% set_page_title "Sources" %>
 
-<div class="rw-column rw-content">
+<% @sources.each do |source| %>
+  <%= render 'sources/listed_source', source: source %>
+<% end %>
 
-  <%= breadcrumb "Sources" %>
-
-  <div class="rw-row page-title">
-    <h1>Sources</h1>
-  </div>
-
-  <div class="rw-row">
-
-    <div class="recipes-list">
-
-      <% @sources.each do |source| %>
-        <%= render 'listed_source', source: source %>
-      <% end %>
-
-    </div> <!-- .recipes-list -->
-
-    <%= paginate @sources %>
-
-  </div>
-</div>
+<%= paginate @sources %>

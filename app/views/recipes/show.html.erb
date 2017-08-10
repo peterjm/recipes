@@ -1,126 +1,44 @@
 <% set_page_title @recipe.title %>
 
-<% content_for :menubar do %>
-  <li class ="to-left-more">
-    <%= link_to 'Edit', edit_recipe_path(@recipe), class: 'menu-single-icon' %>
-  </li>
+<% content_for :side_menu do %>
+  <%= ui_side_menu_link('Edit this recipe', edit_recipe_path(@recipe), separated: true) %>
 <% end %>
 
-<div class="rw-column rw-content">
+<%= image_tag @recipe.image('full'), alt: @recipe.title %>
 
-  <%= breadcrumb @recipe.title %>
-
-  <div class="rw-row page-title">
-    <h1><%= @recipe.title %></h1>
-  </div>
-
-  <div class="rw-row">
-
-    <!--
-    // ===================================^__^=================================== //
-       Entry first
-    // ===================================^__^=================================== //
-    -->
-    <div class="entry style-columns">
-      <div class="entry-photo single-recipe-photo-cover">
-        <%= image_tag @recipe.image('full'), alt: @recipe.title %>
-        <div class="recipe-tools">
-          <div class="tool like" title="Like (686)"><i class="the-icon fa fa-thumbs-o-up"></i></div>
-          <div class="tool favorite" title="Add to favorites (320)"><i class="the-icon fa fa-heart-o"></i></div>
-          <div class="tool collection" title="Add to collection (47)"><i class="the-icon fa fa-bookmark-o"></i></div>
-          <div class="tool share" title="Share (210)"><i class="the-icon fa fa-share-alt"></i></div>
-        </div>
-      </div>
-      <div class="entry-content clearfix">
-
-        <div class="recipe-content">
-
-          <%= render layout: 'recipes/inplace_editor', locals: {
-            title: 'Ingredients',
-            title_classes: 'ingredients first',
-            field: :ingredients_text
-          } do %>
-            <div class="single-recipe-ingredients">
-              <% @recipe.ingredient_groups.each do |group| %>
-                <% if group.header %>
-                  <h4><%= group.header %></h4>
-                <% end %>
-                <ul>
-                  <% group.lines.each do |line| %>
-                    <%= render 'recipe_ingredient', ingredient: line %>
-                  <% end %>
-                </ul>
-              <% end %>
-            </div>
-          <% end %>
-
-          <%= render layout: 'recipes/inplace_editor', locals: {
-            title: 'Instructions',
-            title_classes: 'preparation-mode',
-            field: :instructions_text
-          } do %>
-            <%= render_markdown @recipe.instructions_text %>
-          <% end %>
-
-          <% if @recipe.notes.present? %>
-            <%= render layout: 'recipes/inplace_editor', locals: {
-              title: 'Notes',
-              title_classes: 'footnotes',
-              field: :notes
-            } do %>
-              <%= render_markdown @recipe.notes %>
-            <% end %>
-          <% end %>
-
-          <h3 class="recipe-headlines links">Links</h3>
-          <ul>
-            <li><a href="#">Curabitur massa tortor, euismod accumsan dui eu</a></li>
-            <li><a href="#">Aenean sed dui lorem</a></li>
-            <li><a href="#">Nullam quis hendrerit sem, nec mollis augue</a></li>
-          </ul>
-        </div>
-
-        <div class="recipe-meta">
-          <ul>
-            <% if @recipe.source %>
-              <li>
-                <%= render 'source_info', source: @recipe.source %>
-              </li>
-            <% end %>
-            <li><i class="the-icon fa fa-calendar" title="Submited on 21 Aug 2014"></i> <span>21 Aug 2014</span></li>
-            <li><div><i class="the-icon fa fa-book" title="Category"></i> <span><a href="#">Desserts</a></span></div></li>
-            <li><div><i class="the-icon fa fa-tasks" title="Difficulty"></i> <span>Easy</span></div></li>
-            <li><div><i class="the-icon fa fa-clock-o" title="Preparation time"></i> <span>45 minutes</span></div></li>
-            <li><i class="the-icon fa fa-bar-chart" title="2560 people read this"></i> <span>2560 views</span></li>
-            <li><div><i class="the-icon fa fa-heart" title="Favorited by 320 users"></i> <span>320 favorites</span></div></li>
-            <li><div><i class="the-icon fa fa-thumbs-up" title="686 like this"></i> <span>686 likes</span></div></li>
-          </ul>
-        </div>
-
-      </div> <!-- .entry-content -->
-      <div class="clear"></div>
-
-    </div> <!-- .entry -->
-    <div class="clear"></div>
-
-
-  </div> <!-- .rw-row -->
-
-  <div class="rw-row light border-tb">
-    <div class="recipe-tags">
-      <span class="tags-title">Tags:</span>
-      <span class="tag"><a href="#">Chicken</a></span>
-      <span class="tag"><a href="#">Chicken Roast</a></span>
-      <span class="tag"><a href="#">Gluten-Free</a></span>
-      <span class="tag"><a href="#">Low Carb</a></span>
-      <span class="tag"><a href="#">Main Course</a></span>
-      <span class="tag"><a href="#">Smoked Paprika</a></span>
-    </div>
-  </div> <!-- .rw-row -->
-
-  <% if @related_recipes.any? %>
-    <div class="rw-row subtle">
-      <%= render 'recipes/recipe_section', title: "Related recipes", recipes: @related_recipes, count: 3 %>
-    </div> <!-- .rw-row -->
+<%= ui_editable_content_section(title: "Ingredients", object: @recipe, field: :ingredients_text) do %>
+  <% @recipe.ingredient_groups.each do |group| %>
+    <% if group.header %>
+      <h4><%= group.header %></h4>
+    <% end %>
+    <ul>
+      <% group.lines.each do |line| %>
+        <%= render 'recipe_ingredient', ingredient: line %>
+      <% end %>
+    </ul>
   <% end %>
-</div> <!-- .rw-content -->
+<% end %>
+
+<%=
+  ui_editable_content_section(title: "Instructions", object: @recipe, field: :instructions_text) do
+    render_markdown @recipe.instructions_text
+  end
+%>
+
+<% if @recipe.notes.present? %>
+  <%=
+    ui_editable_content_section(title: "Notes", object: @recipe, field: :instructions_text) do
+      render_markdown @recipe.notes
+    end
+  %>
+<% end %>
+
+<% if @recipe.source %>
+  <%= ui_content_section(title: "Source") do %>
+    <%= image_tag @recipe.source.image(:mini) %>
+    <%= link_to @recipe.source.name, source_path(@recipe.source) %>
+    <% if @recipe.source.author %>
+      by <%= @recipe.source.author %>
+    <% end %>
+  <% end %>
+<% end %>
