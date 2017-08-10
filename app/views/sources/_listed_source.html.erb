@@ -1,29 +1,7 @@
-<div class="recipe clearfix">
+<%= image_tag source.image('small'), alt: source.name %>
 
-  <div class="recipe-main-info clearfix">
-    <div class="grid-container">
-
-      <div class="entry-photo grid desk-4 alpha">
-        <%= image_tag source.image('small'), alt: source.name %>
-      </div>
-
-      <div class="grid desk-8 omega">
-        <div class="entry-title">
-          <h2><%= link_to source.name, source_path(source) %></h2>
-        </div>
-        <div class="entry-controls minimal">
-          <span class="control-tip"><%= pluralize source.recipes.count, 'recipe' %></span>
-          <span class="control-tip">by <%= source.author %></span>
-          <span class="control-tip"><%= link_to source.url, source.url %></span>
-        </div>
-        <div class="entry-content">
-          <%= simple_format source.description %>
-        </div>
-        <div class="clear"></div>
-      </div>
-
-    </div> <!-- .grid-container -->
-  </div>
-</div> <!-- .entry -->
-
-<div class="clear"></div>
+<h2><%= link_to source.name, source_path(source) %></h2>
+<%= pluralize source.recipes.count, 'recipe' %>
+by <%= source.author %>
+<%= link_to source.url, source.url %>
+<%= simple_format source.description %>

@@ -1,46 +1,23 @@
 <% set_page_title @source.name %>
 
-<% content_for :menubar do %>
-  <li class ="to-left-more">
-    <%= link_to 'Edit', edit_source_path(@source), class: 'menu-single-icon' %>
-  </li>
+<% content_for :side_menu do %>
+  <%= ui_side_menu_link('Edit this source', edit_source_path(@source), separated: true) %>
 <% end %>
 
-<div class="rw-column rw-content">
+<%= image_tag @source.image('small'), alt: @source.name %>
 
-  <div class="rw-row page-title">
-    <h1><%= @source.name %></h1>
-  </div>
+<%= ui_content_section(title: "Info") do %>
+  <%= pluralize @source.recipes.count, 'recipe' %> by <%= @source.author %>
+  <%= link_to @source.url, @source.url %>
+  <%= simple_format @source.description %>
+<% end %>
 
-  <div class="rw-row">
-    <div class="grid-container">
-
-      <div class="entry-photo grid desk-4 alpha">
-        <%= image_tag @source.image('small'), alt: @source.name %>
-      </div>
-
-      <div class="grid desk-8 omega">
-        <div class="entry-controls minimal">
-          <span class="control-tip"><%= pluralize @source.recipes.count, 'recipe' %></span>
-          <span class="control-tip">by <%= @source.author %></span>
-          <span class="control-tip"><%= link_to @source.url, @source.url %></span>
-        </div>
-        <div class="entry-content">
-          <%= simple_format @source.description %>
-        </div>
-        <div class="clear"></div>
-      </div>
-
-    </div> <!-- .grid-container -->
-  </div>
-
-  <div class="rw-row">
-    <div class="recipes-list">
-      <% @recipes.each do |recipe| %>
-        <%= render 'recipes/listed_recipe', recipe: recipe %>
-      <% end %>
-    </div>
+<% if @recipes.any? %>
+  <%= ui_content_section(title: "Recipes") do %>
+    <% @recipes.each do |recipe| %>
+      <%= render 'recipes/listed_recipe', recipe: recipe %>
+    <% end %>
 
     <%= paginate @recipes %>
-  </div>
-</div>
+  <% end %>
+<% end %>
