@@ -1,5 +1,14 @@
 module ComponentHelper
 
+  def ui_button(text, path, size: 'normal')
+    button_class = case size
+    when 'xlarge'
+      'button-xlarge'
+    end
+
+    link_to(text, path, class: "pure-button pure-button-primary #{button_class}")
+  end
+
   def ui_side_menu_link(text, path, active: false, separated: false, disabled: false, link_params: {})
     li_classes = ['pure-menu-item']
     li_classes << 'pure-menu-selected' if active
