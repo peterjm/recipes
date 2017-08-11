@@ -1,19 +1,23 @@
 <% set_page_title "Ingredients" %>
 
-<div define="{query: ''}">
-  <div>
-    <span>Filter ingredients:</span>
-    <input type="text" placeholder="" bind="query"/>
-  </div>
+<% ui_content_container do %>
+  <% ui_content_section do %>
+    <div define="{query: ''}">
+      <div>
+        <span>Filter ingredients:</span>
+        <input type="text" placeholder="" bind="query"/>
+      </div>
 
-  <% @ingredients.sort.group_by(&:first_letter).each do |letter, ingredients| %>
-    <h4 bind-show="query.length == 0"><%= letter %></h4>
-    <ul>
-      <% ingredients.each do |ing| %>
-        <li bind-class='{"hide": !utils.contains("<%= ing.name %>",query)}'>
-          <%= link_to ing.name, ingredient_path(ing) %>
-        </li>
+      <% @ingredients.sort.group_by(&:first_letter).each do |letter, ingredients| %>
+        <h4 bind-show="query.length == 0"><%= letter %></h4>
+        <ul>
+          <% ingredients.each do |ing| %>
+            <li bind-class='{"hide": !utils.contains("<%= ing.name %>",query)}'>
+              <%= link_to ing.name, ingredient_path(ing) %>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
+    </div>
   <% end %>
-</div>
+<% end %>

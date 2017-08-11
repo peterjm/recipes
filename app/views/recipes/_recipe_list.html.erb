@@ -1,0 +1,11 @@
+<%= ui_content_container(grid_size_big: 4) do %>
+  <% recipes.each do |recipe| %>
+    <%= ui_content_section do %>
+      <%= render 'recipes/listed_recipe', recipe: recipe %>
+    <% end %>
+  <% end %>
+
+  <%= ui_content_section(grid_size_big: 4) do %>
+    <%= paginate recipes %>
+  <% end %>
+<% end %>

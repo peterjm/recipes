@@ -10,15 +10,15 @@
 
     <ul class="pure-menu-list">
       <% if logged_in? %>
-        <%= ui_side_menu_link("Recipes", recipes_path) %>
-        <%= ui_side_menu_link("Ingredients", ingredients_path) %>
-        <%= ui_side_menu_link("Sources", sources_path) %>
+        <%= ui_side_menu_link("Recipes", recipes_path, active: recipes_section?) %>
+        <%= ui_side_menu_link("Ingredients", ingredients_path, active: ingredients_section?) %>
+        <%= ui_side_menu_link("Sources", sources_path, active: sources_section?) %>
 
         <%= yield(:side_menu) if content_for?(:side_menu) %>
 
-        <%= ui_side_menu_link("New recipe", new_recipe_path, separated: true) %>
-        <%= ui_side_menu_link("New source", new_source_path) %>
-        <%= ui_side_menu_link("Bookmarklet", '#') %>
+        <%= ui_side_menu_link("New recipe", new_recipe_path, active: new_recipe_section?, separated: true) %>
+        <%= ui_side_menu_link("New source", new_source_path, active: new_source_section?) %>
+        <%= ui_side_menu_link("Bookmarklet", '#', disabled: true) %>
 
         <%= ui_side_menu_link("Sign out", logout_path, separated: true, link_params: { method: :delete }) %>
       <% end %>

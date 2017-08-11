@@ -1,6 +1,4 @@
 class SessionsController < ApplicationController
-  layout 'main'
-
   before_action only: [:new, :create, :error], if: :logged_in? do
     redirect_to root_path
   end

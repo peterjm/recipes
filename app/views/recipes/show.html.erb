@@ -4,41 +4,45 @@
   <%= ui_side_menu_link('Edit this recipe', edit_recipe_path(@recipe), separated: true) %>
 <% end %>
 
-<%= image_tag @recipe.image('full'), alt: @recipe.title %>
-
-<%= ui_editable_content_section(title: "Ingredients", object: @recipe, field: :ingredients_text) do %>
-  <% @recipe.ingredient_groups.each do |group| %>
-    <% if group.header %>
-      <h4><%= group.header %></h4>
-    <% end %>
-    <ul>
-      <% group.lines.each do |line| %>
-        <%= render 'recipe_ingredient', ingredient: line %>
-      <% end %>
-    </ul>
+<%= ui_content_container do %>
+  <%= ui_content_section do %>
+    <%= image_tag @recipe.image('full'), alt: @recipe.title, class: "full" %>
   <% end %>
-<% end %>
 
-<%=
-  ui_editable_content_section(title: "Instructions", object: @recipe, field: :instructions_text) do
-    render_markdown @recipe.instructions_text
-  end
-%>
+  <%= ui_editable_content_section(title: "Ingredients", object: @recipe, field: :ingredients_text) do %>
+    <% @recipe.ingredient_groups.each do |group| %>
+      <% if group.header %>
+        <h4><%= group.header %></h4>
+      <% end %>
+      <ul>
+        <% group.lines.each do |line| %>
+          <%= render 'recipe_ingredient', ingredient: line %>
+        <% end %>
+      </ul>
+    <% end %>
+  <% end %>
 
-<% if @recipe.notes.present? %>
   <%=
-    ui_editable_content_section(title: "Notes", object: @recipe, field: :instructions_text) do
-      render_markdown @recipe.notes
+    ui_editable_content_section(title: "Instructions", object: @recipe, field: :instructions_text) do
+      render_markdown @recipe.instructions_text
     end
   %>
-<% end %>
 
-<% if @recipe.source %>
-  <%= ui_content_section(title: "Source") do %>
-    <%= image_tag @recipe.source.image(:mini) %>
-    <%= link_to @recipe.source.name, source_path(@recipe.source) %>
-    <% if @recipe.source.author %>
-      by <%= @recipe.source.author %>
+  <% if @recipe.notes.present? %>
+    <%=
+      ui_editable_content_section(title: "Notes", object: @recipe, field: :instructions_text) do
+        render_markdown @recipe.notes
+      end
+    %>
+  <% end %>
+
+  <% if @recipe.source %>
+    <%= ui_content_section(title: "Source") do %>
+      <%= image_tag @recipe.source.image(:mini) %>
+      <%= link_to @recipe.source.name, source_path(@recipe.source) %>
+      <% if @recipe.source.author %>
+        by <%= @recipe.source.author %>
+      <% end %>
     <% end %>
   <% end %>
 <% end %>
