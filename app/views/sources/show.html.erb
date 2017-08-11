@@ -4,20 +4,20 @@
   <%= ui_side_menu_link('Edit this source', edit_source_path(@source), separated: true) %>
 <% end %>
 
-<%= image_tag @source.image('small'), alt: @source.name %>
+<%= ui_content_container do %>
+  <%= ui_content_section do %>
+    <%= image_tag @source.image('small'), alt: @source.name %>
+  <% end %>
 
-<%= ui_content_section(title: "Info") do %>
-  <%= pluralize @source.recipes.count, 'recipe' %> by <%= @source.author %>
-  <%= link_to @source.url, @source.url %>
-  <%= simple_format @source.description %>
-<% end %>
+  <%= ui_content_section(title: "Info") do %>
+    <%= pluralize @source.recipes.count, 'recipe' %> by <%= @source.author %>
+    <%= link_to @source.url, @source.url %>
+    <%= simple_format @source.description %>
+  <% end %>
 
-<% if @recipes.any? %>
-  <%= ui_content_section(title: "Recipes") do %>
-    <% @recipes.each do |recipe| %>
-      <%= render 'recipes/listed_recipe', recipe: recipe %>
+  <% if @recipes.any? %>
+    <%= ui_content_section(title: "Recipes") do %>
+      <%= render 'recipes/recipe_list', recipes: @recipes %>
     <% end %>
-
-    <%= paginate @recipes %>
   <% end %>
 <% end %>

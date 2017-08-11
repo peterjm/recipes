@@ -19,6 +19,16 @@ module ComponentHelper
     end
   end
 
+  def ui_content_container(grid_size_small: 1, grid_size_big: 1, &block)
+    current_grid_size_stack.push({
+      small: grid_size_small,
+      big: grid_size_big
+    })
+    content = content_tag(:div, class: 'pure-g', &block)
+    current_grid_size_stack.pop
+    content
+  end
+
   def ui_editable_content_section(title:, object:, field:, &block)
     render(layout: 'shared/inplace_editor', locals: { title: title, object: object, field: field }, &block)
   end
@@ -31,8 +41,37 @@ module ComponentHelper
     end
   end
 
-  def ui_content_section(title:, &block)
-    ui_content_title(title) + capture(&block)
+  def ui_content_section(title: nil, grid_size_small: 1, grid_size_big: 1, &block)
+    content = if title
+      ui_content_title(title) + capture(&block)
+    else
+      capture(&block)
+    end
+
+    grid_classes = [
+      grid_class(grid_size_small, current_grid_sizes[:small]),
+      grid_class(grid_size_big, current_grid_sizes[:big], 'sm')
+    ].uniq
+
+    content_tag(:div, content, class: grid_classes)
+  end
+
+  def current_grid_size_stack
+    @current_grid_size_stack ||= []
+  end
+
+  def current_grid_sizes
+    current_grid_size_stack.last
+  end
+
+  def grid_class(element_size, grid_size, media_size=nil)
+    raise "element too large for grid" if element_size > grid_size
+
+    if media_size
+      "pure-u-#{media_size}-#{element_size}-#{grid_size}"
+    else media_size
+      "pure-u-#{element_size}-#{grid_size}"
+    end
   end
 
 end

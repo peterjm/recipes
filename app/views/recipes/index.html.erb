@@ -1,7 +1,7 @@
 <% set_page_title "Recipes" %>
 
-<% @recipes.each do |recipe| %>
-  <%= render 'recipes/listed_recipe', recipe: recipe %>
+<%= ui_content_container do %>
+  <%= ui_content_section do %>
+    <%= render 'recipes/recipe_list', recipes: @recipes %>
+  <% end %>
 <% end %>
-
-<%= paginate @recipes %>

@@ -1,23 +1,25 @@
 <% id      = string_to_dom_id(title) %>
 <% refresh = "refresh" + id %>
 <% editor  = "editor" + id %>
-<div id="<%=id%>" refresh="<%=refresh%>" define="{<%=editor%>: new Recipes.InplaceEditor(this, '#<%=id%>Content')}">
-  <%= ui_content_title do %>
-    <%= title %>
-    <span class="inplace-editor-edit">- <a href="#" bind-event-click="<%=editor%>.toggle()">edit</a></span>
-  <% end %>
+<%= ui_content_section do %>
+  <div id="<%=id%>" refresh="<%=refresh%>" define="{<%=editor%>: new Recipes.InplaceEditor(this, '#<%=id%>Content')}">
+    <%= ui_content_title do %>
+      <%= title %>
+      <span class="inplace-editor-edit">- <a href="#" bind-event-click="<%=editor%>.toggle()">edit</a></span>
+    <% end %>
 
-  <div id="<%=id%>Content">
-    <%= yield %>
+    <div id="<%=id%>Content">
+      <%= yield %>
+    </div>
+
+    <%= form_for object, html: {'tg-remote' => '1', 'refresh-on-success' => refresh} do |f| %>
+      <div>
+        <%= f.text_area field %>
+      </div>
+
+      <div>
+        <%= f.submit "Update" %>
+      </div>
+    <% end %>
   </div>
-
-  <%= form_for object, html: {'tg-remote' => '1', 'refresh-on-success' => refresh} do |f| %>
-    <div>
-      <%= f.text_area field %>
-    </div>
-
-    <div>
-      <%= f.submit "Update" %>
-    </div>
-  <% end %>
-</div>
+<% end %>

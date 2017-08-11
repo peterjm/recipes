@@ -1,7 +1,13 @@
 <% set_page_title "Sources" %>
 
-<% @sources.each do |source| %>
-  <%= render 'sources/listed_source', source: source %>
-<% end %>
+<%= ui_content_container do %>
+  <% @sources.each do |source| %>
+    <%= ui_content_section do %>
+      <%= render 'sources/listed_source', source: source %>
+    <% end %>
+  <% end %>
 
-<%= paginate @sources %>
+  <%= ui_content_section do %>
+    <%= paginate @sources %>
+  <% end %>
+<% end %>
