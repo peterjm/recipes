@@ -6,7 +6,7 @@ class IngredientGroupPresenter < Presenter
   end
 
   def header
-    ingredient_lines.first.header if ingredient_lines.first.header?
+    ingredient_lines.first.header if ingredient_lines&.first&.header?
   end
 
   def lines
