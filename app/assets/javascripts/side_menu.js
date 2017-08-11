@@ -1,5 +1,5 @@
 (function (window, document) {
-
+  document.addEventListener("DOMContentLoaded", function() {
     var layout   = document.getElementById('layout'),
         menu     = document.getElementById('menu'),
         menuLink = document.getElementById('menuLink'),
@@ -42,5 +42,5 @@
             toggleAll(e);
         }
     };
-
+  });
 }(this, this.document));
