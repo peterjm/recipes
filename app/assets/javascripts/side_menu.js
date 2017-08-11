@@ -1,5 +1,5 @@
 (function (window, document) {
-  document.addEventListener("DOMContentLoaded", function() {
+  document.addEventListener("page:update", function() {
     var layout   = document.getElementById('layout'),
         menu     = document.getElementById('menu'),
         menuLink = document.getElementById('menuLink'),
