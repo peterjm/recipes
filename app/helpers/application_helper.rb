@@ -32,4 +32,24 @@ module ApplicationHelper
     "http://www.gravatar.com/avatar/#{email_hash}.jpg?s=50"
   end
 
+  def recipes_section?
+    controller_name == 'recipes' && action_name.in?(%w(index show edit))
+  end
+
+  def ingredients_section?
+    controller_name == 'ingredients' && action_name.in?(%w(index show edit))
+  end
+
+  def sources_section?
+    controller_name == 'sources' && action_name.in?(%w(index show edit))
+  end
+
+  def new_recipe_section?
+    controller_name == 'recipes' && action_name == 'new'
+  end
+
+  def new_source_section?
+    controller_name == 'sources' && action_name == 'new'
+  end
+
 end
