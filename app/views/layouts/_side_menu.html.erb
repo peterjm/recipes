@@ -10,7 +10,7 @@
 
     <ul class="pure-menu-list">
       <% if logged_in? %>
-        <%= ui_side_menu_link("Recipes", recipes_path) %>
+        <%= ui_side_menu_link("Recipes", recipes_path, active: true) %>
         <%= ui_side_menu_link("Ingredients", ingredients_path) %>
         <%= ui_side_menu_link("Sources", sources_path) %>
 
@@ -18,7 +18,7 @@
 
         <%= ui_side_menu_link("New recipe", new_recipe_path, separated: true) %>
         <%= ui_side_menu_link("New source", new_source_path) %>
-        <%= ui_side_menu_link("Bookmarklet", '#') %>
+        <%= ui_side_menu_link("Bookmarklet", '#', disabled: true) %>
 
         <%= ui_side_menu_link("Sign out", logout_path, separated: true, link_params: { method: :delete }) %>
       <% end %>
