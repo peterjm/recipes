@@ -12,9 +12,9 @@
   <%= ui_editable_content_section(title: "Ingredients", object: @recipe, field: :ingredients_text) do %>
     <% @recipe.ingredient_groups.each do |group| %>
       <% if group.header %>
-        <h4><%= group.header %></h4>
+        <h3><%= group.header %></h3>
       <% end %>
-      <ul>
+      <ul class="ingredients-list">
         <% group.lines.each do |line| %>
           <%= render 'recipe_ingredient', ingredient: line %>
         <% end %>
