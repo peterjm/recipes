@@ -1,7 +1,7 @@
 class RecipesController < AuthenticatedController
 
   def index
-    @recipes = presentable(Recipe.includes(:image).page(params[:page]).per(10))
+    @recipes = presentable(Recipe.includes(:image).page(params[:page]).per(50))
   end
 
   def show
