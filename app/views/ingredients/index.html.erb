@@ -10,9 +10,9 @@
 
       <% @ingredients.sort.group_by(&:first_letter).each do |letter, ingredients| %>
         <h4 bind-show="query.length == 0"><%= letter %></h4>
-        <ul>
+        <ul class="all-ingredients">
           <% ingredients.each do |ing| %>
-            <li bind-class='{"hide": !utils.contains("<%= ing.name %>",query)}'>
+            <li bind-show="utils.contains('<%= escape_javascript(ing.name) %>',query)">
               <%= link_to ing.name, ingredient_path(ing) %>
             </li>
           <% end %>
