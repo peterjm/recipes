@@ -13,7 +13,7 @@
         <ul class="all-ingredients">
           <% ingredients.each do |ing| %>
             <li bind-show="utils.contains('<%= escape_javascript(ing.name) %>',query)">
-              <%= link_to ing.name, ingredient_path(ing) %>
+              <%= link_to h(ing.name).gsub(' ', '&nbsp;').html_safe, ingredient_path(ing) %>
             </li>
           <% end %>
         </ul>
