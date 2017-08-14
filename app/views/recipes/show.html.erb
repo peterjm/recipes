@@ -1,4 +1,4 @@
-<% set_page_title @recipe.title %>
+<% set_page_title @recipe.title, heading: false %>
 
 <% content_for :side_menu do %>
   <%= ui_side_menu_link('Edit this recipe', edit_recipe_path(@recipe), separated: true) %>
@@ -6,7 +6,11 @@
 
 <%= ui_content_container do %>
   <%= ui_content_section do %>
-    <%= image_tag @recipe.image('full'), alt: @recipe.title, class: "full" %>
+    <div class="bg-cover recipe-main-image" style="background-image:url(<%= @recipe.image('full') %>)">
+      <div class="centered">
+        <h1 class="recipe-title"><%= @recipe.title %></h1>
+      </div>
+    </div>
   <% end %>
 
   <%= ui_editable_content_section(title: "Ingredients", object: @recipe, field: :ingredients_text) do %>

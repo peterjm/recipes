@@ -21,6 +21,7 @@ body {
 }
 
 .centered {
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -29,10 +30,6 @@ body {
 
 .hide {
   display: none;
-}
-
-img.full {
-  width: 100%;
 }
 
 a {
@@ -81,11 +78,18 @@ h2:hover span.inplace-editor-edit {
   height: 10em;
 }
 
-.recipe-preview {
-  color: white;
+.recipe-main-image {
+  height: 10em;
 }
 
-.recipe-preview .recipe-title {
+@media screen and (min-width: 35.5em) {
+  .recipe-main-image {
+    height: 20em;
+  }
+}
+
+.recipe-title {
+  color: white;
   padding: 0.2em;
   background-color: rgba(0, 0, 0, 0.5);
 }
