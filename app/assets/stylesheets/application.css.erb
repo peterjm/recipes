@@ -8,43 +8,56 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require_self
  *= require_tree .
+ *= require_self
  */
 
-/*
 html {
   height: 100%;
 }
 
 body {
-  height: 100%;
-}
-
-div#layout {
-  height: 100%;
+  height: inherit;
 }
 
 .centered {
+  width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-*/
-
-div#layout {
-  border-style: solid;
-  border-width: 5px 0 0 0;
-  border-color: #9ABCA7;
 }
 
 .hide {
   display: none;
 }
 
-img.full {
+a {
+  text-decoration: none;
+}
+
+.bg-cover {
+  display: block;
   width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.header {
+  padding-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+/* colored border on top */
+body {
+  border-style: solid;
+  border-width: 0.3em 0 0 0;
+  border-color: #9ABCA7;
+}
+
+#menu, .menu-link {
+  top: 0.3em;
 }
 
 /* Side menu*/
@@ -63,4 +76,56 @@ h2:hover span.inplace-editor-edit {
 /* Buttons */
 .button-xlarge {
   font-size: 150%;
+}
+
+/* Recipe index */
+.recipe-preview {
+  height: 10em;
+}
+
+.recipe-main-image {
+  height: 10em;
+}
+
+@media screen and (min-width: 35.5em) {
+  .recipe-main-image {
+    height: 20em;
+  }
+}
+
+.recipe-title {
+  color: white;
+  padding: 0.2em;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Recipe show */
+ul.ingredients-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul.ingredients-list li {
+  padding-bottom: 0.5em;
+}
+
+.ingredient-note {
+  font-size: 80%;
+}
+
+/* Ingredients index */
+ul.all-ingredients {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+ul.all-ingredients li {
+  display: inline;
+  margin: 0.3em 0.5em;
+}
+.all-ingredients li.hide {
+  display: none;
 }

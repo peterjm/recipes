@@ -57,7 +57,7 @@ namespace :development do
     end
 
     def fake_image_attributes
-      return nil if boolean(0.1)
+      return [] if boolean(0.1)
       number(1,5).times.map {
         { source_image_url: Faker::LoremPixel.image("1024x768") }
       }

@@ -1,6 +1,6 @@
 <% set_page_title @ingredient.name.titleize %>
 
-<% ui_content_container do %>
+<%= ui_content_container do %>
   <%= ui_content_section(title: "Other names") do %>
     <%= @ingredient.alternate_names.join(', ') %>
   <% end %>

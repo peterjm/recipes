@@ -1,11 +1,11 @@
 class SourcesController < AuthenticatedController
   def index
-    @sources = presentable(Source.page(params[:page]).per(10))
+    @sources = presentable(Source.page(params[:page]).per(48))
   end
 
   def show
     @source = presentable(Source.find(params[:id]))
-    @recipes = presentable(@source.recipes.page(params[:page]).per(10))
+    @recipes = presentable(@source.recipes.page(params[:page]).per(48))
   end
 
   def new

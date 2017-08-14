@@ -14,8 +14,13 @@ module ApplicationHelper
     @page_title
   end
 
-  def set_page_title(title)
+  def page_heading
+    @page_heading
+  end
+
+  def set_page_title(title, heading: true)
     @page_title = title
+    @page_heading = title if heading
   end
 
   def string_to_dom_id(str)

@@ -1,7 +1,7 @@
 <% set_page_title "Ingredients" %>
 
-<% ui_content_container do %>
-  <% ui_content_section do %>
+<%= ui_content_container do %>
+  <%= ui_content_section do %>
     <div define="{query: ''}">
       <div>
         <span>Filter ingredients:</span>
@@ -10,10 +10,10 @@
 
       <% @ingredients.sort.group_by(&:first_letter).each do |letter, ingredients| %>
         <h4 bind-show="query.length == 0"><%= letter %></h4>
-        <ul>
+        <ul class="all-ingredients">
           <% ingredients.each do |ing| %>
-            <li bind-class='{"hide": !utils.contains("<%= ing.name %>",query)}'>
-              <%= link_to ing.name, ingredient_path(ing) %>
+            <li bind-show="utils.contains('<%= escape_javascript(ing.name) %>',query)">
+              <%= link_to h(ing.name).gsub(' ', '&nbsp;').html_safe, ingredient_path(ing) %>
             </li>
           <% end %>
         </ul>

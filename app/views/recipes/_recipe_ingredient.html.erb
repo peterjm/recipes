@@ -1,14 +1,16 @@
 <% if ingredient.parsed? %>
   <li>
-    <div>
-      <%= ingredient.linked_ingredient_list %>
-    </div>
-    <div>
-      <div><%= ingredient.description %></div>
-      <% if ingredient.note.present? %>
-        <div><%= ingredient.note %></div>
+    <%= ui_content_container(grid_size_big: 4, grid_size_small: 2) do %>
+      <%= ui_content_section do %>
+        <%= ingredient.linked_ingredient_list %>
       <% end %>
-    </div>
+      <%= ui_content_section(grid_size_big: 3) do %>
+        <div><%= ingredient.description %></div>
+        <% if ingredient.note.present? %>
+          <div class="ingredient-note"><%= ingredient.note %></div>
+        <% end %>
+      <% end %>
+    <% end %>
   </li>
 <% else %>
   <li>
