@@ -1,5 +1,5 @@
 <%= link_to recipe_path(recipe), class: 'bg-cover recipe-preview', style: "background-image: url('#{recipe.image('small')}')" do %>
   <div class="centered">
-    <%= recipe.title %>
+    <span class="recipe-title"><%= recipe.title %></span>
   </div>
 <% end %>
