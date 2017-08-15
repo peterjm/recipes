@@ -10,7 +10,6 @@ gem 'puma'
 gem 'uglifier'
 gem 'coffee-rails'
 gem 'jquery-rails'
-gem 'font-awesome-rails'
 gem 'kaminari'
 
 gem 'eye-of-newt'
@@ -25,6 +24,7 @@ gem 'data_uri'
 gem 'omniauth-google-oauth2'
 
 group :development, :test do
+  gem 'faker'
   gem 'listen'
   gem 'foreman'
   gem 'sqlite3'

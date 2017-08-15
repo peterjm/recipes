@@ -8,7 +8,7 @@
     remote:        data-remote
 -%>
 <% if page.current? %>
-  <span class="button small nobg primary current"><%= page %></span>
+  <span><%= page %></span>
 <% else %>
-  <%= link_to page, url, remote: remote, class: "button small nobg primary", rel: (page.next? ? 'next' : page.prev? ? 'prev' : nil) %>
+  <%= link_to page, url, remote: remote, rel: (page.next? ? 'next' : page.prev? ? 'prev' : nil) %>
 <% end %>

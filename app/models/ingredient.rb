@@ -5,6 +5,8 @@ class Ingredient < ApplicationRecord
 
   validates :name, presence: true, uniqueness: true
 
+  scope :not_including, -> (ing) { where.not(id: ing.id) }
+
   include PerformsActionOnSave
   action_on_save :ensure_ingredient_name
 

@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   end
   resources :sources, only: [:index, :new, :create, :show, :edit, :update]
 
+  get '/search' => 'search#index', as: 'search'
+
   root to: "home#index"
 end

@@ -1,12 +1,11 @@
-class RecipesController < SidebarController
+class RecipesController < AuthenticatedController
 
   def index
-    @recipes = presentable(Recipe.includes(:image).page(params[:page]).per(10))
+    @recipes = presentable(Recipe.includes(:image).page(params[:page]).per(48))
   end
 
   def show
     @recipe = presentable(Recipe.find(params[:id]))
-    @related_recipes = presentable(Recipe.includes(:image).limit(5))
   end
 
   def new

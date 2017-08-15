@@ -1,9 +1,7 @@
-require 'digest/md5'
-
 module ApplicationHelper
 
   def application_name
-    "Recipes by Peter"
+    "Recipes @ 424"
   end
 
   def head_title
@@ -16,8 +14,13 @@ module ApplicationHelper
     @page_title
   end
 
-  def set_page_title(title)
+  def page_heading
+    @page_heading
+  end
+
+  def set_page_title(title, heading: true)
     @page_title = title
+    @page_heading = title if heading
   end
 
   def string_to_dom_id(str)
@@ -28,21 +31,30 @@ module ApplicationHelper
     controller_name == 'home' && action_name == 'index'
   end
 
-  def breadcrumb(current, crumbs={})
-    content_tag('div', class: 'rw-row page-breadcrumb') do
-      [
-        link_to('Home', root_path),
-        crumbs.map{|text, link| link_to(text, link)},
-        content_tag('span', current)
-      ].flatten.join(' &raquo; ').html_safe
-    end.html_safe
-  end
-
   def avatar_url
     email = Rails.application.secrets.google_account.downcase.strip
     email_hash = Digest::MD5.hexdigest(email)
-    default_image = image_url('avatar-50x50.jpg')
-    "http://www.gravatar.com/avatar/#{email_hash}.jpg?s=50&d=#{URI.encode(default_image)}"
+    "http://www.gravatar.com/avatar/#{email_hash}.jpg?s=50"
+  end
+
+  def recipes_section?
+    controller_name == 'recipes' && action_name.in?(%w(index show edit))
+  end
+
+  def ingredients_section?
+    controller_name == 'ingredients' && action_name.in?(%w(index show edit))
+  end
+
+  def sources_section?
+    controller_name == 'sources' && action_name.in?(%w(index show edit))
+  end
+
+  def new_recipe_section?
+    controller_name == 'recipes' && action_name == 'new'
+  end
+
+  def new_source_section?
+    controller_name == 'sources' && action_name == 'new'
   end
 
 end

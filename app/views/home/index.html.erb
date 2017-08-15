@@ -1,17 +1,5 @@
-<% set_page_title "Welcome to Mealtime" %>
-
-<div class="rw-column rw-content">
-
-  <div class="rw-row subtle large home-recipe-of-the-day">
-    <%= render 'featured_recipe', recipe: @recipes.first if @recipes.first %>
-  </div>
-
-  <div class="rw-row subtle large border-bottom">
-    <%= render 'recipes/recipe_section', title: 'Featured recipes', recipes: @recipes, count: 4 %>
-  </div> <!-- .rw-row -->
-
-  <div class="rw-row subtle large">
-    <%= render 'recipes/recipe_section', title: 'Latest recipes', recipes: @recipes, count: 4 %>
-  </div> <!-- .rw-row -->
-
-</div>
+<%= ui_content_container do %>
+  <%= ui_content_section do %>
+    <%= render 'shared/search' %>
+  <% end %>
+<% end %>

@@ -16,20 +16,13 @@
 //= require turbograft
 //= require twine
 //
-//= require rw-sidebar
-//= require smk-menu
 //= require smk-visual-select
-//= require owl.carousel
-//= require jquery.qtip
 //
 //= require_self
 //= require twine_init
-//= require qtip_init
-//= require menu
-//= require sidebar
 //= require inplace_editor
 //= require image_chooser
+//= require side_menu
 //= require utils
-//= require carousel
 
 window.Recipes = {}

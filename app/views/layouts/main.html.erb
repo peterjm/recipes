@@ -1,15 +1,19 @@
 <% content_for :application_content do %>
-  <%= render 'layouts/header' %>
+  <div id="layout" define="{utils: new Recipes.Utils}">
+    <div id="main">
+      <% if page_heading %>
+        <div class="header">
+          <h1><%= page_heading %></h1>
+        </div>
+      <% end %>
 
-  <div class="rw-container rw-section">
-    <div class="rw-inner clearfix">
+      <div class="content">
+        <%= content_for?(:main_content) ? yield(:main_content) : yield %>
+      </div>
+    </div>
 
-      <%= content_for?(:main_content) ? yield(:main_content) : yield %>
-
-    </div> <!-- .rw-inner -->
-  </div> <!-- .rw-container -->
-
-  <%= render 'layouts/footer' %>
+    <%= render 'layouts/side_menu' %>
+  </div>
 <% end %>
 
 <%= render template: "layouts/application" %>

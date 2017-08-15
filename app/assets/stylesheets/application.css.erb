@@ -8,47 +8,124 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
- *= require font-awesome
- *= require gusto
- *= require_self
  *= require_tree .
+ *= require_self
  */
 
+html {
+  height: 100%;
+}
+
 body {
-  background-image: url(<%= asset_path('patterns/kale-salad.jpg') %>);
+  height: inherit;
 }
-.home-recipe-of-the-day {
-  background-image: url(<%= asset_path('bg.jpg') %>);
+
+.centered {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-input[type="password"] {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-input[type="password"] {
-  padding: 7px 10px;
-  margin: 5px 0 19px 0;
-  border-radius: 3px;
-  border: 1px solid #c8c9d3;
-  background: #ffffff;
-  color: #23242c;
-}
+
 .hide {
   display: none;
 }
-h3 span.edit {
+
+a {
+  text-decoration: none;
+}
+
+.bg-cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+}
+
+.header {
+  padding-top: 0.5em;
+  margin-bottom: 1em;
+}
+
+/* colored border on top */
+body {
+  border-style: solid;
+  border-width: 0.3em 0 0 0;
+  border-color: #9ABCA7;
+}
+
+#menu, .menu-link {
+  top: 0.3em;
+}
+
+/* Side menu*/
+.pure-menu-disabled {
+  padding: inherit;
+}
+
+/* Inplace Editor */
+h2 .inplace-editor-edit {
   display:none;
 }
-h3:hover span.edit {
+h2:hover span.inplace-editor-edit {
   display:inline;
 }
-#IngredientList ul {
-  padding-bottom: 10px;
+
+/* Buttons */
+.button-xlarge {
+  font-size: 150%;
 }
-#IngredientList ul li:last-of-type {
-  border-bottom:none;
+
+/* Recipe index */
+.recipe-preview {
+  height: 10em;
 }
-#IngredientList h4 {
-  font-size: 17px;
-  margin: 2px 0;
+
+.recipe-title {
+  color: white;
+  padding: 0.2em;
+  background-color: rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+/* Recipe show */
+.recipe-main-image {
+  height: 10em;
+}
+
+@media screen and (min-width: 35.5em) {
+  .recipe-main-image {
+    height: 20em;
+  }
+}
+
+ul.ingredients-list {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+ul.ingredients-list li {
+  padding-bottom: 0.5em;
+}
+
+.ingredient-note {
+  font-size: 80%;
+}
+
+/* Ingredients index */
+ul.all-ingredients {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  display: inline;
+}
+
+ul.all-ingredients li {
+  display: inline;
+  margin: 0.3em 0.5em;
+}
+.all-ingredients li.hide {
+  display: none;
 }

@@ -14,6 +14,8 @@ class Recipe < ApplicationRecord
   action_on_save :update_recipe_ingredients
   action_on_save :update_primary_image
 
+  scope :matching, -> (query) { where(["title LIKE ?", "%#{query}%"]) }
+
   def ingredient_lines
     IngredientListParser.new(ingredients_text).ingredients
   end
