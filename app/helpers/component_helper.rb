@@ -9,6 +9,18 @@ module ComponentHelper
     link_to(text, path, class: "pure-button pure-button-primary #{button_class}")
   end
 
+  def ui_form(path, method: :post, &block)
+    form_tag(path, method: method, class: 'pure-form', &block)
+  end
+
+  def ui_search_field(name:, value: "")
+    text_field_tag :query, params[:query], class: 'pure-input-rounded pure-input-2-3'
+  end
+
+  def ui_submit(text)
+    submit_tag(text, class: "pure-button pure-button-primary")
+  end
+
   def ui_side_menu_link(text, path, active: false, separated: false, disabled: false, link_params: {})
     li_classes = ['pure-menu-item']
     li_classes << 'pure-menu-selected' if active

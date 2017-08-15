@@ -1,3 +1,6 @@
-<%= form_tag search_path, method: :get do %>
-  <%= text_field_tag :query, params[:query] %>
-<% end %>
+<div class="search">
+  <%= ui_form(search_path, method: :get) do %>
+    <%= ui_search_field(name: 'query', value: params[:query]) %>
+    <%= ui_submit('Search') %>
+  <% end %>
+</div>
