@@ -20,6 +20,7 @@ gem 'dragonfly-dropbox_data_store'
 gem 'dropbox-sdk', require: 'dropbox_sdk'
 gem 'mini_magick'
 gem 'data_uri'
+gem 'font-awesome-rails'
 
 gem 'omniauth-google-oauth2'
 

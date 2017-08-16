@@ -8,10 +8,10 @@ class Recipes.ImageChooser
     @imageUploader = document.getElementById('ImageUploader')
     @fileUpload = document.getElementById('FileUpload')
     @fileChooser = document.getElementById('FileChooser')
-    @imageList = document.getElementById('ImageList')
+    @visibleContent = document.getElementById('VisibleContent')
     @imageTemplate = document.getElementById('ImageTemplate')
 
-    @removeOnClick(image) for image in @imageList.querySelectorAll('.image')
+    @removeOnClick(image) for image in @visibleContent.querySelectorAll('[data-image]')
 
     @fileUpload.addEventListener "click", (e) =>
       e.preventDefault()
@@ -48,23 +48,20 @@ class Recipes.ImageChooser
     e.preventDefault()
 
   numImages: ->
-    @imageList.querySelectorAll('.image').length
+    @visibleContent.querySelectorAll('[data-image]').length
 
   handleFiles: (files) ->
-    elem.remove() for elem in @imageList.querySelectorAll('.image.filechooser')
+    elem.remove() for elem in @visibleContent.querySelectorAll('[data-recently-uploaded]')
     @handleFile(file) for file, index in files
+    @fileChooser.value = ''
 
   handleFile: (file) ->
     if file.type in @ACCEPTED_TYPES
       @readDataUrl file, (fileUri) =>
         numImages = @numImages()
-        image = @newImage(fileUri, numImages)
-        excessImages = numImages - @maxImages if @maxImages
-        for elem, index in @imageList.querySelectorAll('.image')
-          elem.remove() if excessImages && index < excessImages
-        @imageList.appendChild(image)
-
-        @fileChooser.value = ''
+        unless @maxImages && (numImages >= @maxImages)
+          image = @newImage(fileUri, numImages)
+          @visibleContent.insertBefore(image, @fileUpload)
 
   readDataUrl: (file, callback) ->
     reader = new FileReader()
@@ -77,6 +74,6 @@ class Recipes.ImageChooser
   removeOnClick: (image) ->
     image.querySelector('.remove').addEventListener "click", (e) =>
       e.preventDefault()
-      image.querySelector('input.image_data_uri')?.remove()
-      image.querySelector('input.remove_image')?.value = '1'
+      image.querySelector('input[data-image-data-uri]')?.remove()
+      image.querySelector('input[data-remove-image]')?.value = '1'
       image.style['display'] = 'none'

@@ -1,4 +1,5 @@
 module ComponentHelper
+  FORM_ALIGNED = 'aligned'
 
   def ui_button(text, path, size: 'normal')
     button_class = case size
@@ -7,6 +8,105 @@ module ComponentHelper
     end
 
     link_to(text, path, class: "pure-button pure-button-primary #{button_class}")
+  end
+
+  def ui_form(path: nil, layout: nil, method: :post, object: nil, &block)
+    @form_stack ||= []
+
+    form_content = if object
+      form_for(object, html: { class: "pure-form" }) do |f|
+        @form_stack << [f, layout]
+        ui_content_container(grid_size_big: 4) do
+          block.call(f)
+        end
+      end
+    else
+      @form_stack << [nil, layout]
+      form_tag(path, method: method, class: "pure-form") do
+        ui_content_container(grid_size_big: 4) do
+          block.call
+        end
+      end
+    end
+
+    @form_stack.pop
+
+    form_content
+  end
+
+  def ui_text_field(name:, value: nil, label: nil, placeholder: nil, html_class: "")
+    ui_field_with_label(label, name) do
+      if current_form
+        current_form.text_field(name, placeholder: placeholder, class: "pure-input-1 #{html_class}")
+      else
+        text_field_tag(name, value, placeholder: placeholder, class: "pure-input-1 #{html_class}")
+      end
+    end
+  end
+
+  def ui_text_area(name:, value: nil, label: nil, placeholder: nil, html_class: "")
+    ui_field_with_label(label, name) do
+      if current_form
+        current_form.text_area(name, placeholder: placeholder, class: "pure-input-1 #{html_class}")
+      else
+        text_area(name, value, placeholder: placeholder, class: "pure-input-1 #{html_class}")
+      end
+    end
+  end
+
+  def ui_select(name:, options:, value: nil, label: nil, include_blank: nil, html_class: "")
+    ui_field_with_label(label, name) do
+      if current_form
+        current_form.select(name, options, { include_blank: include_blank }, class: "pure-input-1 #{html_class}")
+      else
+        options = options_for_select(options, value)
+        select_tag(name, options, include_blank: include_blank, class: "pure-input-1 #{html_class}")
+      end
+    end
+  end
+
+  def ui_search_field(name:, value: nil, label: nil, placeholder: nil, html_class: "")
+    ui_field_with_label(label, name) do
+      if current_form
+        current_form.search_field(name, placeholder: placeholder, class: "pure-input-rounded pure-input-1 #{html_class}")
+      else
+        search_field_tag(name, value, placeholder: placeholder, class: "pure-input-rounded pure-input-1 #{html_class}")
+      end
+    end
+  end
+
+  def ui_field_with_label(label, name, &block)
+    content = if label
+      ui_content_section(grid_size_big: 1) do
+        content_tag(:div, class: "form-label") do
+          if current_form
+            current_form.label(name)
+          else
+            label_tag(name, label)
+          end
+        end
+      end + ui_content_section(grid_size_big: 3) do
+        content_tag(:div, class: "form-field") do
+          capture(&block)
+        end
+      end
+    else
+      block.call
+    end
+  end
+
+  def ui_submit(text)
+    button = if current_form
+      current_form.submit(text, class: "pure-button pure-button-primary")
+    else
+      submit_tag(text, class: "pure-button pure-button-primary")
+    end
+
+    if current_form_layout == FORM_ALIGNED
+      ui_content_section(grid_size_big: 1){} + ui_content_section(grid_size_big: 3) { button }
+    else
+      button
+    end
   end
 
   def ui_side_menu_link(text, path, active: false, separated: false, disabled: false, link_params: {})
@@ -54,6 +154,14 @@ module ComponentHelper
     ].uniq
 
     content_tag(:div, content, class: grid_classes)
+  end
+
+  def current_form
+    @form_stack&.last&.first
+  end
+
+  def current_form_layout
+    @form_stack&.last&.last
   end
 
   def current_grid_size_stack
