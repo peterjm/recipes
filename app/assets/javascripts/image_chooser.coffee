@@ -53,19 +53,15 @@ class Recipes.ImageChooser
   handleFiles: (files) ->
     elem.remove() for elem in @visibleContent.querySelectorAll('[data-recently-uploaded]')
     @handleFile(file) for file, index in files
+    @fileChooser.value = ''
 
   handleFile: (file) ->
     if file.type in @ACCEPTED_TYPES
       @readDataUrl file, (fileUri) =>
         numImages = @numImages()
-        image = @newImage(fileUri, numImages)
-        excessImages = numImages - @maxImages if @maxImages
-        for elem, index in @visibleContent.querySelectorAll('[data-image]')
-          elem.remove() if excessImages && index < excessImages
-
-        @visibleContent.insertBefore(image, @fileUpload)
-
-        @fileChooser.value = ''
+        unless @maxImages && (numImages >= @maxImages)
+          image = @newImage(fileUri, numImages)
+          @visibleContent.insertBefore(image, @fileUpload)
 
   readDataUrl: (file, callback) ->
     reader = new FileReader()
