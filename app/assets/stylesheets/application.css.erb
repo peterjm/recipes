@@ -8,6 +8,8 @@
  * You're free to add application-wide styles to this file and they'll appear at the top of the
  * compiled file, but it's generally better to create a new file per style scope.
  *
+ *= require font-awesome
+ *
  *= require_tree .
  *= require_self
  */
@@ -119,6 +121,57 @@ ul.ingredients-list li {
 
 .ingredient-note {
   font-size: 80%;
+}
+
+/* Image picker */
+.image-upload-widget {
+  display: inline-block;
+}
+
+.image-upload-widget .visible-content {
+  display: inline-block;
+}
+
+.image-upload-widget .image {
+  display: inline-block;
+  position: relative;
+  width: 5em;
+  height: 5em;
+  margin-right: 0.5em;
+  float: left;
+}
+
+.image-upload-widget .image .remove {
+  visibility: hidden;
+  position: absolute;
+  bottom: 0.2em;
+  right: 0.2em;
+  width: 1.8em;
+  height: 1.8em;
+  color: #eb5858;
+  background: #fff;
+  cursor: pointer;
+}
+
+.image-upload-widget .image:hover .remove {
+  visibility: visible;
+}
+
+.image-upload-widget .image .remove:hover {
+  color: #fff;
+  background: #eb5858;
+}
+
+.image-upload {
+  display: inline-block;
+  border: 2px dashed #c8c9d3;
+  color: #c8c9d3;
+  font-size: 2em;
+  width: 2.5em;
+  height: 2.5em;
+  cursor: pointer;
+  box-sizing: border-box;
+  float: left;
 }
 
 /* Ingredients index */
