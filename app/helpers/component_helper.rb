@@ -11,21 +11,22 @@ module ComponentHelper
   end
 
   def ui_form(path: nil, layout: nil, method: :post, object: nil, &block)
-    layout_class = case layout
-    when FORM_ALIGNED
-      'pure-form-aligned'
-    end
-
     @form_stack ||= []
 
     form_content = if object
-      form_for(object, html: { class: "pure-form #{layout_class}" }) do |f|
+      form_for(object, html: { class: "pure-form" }) do |f|
         @form_stack << [f, layout]
-        block.call(f)
+        ui_content_container(grid_size_big: 4) do
+          block.call(f)
+        end
       end
     else
       @form_stack << [nil, layout]
-      form_tag(path, method: method, class: "pure-form #{layout_class}", &block)
+      form_tag(path, method: method, class: "pure-form") do
+        ui_content_container(grid_size_big: 4) do
+          block.call
+        end
+      end
     end
 
     @form_stack.pop
@@ -36,9 +37,9 @@ module ComponentHelper
   def ui_text_field(name:, value: nil, label: nil, placeholder: nil, html_class: "")
     ui_field_with_label(label, name) do
       if current_form
-        current_form.text_field(name, placeholder: placeholder, class: "pure-input-2-3 #{html_class}")
+        current_form.text_field(name, placeholder: placeholder, class: "pure-input-1 #{html_class}")
       else
-        text_field_tag(name, value, placeholder: placeholder, class: "pure-input-2-3 #{html_class}")
+        text_field_tag(name, value, placeholder: placeholder, class: "pure-input-1 #{html_class}")
       end
     end
   end
@@ -46,9 +47,9 @@ module ComponentHelper
   def ui_text_area(name:, value: nil, label: nil, placeholder: nil, html_class: "")
     ui_field_with_label(label, name) do
       if current_form
-        current_form.text_area(name, placeholder: placeholder, class: "pure-input-2-3 #{html_class}")
+        current_form.text_area(name, placeholder: placeholder, class: "pure-input-1 #{html_class}")
       else
-        text_area(name, value, placeholder: placeholder, class: "pure-input-2-3 #{html_class}")
+        text_area(name, value, placeholder: placeholder, class: "pure-input-1 #{html_class}")
       end
     end
   end
@@ -56,10 +57,10 @@ module ComponentHelper
   def ui_select(name:, options:, value: nil, label: nil, include_blank: nil, html_class: "")
     ui_field_with_label(label, name) do
       if current_form
-        current_form.select(name, options, { include_blank: include_blank }, class: "pure-input-2-3 #{html_class}")
+        current_form.select(name, options, { include_blank: include_blank }, class: "pure-input-1 #{html_class}")
       else
         options = options_for_select(options, value)
-        select_tag(name, options, include_blank: include_blank, class: "pure-input-2-3 #{html_class}")
+        select_tag(name, options, include_blank: include_blank, class: "pure-input-1 #{html_class}")
       end
     end
   end
@@ -67,28 +68,30 @@ module ComponentHelper
   def ui_search_field(name:, value: nil, label: nil, placeholder: nil, html_class: "")
     ui_field_with_label(label, name) do
       if current_form
-        current_form.search_field(name, placeholder: placeholder, class: "pure-input-rounded pure-input-2-3 #{html_class}")
+        current_form.search_field(name, placeholder: placeholder, class: "pure-input-rounded pure-input-1 #{html_class}")
       else
-        search_field_tag(name, value, placeholder: placeholder, class: "pure-input-rounded pure-input-2-3 #{html_class}")
+        search_field_tag(name, value, placeholder: placeholder, class: "pure-input-rounded pure-input-1 #{html_class}")
       end
     end
   end
 
   def ui_field_with_label(label, name, &block)
     content = if label
-      if current_form
-        current_form.label(name)
-      else
-        label_tag name, label
-      end + capture(&block)
+      ui_content_section(grid_size_big: 1) do
+        content_tag(:div, class: "form-label") do
+          if current_form
+            current_form.label(name)
+          else
+            label_tag(name, label)
+          end
+        end
+      end + ui_content_section(grid_size_big: 3) do
+        content_tag(:div, class: "form-field") do
+          capture(&block)
+        end
+      end
     else
       block.call
-    end
-
-    if current_form_layout == FORM_ALIGNED
-      content_tag(:div, content, class: "pure-control-group")
-    else
-      content
     end
   end
 
@@ -100,7 +103,7 @@ module ComponentHelper
     end
 
     if current_form_layout == FORM_ALIGNED
-      content_tag(:div, button, class: "pure-controls")
+      ui_content_section(grid_size_big: 1){} + ui_content_section(grid_size_big: 3) { button }
     else
       button
     end

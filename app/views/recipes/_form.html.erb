@@ -8,9 +8,8 @@
     include_blank: "Choose source&hellip;".html_safe
   ) %>
 
-  <div class="pure-control-group" define="{images: new Recipes.ImageChooser}">
-    <label>Images</label>
-    <div id="ImageUploader" class="image-upload-widget pure-input-2-3">
+  <%= ui_field_with_label("Images", :images) do %>
+    <div id="ImageUploader" class="image-upload-widget" define="{images: new Recipes.ImageChooser(this)}">
       <div id="VisibleContent" class="visible-content">
         <%= f.fields_for :images do |image_form| %>
           <% if image_form.object.new_record? %>
@@ -38,7 +37,7 @@
         <span class="remove centered" title="Remove"><%= fa_icon('trash') %></span>
       </div>
     </div>
-  </div>
+  <% end %>
 
   <%= ui_text_area(name: "ingredients_text", label: "Ingredients") %>
   <%= ui_text_area(name: "instructions_text", label: "Instructions") %>
