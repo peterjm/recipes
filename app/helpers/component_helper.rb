@@ -1,5 +1,6 @@
 module ComponentHelper
   FORM_ALIGNED = 'aligned'
+  FORM_COMPACT = 'compact'
 
   def ui_button(text, path, size: 'normal')
     button_class = case size
@@ -13,17 +14,24 @@ module ComponentHelper
   def ui_form(path: nil, layout: nil, method: :post, object: nil, &block)
     @form_stack ||= []
 
+    form_class = case layout
+    when FORM_ALIGNED
+      'form-aligned'
+    when FORM_COMPACT
+      'form-compact'
+    end
+
     form_content = if object
-      form_for(object, html: { class: "pure-form" }) do |f|
+      form_for(object, html: { class: "pure-form #{form_class}" }) do |f|
         @form_stack << [f, layout]
-        ui_content_container(grid_size_big: 4) do
+        ui_form_wrapper do
           block.call(f)
         end
       end
     else
       @form_stack << [nil, layout]
-      form_tag(path, method: method, class: "pure-form") do
-        ui_content_container(grid_size_big: 4) do
+      form_tag(path, method: method, class: "pure-form #{form_class}") do
+        ui_form_wrapper do
           block.call
         end
       end
@@ -34,12 +42,21 @@ module ComponentHelper
     form_content
   end
 
+  def ui_form_wrapper(&block)
+    case current_form_layout
+    when FORM_ALIGNED
+      ui_content_container(grid_size_big: 4, &block)
+    else
+      block.call
+    end
+  end
+
   def ui_text_field(name:, value: nil, label: nil, placeholder: nil, html_class: "")
     ui_field_with_label(label, name) do
       if current_form
-        current_form.text_field(name, placeholder: placeholder, class: "pure-input-1 #{html_class}")
+        current_form.text_field(name, placeholder: placeholder, class: html_class)
       else
-        text_field_tag(name, value, placeholder: placeholder, class: "pure-input-1 #{html_class}")
+        text_field_tag(name, value, placeholder: placeholder, class: html_class)
       end
     end
   end
@@ -47,9 +64,9 @@ module ComponentHelper
   def ui_text_area(name:, value: nil, label: nil, placeholder: nil, html_class: "")
     ui_field_with_label(label, name) do
       if current_form
-        current_form.text_area(name, placeholder: placeholder, class: "pure-input-1 #{html_class}")
+        current_form.text_area(name, placeholder: placeholder, class: html_class)
       else
-        text_area(name, value, placeholder: placeholder, class: "pure-input-1 #{html_class}")
+        text_area(name, value, placeholder: placeholder, class: html_class)
       end
     end
   end
@@ -57,10 +74,10 @@ module ComponentHelper
   def ui_select(name:, options:, value: nil, label: nil, include_blank: nil, html_class: "")
     ui_field_with_label(label, name) do
       if current_form
-        current_form.select(name, options, { include_blank: include_blank }, class: "pure-input-1 #{html_class}")
+        current_form.select(name, options, { include_blank: include_blank }, class: html_class)
       else
         options = options_for_select(options, value)
-        select_tag(name, options, include_blank: include_blank, class: "pure-input-1 #{html_class}")
+        select_tag(name, options, include_blank: include_blank, class: html_class)
       end
     end
   end
@@ -68,44 +85,69 @@ module ComponentHelper
   def ui_search_field(name:, value: nil, label: nil, placeholder: nil, html_class: "")
     ui_field_with_label(label, name) do
       if current_form
-        current_form.search_field(name, placeholder: placeholder, class: "pure-input-rounded pure-input-1 #{html_class}")
+        current_form.search_field(name, placeholder: placeholder, class: "pure-input-rounded #{html_class}")
       else
-        search_field_tag(name, value, placeholder: placeholder, class: "pure-input-rounded pure-input-1 #{html_class}")
+        search_field_tag(name, value, placeholder: placeholder, class: "pure-input-rounded #{html_class}")
       end
     end
   end
 
   def ui_field_with_label(label, name, &block)
-    content = if label
+    if label
+      ui_label_wrapper { ui_label(label, name) } + ui_field_wrapper(&block)
+    else
+      ui_field_wrapper(&block)
+    end
+  end
+
+  def ui_label(label, name)
+    if label
+      if current_form
+        current_form.label(name)
+      else
+        label_tag(name, label)
+      end
+    end
+  end
+
+  def ui_label_wrapper(&block)
+    case current_form_layout
+    when FORM_ALIGNED
       ui_content_section(grid_size_big: 1) do
-        content_tag(:div, class: "form-label") do
-          if current_form
-            current_form.label(name)
-          else
-            label_tag(name, label)
-          end
-        end
-      end + ui_content_section(grid_size_big: 3) do
-        content_tag(:div, class: "form-field") do
-          capture(&block)
-        end
+        content_tag(:div, class: "form-label", &block)
       end
     else
-      block.call
+      content_tag(:div, class: "form-label", &block)
+    end
+  end
+
+  def ui_field_wrapper(&block)
+    case current_form_layout
+    when FORM_ALIGNED
+      ui_content_section(grid_size_big: 3) do
+        content_tag(:div, class: "form-field", &block)
+      end
+    else
+      content_tag(:div, class: "form-field", &block)
     end
   end
 
   def ui_submit(text)
-    button = if current_form
-      current_form.submit(text, class: "pure-button pure-button-primary")
-    else
-      submit_tag(text, class: "pure-button pure-button-primary")
+    ui_submit_wrapper do
+      if current_form
+        current_form.submit(text, class: "pure-button pure-button-primary")
+      else
+        submit_tag(text, class: "pure-button pure-button-primary")
+      end
     end
+  end
 
-    if current_form_layout == FORM_ALIGNED
-      ui_content_section(grid_size_big: 1){} + ui_content_section(grid_size_big: 3) { button }
+  def ui_submit_wrapper(&block)
+    case current_form_layout
+    when FORM_ALIGNED
+      ui_content_section(grid_size_big: 1){} + ui_content_section(grid_size_big: 3, &block)
     else
-      button
+      block.call
     end
   end
 

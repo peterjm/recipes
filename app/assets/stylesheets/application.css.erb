@@ -73,11 +73,21 @@ body {
 }
 
 .form-label {
+  display: inline-block;
   margin-top: 0.2em;
 }
 
 .form-field {
+  display: inline-block;
   margin-bottom: 0.7em;
+}
+
+.form-aligned .form-field {
+  width: 100%;
+}
+
+input[type="text"], input[type="search"], textarea, select {
+  width: 100%;
 }
 
 /* Search */
@@ -85,6 +95,10 @@ body {
   padding: 1em 0;
   width: 100%;
   text-align: center;
+}
+
+.search .form-field {
+  width: 80%;
 }
 
 /* Side menu */

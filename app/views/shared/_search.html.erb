@@ -1,5 +1,5 @@
 <div class="search">
-  <%= ui_form(path: search_path, method: :get) do %>
+  <%= ui_form(path: search_path, method: :get, layout: ComponentHelper::FORM_COMPACT) do %>
     <%= ui_search_field(name: 'query', value: params[:query]) %>
     <%= ui_submit('Search') %>
   <% end %>
