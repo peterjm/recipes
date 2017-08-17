@@ -1,5 +1,4 @@
 require 'dragonfly'
-require 'dragonfly/dropbox_data_store'
 require 'dragonfly/s3_data_store'
 
 # Configure

@@ -71,14 +71,9 @@ GEM
       addressable (~> 2.3)
       multi_json (~> 1.0)
       rack (>= 1.3)
-    dragonfly-dropbox_data_store (0.0.1)
-      dragonfly (~> 1.0)
-      dropbox-sdk (~> 1.6)
     dragonfly-s3_data_store (1.3.0)
       dragonfly (~> 1.0)
       fog-aws
-    dropbox-sdk (1.6.5)
-      json
     erubi (1.6.1)
     excon (0.58.0)
     execjs (2.7.0)
@@ -125,7 +120,6 @@ GEM
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
-    json (2.1.0)
     jwt (1.5.6)
     kaminari (1.0.1)
       activesupport (>= 4.1.0)
@@ -276,9 +270,7 @@ DEPENDENCIES
   data_uri
   dotenv-rails
   dragonfly
-  dragonfly-dropbox_data_store
   dragonfly-s3_data_store
-  dropbox-sdk
   eye-of-newt
   factory_girl_rails
   faker
