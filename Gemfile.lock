@@ -74,9 +74,13 @@ GEM
     dragonfly-dropbox_data_store (0.0.1)
       dragonfly (~> 1.0)
       dropbox-sdk (~> 1.6)
+    dragonfly-s3_data_store (1.3.0)
+      dragonfly (~> 1.0)
+      fog-aws
     dropbox-sdk (1.6.5)
       json
     erubi (1.6.1)
+    excon (0.58.0)
     execjs (2.7.0)
     eye-of-newt (0.0.12)
       activesupport (~> 5)
@@ -90,16 +94,33 @@ GEM
     faraday (0.12.2)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
+    fog-aws (1.4.0)
+      fog-core (~> 1.38)
+      fog-json (~> 1.0)
+      fog-xml (~> 0.1)
+      ipaddress (~> 0.8)
+    fog-core (1.45.0)
+      builder
+      excon (~> 0.58)
+      formatador (~> 0.2)
+    fog-json (1.0.2)
+      fog-core (~> 1.0)
+      multi_json (~> 1.10)
+    fog-xml (0.1.3)
+      fog-core
+      nokogiri (>= 1.5.11, < 2.0.0)
     font-awesome-rails (4.7.0.2)
       railties (>= 3.2, < 5.2)
     foreman (0.84.0)
       thor (~> 0.19.1)
+    formatador (0.2.5)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
     hashdiff (0.3.5)
     hashie (3.5.6)
     i18n (0.8.6)
     interception (0.5)
+    ipaddress (0.8.3)
     jquery-rails (4.3.1)
       rails-dom-testing (>= 1, < 3)
       railties (>= 4.2.0)
@@ -256,6 +277,7 @@ DEPENDENCIES
   dotenv-rails
   dragonfly
   dragonfly-dropbox_data_store
+  dragonfly-s3_data_store
   dropbox-sdk
   eye-of-newt
   factory_girl_rails
