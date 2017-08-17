@@ -51,7 +51,6 @@ class Recipes.ImageChooser
     @visibleContent.querySelectorAll('[data-image]').length
 
   handleFiles: (files) ->
-    elem.remove() for elem in @visibleContent.querySelectorAll('[data-recently-uploaded]')
     @handleFile(file) for file, index in files
     @fileChooser.value = ''
 
