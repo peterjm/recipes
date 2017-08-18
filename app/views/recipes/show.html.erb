@@ -35,7 +35,7 @@
 
   <% if @recipe.notes.present? %>
     <%=
-      ui_editable_content_section(title: "Notes", object: @recipe, field: :instructions_text) do
+      ui_editable_content_section(title: "Notes", object: @recipe, field: :notes) do
         render_markdown @recipe.notes
       end
     %>
