@@ -20,6 +20,7 @@ gem 'dragonfly-s3_data_store'
 gem 'mini_magick'
 gem 'data_uri'
 gem 'font-awesome-rails'
+gem 'pg_search'
 
 gem 'omniauth-google-oauth2'
 
