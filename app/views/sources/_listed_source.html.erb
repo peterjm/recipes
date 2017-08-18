@@ -1,7 +1,12 @@
-<%= image_tag source.image('small'), alt: source.name %>
+<div class="recipe-source listing">
+  <%= image_tag source.image('thumb'), alt: source.name %>
 
-<h2><%= link_to source.name, source_path(source) %></h2>
-<%= pluralize source.recipes.count, 'recipe' %>
-by <%= source.author %>
-<%= link_to source.url, source.url %>
-<%= simple_format source.description %>
+  <div>
+    <h2><%= link_to source.name, source_path(source) %><span class="author"> by <%= source.author %></span></h2>
+
+    <span class="recipe-count"><%= pluralize source.recipes.count, 'recipe' %></span>
+    <% if source.url %>
+      <span><%= link_to source.url, source.url %></span>
+    <% end %>
+  </div>
+</div>

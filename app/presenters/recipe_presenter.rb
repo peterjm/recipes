@@ -24,6 +24,17 @@ class RecipePresenter < Presenter
     SourcePresenter.wrap(recipe.source)
   end
 
+  def has_source?
+    source || basic_source
+  end
+
+  def basic_source_url
+    URI.parse(basic_source)
+    basic_source
+  rescue URI::InvalidURIError
+    nil
+  end
+
   def dragonfly_image
     recipe.build_image unless recipe.image
     recipe.image.image
