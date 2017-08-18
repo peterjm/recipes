@@ -7,6 +7,7 @@
 <%= ui_content_container do %>
   <%= ui_content_section do %>
     <div class="bg-cover recipe-main-image" style="background-image:url(<%= @recipe.image('full') %>)">
+      <%= button_to_toggle_recipe_flag(@recipe) %>
       <div class="centered">
         <h1 class="recipe-title"><%= @recipe.title %></h1>
       </div>
