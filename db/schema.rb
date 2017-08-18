@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150929022949) do
+ActiveRecord::Schema.define(version: 20170818133439) do
 
   create_table "ingredient_names", force: :cascade do |t|
     t.integer "ingredient_id", null: false
@@ -28,6 +28,11 @@ ActiveRecord::Schema.define(version: 20150929022949) do
     t.datetime "updated_at"
     t.float "grams_per_ml"
     t.index ["name"], name: "index_ingredients_on_name"
+  end
+
+  create_table "recipe_flags", force: :cascade do |t|
+    t.integer "recipe_id", null: false
+    t.index ["recipe_id"], name: "index_recipe_flags_on_recipe_id", unique: true
   end
 
   create_table "recipe_images", force: :cascade do |t|

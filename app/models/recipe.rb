@@ -6,6 +6,9 @@ class Recipe < ApplicationRecord
 
   belongs_to :source, inverse_of: :recipes, optional: true
 
+  has_one :flag, class_name: 'RecipeFlag', dependent: :destroy
+  scope :flagged, -> { joins(:flag) }
+
   accepts_nested_attributes_for :images, allow_destroy: true
 
   validates :title, presence: true
@@ -13,7 +16,6 @@ class Recipe < ApplicationRecord
   include PerformsActionOnSave
   action_on_save :update_recipe_ingredients
   action_on_save :update_primary_image
-
 
   if Rails.application.config.using_postgres
     include PgSearch

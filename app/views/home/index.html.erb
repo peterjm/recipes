@@ -2,4 +2,8 @@
   <%= ui_content_section do %>
     <%= render 'shared/search' %>
   <% end %>
+
+  <%= ui_content_section(title: 'Starred Recipes') do %>
+    <%= render 'recipes/recipe_list', recipes: @flagged_recipes %>
+  <% end %>
 <% end %>

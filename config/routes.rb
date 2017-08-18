@@ -6,7 +6,10 @@ Rails.application.routes.draw do
   get 'auth/google/error' => 'sessions#error'
   delete "/logout" => "sessions#destroy", as: 'logout'
 
-  resources :recipes, only: [:index, :show, :new, :create, :edit, :update]
+  resources :recipes, only: [:index, :show, :new, :create, :edit, :update] do
+    resource :flag, only: [:create, :destroy], controller: 'recipe_flags'
+  end
+
   resources :ingredients, only: [:index, :show] do
     resource :merge, only: [:create], controller: 'ingredient_merges'
   end
