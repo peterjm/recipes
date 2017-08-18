@@ -14,7 +14,13 @@ class Recipe < ApplicationRecord
   action_on_save :update_recipe_ingredients
   action_on_save :update_primary_image
 
-  scope :matching, -> (query) { where(["title LIKE ?", "%#{query}%"]) }
+
+  if Rails.application.config.using_postgres
+    include PgSearch
+    pg_search_scope :matching, against: %i(title)
+  else
+    scope :matching, -> (query) { where(["title LIKE ?", "%#{query}%"]) }
+  end
 
   def ingredient_lines
     IngredientListParser.new(ingredients_text).ingredients
