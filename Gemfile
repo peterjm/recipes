@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.7.4'
 
 gem 'rails', '~> 5.1'
-gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 gem 'turbograft'
 gem 'twine-rails'
 
