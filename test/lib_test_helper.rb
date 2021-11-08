@@ -1,6 +1,6 @@
 require "minitest/autorun"
 require 'minitest/pride'
-require 'mocha/mini_test'
+require 'mocha/minitest'
 require "active_support"
 
 require 'support/read_fixture'
