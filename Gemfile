@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 ruby '2.7.4'
 
-gem 'rails', '>= 6', '< 6.1'
+gem 'rails', '>= 6.1', '< 7'
 gem 'bootsnap'
 gem 'bcrypt'
 gem 'turbograft'
