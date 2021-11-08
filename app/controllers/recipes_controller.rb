@@ -28,7 +28,7 @@ class RecipesController < AuthenticatedController
 
   def update
     recipe = Recipe.find(params[:id])
-    if recipe.update_attributes(recipe_params)
+    if recipe.update(recipe_params)
       redirect_to recipe_path(recipe)
     else
       @recipe = presentable(recipe)

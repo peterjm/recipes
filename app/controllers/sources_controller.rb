@@ -28,7 +28,7 @@ class SourcesController < AuthenticatedController
 
   def update
     source = Source.find(params[:id])
-    if source.update_attributes(source_params)
+    if source.update(source_params)
       redirect_to source_path(source)
     else
       @source = presentable(source)
