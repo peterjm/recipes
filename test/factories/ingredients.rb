@@ -1,8 +1,8 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :ingredient do
-    name "tomatoes"
-    staple false
+    name { "tomatoes" }
+    staple { false }
   end
 end

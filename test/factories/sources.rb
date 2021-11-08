@@ -1,13 +1,13 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+# Read about factories at https://github.com/thoughtbot/factory_bot
 
-FactoryGirl.define do
+FactoryBot.define do
   factory :source do
-    source_type Source::OTHER_TYPE
-    name "My Food Blog"
+    source_type { Source::OTHER_TYPE }
+    name { "My Food Blog" }
 
     factory :website_source do
-      source_type Source::WEBSITE_TYPE
-      url "http://myfoodblog.com"
+      source_type { Source::WEBSITE_TYPE }
+      url { "http://myfoodblog.com" }
     end
   end
 end

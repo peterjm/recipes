@@ -105,11 +105,11 @@ GEM
     execjs (2.8.1)
     eye-of-newt (0.0.15)
       activesupport (>= 5)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (6.2.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
     faraday (1.8.0)
@@ -333,7 +333,7 @@ DEPENDENCIES
   dragonfly
   dragonfly-s3_data_store
   eye-of-newt
-  factory_girl_rails
+  factory_bot_rails
   faker
   font-awesome-rails
   foreman
