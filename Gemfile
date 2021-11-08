@@ -1,8 +1,9 @@
 source 'https://rubygems.org'
-ruby '2.5.3'
+ruby '2.7.4'
 
-gem 'rails', '~> 5.1'
-gem 'bcrypt', '~> 3.1.7'
+gem 'rails', '>= 5.2', '< 6'
+gem 'bootsnap'
+gem 'bcrypt'
 gem 'turbograft'
 gem 'twine-rails'
 
