@@ -24,6 +24,7 @@ gem 'font-awesome-rails'
 gem 'pg_search'
 
 gem 'omniauth-google-oauth2'
+gem 'omniauth-rails_csrf_protection'
 
 group :development, :test do
   gem 'faker'

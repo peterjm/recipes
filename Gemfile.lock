@@ -205,6 +205,9 @@ GEM
     omniauth-oauth2 (1.7.2)
       oauth2 (~> 1.4)
       omniauth (>= 1.9, < 3)
+    omniauth-rails_csrf_protection (1.0.0)
+      actionpack (>= 4.2)
+      omniauth (~> 2.0)
     pg (1.2.3)
     pg_search (2.3.5)
       activerecord (>= 5.2)
@@ -322,6 +325,7 @@ DEPENDENCIES
   mocha
   nokogiri
   omniauth-google-oauth2
+  omniauth-rails_csrf_protection
   pg
   pg_search
   pry
