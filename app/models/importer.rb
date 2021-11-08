@@ -6,7 +6,7 @@ class Importer
 
   attr_reader :url, :fetcher
 
-  def initialize(url, fetcher: HTMLFetcher.new)
+  def initialize(url, fetcher: HtmlFetcher.new)
     @url = url
     @fetcher = fetcher
   end

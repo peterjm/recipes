@@ -1,7 +1,7 @@
 require 'net/http'
 require 'uri'
 
-class HTMLFetcher
+class HtmlFetcher
 
   def get(url)
     uri = URI.parse(url)
