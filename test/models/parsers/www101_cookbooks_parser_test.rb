@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class Parsers::WWW101CookbooksParserTest < ActiveSupport::TestCase
+class Parsers::Www101CookbooksParserTest < ActiveSupport::TestCase
 
   def html(fixture)
     read_fixture("html/www101cookbooks/#{fixture}.html")
   end
 
   def parser(fixture)
-    Parsers::WWW101CookbooksParser.new("http://www.101cookbooks.com/archive/foo.html", html(fixture))
+    Parsers::Www101CookbooksParser.new("http://www.101cookbooks.com/archive/foo.html", html(fixture))
   end
 
   def salad_parser

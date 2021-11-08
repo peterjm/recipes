@@ -1,4 +1,4 @@
-class HTMLParser
+class HtmlParser
   RECIPE_FIELDS = [:title, :instructions, :ingredients, :image_url]
 
   def self.build(source_url, content)
@@ -8,7 +8,7 @@ class HTMLParser
   def self.parser_for(source_url)
     case source_url
     when /www.101cookbooks.com/
-      Parsers::WWW101CookbooksParser
+      Parsers::Www101CookbooksParser
     else
       raise "unknown source"
     end

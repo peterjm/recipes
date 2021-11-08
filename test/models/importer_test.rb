@@ -21,7 +21,7 @@ class ImporterTest < ActiveSupport::TestCase
     attrs = default_attrs.merge(attrs)
     @parser ||= begin
       p = stub(attrs)
-      HTMLParser.stubs(:build).returns(p)
+      HtmlParser.stubs(:build).returns(p)
       p
     end
   end
@@ -40,7 +40,7 @@ class ImporterTest < ActiveSupport::TestCase
     )
     fetcher = stub
     fetcher.expects(:get).with("http://foo.com").returns("content")
-    HTMLParser.expects(:build).with("http://foo.com", "content").returns(parser)
+    HtmlParser.expects(:build).with("http://foo.com", "content").returns(parser)
     importer = Importer.new("http://foo.com", fetcher: fetcher)
     recipe = importer.import
 

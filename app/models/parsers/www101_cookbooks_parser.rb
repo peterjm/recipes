@@ -1,5 +1,5 @@
 module Parsers
-  class WWW101CookbooksParser < HTMLParser
+  class Www101CookbooksParser < HtmlParser
 
     SOURCE_NAME = "101 Cookbooks"
 

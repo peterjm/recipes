@@ -38,7 +38,7 @@ class Importer
   end
 
   def parser
-    HTMLParser.build(url, content)
+    HtmlParser.build(url, content)
   end
 
 end
