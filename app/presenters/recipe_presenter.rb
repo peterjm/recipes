@@ -35,6 +35,10 @@ class RecipePresenter < Presenter
     nil
   end
 
+  def has_image?
+    recipe.recipe_image_id.present?
+  end
+
   def dragonfly_image
     recipe.build_image unless recipe.image
     recipe.image.image

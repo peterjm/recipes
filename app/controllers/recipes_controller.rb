@@ -1,11 +1,14 @@
 class RecipesController < AuthenticatedController
-
   def index
     @recipes = presentable(Recipe.includes(:image).page(params[:page]).per(48))
   end
 
   def show
     @recipe = presentable(Recipe.find(params[:id]))
+    respond_to do |format|
+      format.html
+      format.yml { render plain: RecipeYmlSerializer.new(@recipe, request.host).to_yaml }
+    end
   end
 
   def new
